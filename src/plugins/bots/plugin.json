@@ -1,0 +1,332 @@
+{
+  "kind": "plugin",
+  "id": "bots",
+  "name": "AI Bots",
+  "version": "0.1.0",
+  "author": "Desvelao",
+  "license": "MIT",
+  "description": "Hosts can fill a room with AI players, choose their level and add single bots. The bots run inside the server or in the separate bot server.",
+  "order": 100,
+  "capabilities": ["virtualPlayers"],
+  "engines": {
+    "core": ">=0.1.0"
+  },
+  "config": [
+    {
+      "id": "allowFill",
+      "label": "Allow bots",
+      "description": "Hosts may fill their room with bots and add bots.",
+      "type": "boolean",
+      "default": false,
+      "env": "BOTS_ALLOW_FILL"
+    },
+    {
+      "id": "defaultLevel",
+      "label": "Default level",
+      "description": "Level new rooms start with.",
+      "type": "choice",
+      "default": "normal",
+      "env": "BOTS_DEFAULT_LEVEL",
+      "choices": [
+        {
+          "value": "easy",
+          "label": "Easy"
+        },
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "hard",
+          "label": "Hard"
+        },
+        {
+          "value": "expert",
+          "label": "Expert"
+        },
+        {
+          "value": "semigod",
+          "label": "Semigod"
+        },
+        {
+          "value": "random",
+          "label": "Random"
+        }
+      ]
+    },
+    {
+      "id": "mode",
+      "label": "Where the bots run",
+      "description": "embedded: inside this server. external: the separate bot server plays them (it joins with the token).",
+      "type": "choice",
+      "default": "embedded",
+      "env": "BOTS_MODE",
+      "choices": [
+        {
+          "value": "embedded",
+          "label": "Inside this server"
+        },
+        {
+          "value": "external",
+          "label": "Bot server"
+        }
+      ]
+    },
+    {
+      "id": "token",
+      "label": "Bot server token",
+      "description": "Secret the bot server presents when it seats bots (its GAME_SERVER_BOT_TOKEN). Empty: only embedded bots.",
+      "type": "string",
+      "default": "",
+      "env": "BOTS_TOKEN",
+      "secret": true
+    },
+    {
+      "id": "maxBots",
+      "label": "Most embedded bots",
+      "description": "Bots playing at the same time inside this server; 0 = by hardware profile (LOW_POWER 2, NORMAL 8, HIGH 16).",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 64,
+      "env": "BOTS_MAX"
+    },
+    {
+      "id": "decisionHz",
+      "label": "Decisions per second",
+      "description": "How often an embedded bot decides; 0 = by hardware profile (LOW_POWER 10, NORMAL 20, HIGH 30). Lower is lighter on small machines.",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 60,
+      "env": "BOTS_DECISION_HZ"
+    },
+    {
+      "id": "mixed",
+      "label": "Rooms with every game",
+      "description": "never: no bots in a room that rotates through every game. always: bots join; every built-in game has an AI, so they only sit out the rounds of installed games that have none.",
+      "type": "choice",
+      "default": "never",
+      "env": "BOTS_MIXED",
+      "choices": [
+        {
+          "value": "never",
+          "label": "Never"
+        },
+        {
+          "value": "always",
+          "label": "Always"
+        }
+      ]
+    },
+    {
+      "id": "playlistJoin",
+      "label": "Custom playlists",
+      "description": "any: bots join a playlist when they can play at least one of its games. all: only when they can play all of them.",
+      "type": "choice",
+      "default": "any",
+      "env": "BOTS_PLAYLIST_JOIN",
+      "choices": [
+        {
+          "value": "any",
+          "label": "Any game"
+        },
+        {
+          "value": "all",
+          "label": "All games"
+        }
+      ]
+    },
+    {
+      "id": "idleLeaveSeconds",
+      "label": "Idle bots leave after",
+      "description": "Seconds a bot may sit out (the room plays a game it has no AI for) before it leaves; 0 = never.",
+      "type": "number",
+      "default": 120,
+      "env": "BOTS_IDLE_LEAVE_SECONDS",
+      "min": 0,
+      "max": 86400
+    },
+    {
+      "id": "namePrefix",
+      "label": "Bot names start with",
+      "description": "Start of the bots' display names, like \"Bot Hard\" (up to 8 letters).",
+      "type": "string",
+      "default": "Bot",
+      "env": "BOTS_NAME_PREFIX"
+    },
+    {
+      "id": "api",
+      "label": "Management API",
+      "description": "Serve the management API at /api/bots (admin only): bots, rooms, pause, settings. The dashboard needs it.",
+      "type": "boolean",
+      "default": true,
+      "env": "BOTS_API"
+    },
+    {
+      "id": "dashboard",
+      "label": "Dashboard",
+      "description": "Serve the dashboard page at /plugins/bots/ (admin sign-in with the server token).",
+      "type": "boolean",
+      "default": true,
+      "env": "BOTS_DASHBOARD"
+    },
+    {
+      "id": "liveConfig",
+      "label": "Change settings from the dashboard",
+      "description": "Let an admin change the bot settings that apply here while the server runs.",
+      "type": "boolean",
+      "default": true,
+      "env": "BOTS_LIVE_CONFIG"
+    },
+    {
+      "id": "audit",
+      "label": "Audit log",
+      "description": "Keep a log of who changed what in the management API.",
+      "type": "boolean",
+      "default": true,
+      "env": "BOTS_AUDIT"
+    },
+    {
+      "id": "metrics",
+      "label": "Prometheus metrics",
+      "description": "Serve metrics at /api/bots/prometheus (admin only).",
+      "type": "boolean",
+      "default": false,
+      "env": "BOTS_METRICS"
+    },
+    {
+      "id": "reports",
+      "label": "Match reports",
+      "description": "Write a report of every bot match (files are written on the game loop: leave off on small machines).",
+      "type": "boolean",
+      "default": false,
+      "env": "BOTS_REPORTS"
+    },
+    {
+      "id": "reportsDir",
+      "label": "Reports folder",
+      "description": "Where the reports go; empty = a folder in the plugin's data folder.",
+      "type": "string",
+      "default": "",
+      "env": "BOTS_REPORTS_DIR"
+    }
+  ],
+  "locales": {
+    "es": {
+      "Bots": "Bots",
+      "Fill room with bots": "Llenar la sala con bots",
+      "Stop filling with bots": "Dejar de llenar con bots",
+      "Bot level": "Nivel de los bots",
+      "Level of the bot to add": "Nivel del bot a añadir",
+      "Add bot": "Añadir bot",
+      "Remove bot": "Quitar bot",
+      "Bot {level} (joining...)": "Bot {level} (entrando...)",
+      "Bots fill the empty seats ({level})": "Los bots llenan los sitios libres ({level})",
+      "Easy": "Fácil",
+      "Normal": "Normal",
+      "Hard": "Difícil",
+      "Expert": "Experto",
+      "Semigod": "Semidiós",
+      "Random": "Aleatorio",
+      "No bot can play this room: {detail}": "Ningún bot puede jugar en esta sala: {detail}",
+      "Joining of bots is paused": "La entrada de bots está en pausa",
+      "The most bots are playing already": "Ya juegan todos los bots permitidos",
+      "Bots are waiting a moment before trying again": "Los bots esperan un momento antes de volver a intentarlo",
+      "No bot can read this room": "Ningún bot puede leer esta sala",
+      "the room rotates through every game": "la sala rota por todos los juegos"
+    },
+    "fr": {
+      "Bots": "Bots",
+      "Fill room with bots": "Remplir le salon de bots",
+      "Stop filling with bots": "Arrêter de remplir avec des bots",
+      "Bot level": "Niveau des bots",
+      "Level of the bot to add": "Niveau du bot à ajouter",
+      "Add bot": "Ajouter un bot",
+      "Remove bot": "Retirer le bot",
+      "Bot {level} (joining...)": "Bot {level} (arrive...)",
+      "Bots fill the empty seats ({level})": "Les bots remplissent les places libres ({level})",
+      "Easy": "Facile",
+      "Normal": "Normal",
+      "Hard": "Difficile",
+      "Expert": "Expert",
+      "Semigod": "Semi-dieu",
+      "Random": "Aléatoire",
+      "No bot can play this room: {detail}": "Aucun bot ne peut jouer dans ce salon : {detail}",
+      "Joining of bots is paused": "L’arrivée des bots est suspendue",
+      "The most bots are playing already": "Le maximum de bots joue déjà",
+      "Bots are waiting a moment before trying again": "Les bots attendent un moment avant de réessayer",
+      "No bot can read this room": "Aucun bot ne peut lire ce salon",
+      "the room rotates through every game": "le salon passe en revue tous les jeux"
+    },
+    "de": {
+      "Bots": "Bots",
+      "Fill room with bots": "Raum mit Bots füllen",
+      "Stop filling with bots": "Nicht mehr mit Bots füllen",
+      "Bot level": "Bot-Stufe",
+      "Level of the bot to add": "Stufe des hinzuzufügenden Bots",
+      "Add bot": "Bot hinzufügen",
+      "Remove bot": "Bot entfernen",
+      "Bot {level} (joining...)": "Bot {level} (tritt bei...)",
+      "Bots fill the empty seats ({level})": "Bots füllen die freien Plätze ({level})",
+      "Easy": "Leicht",
+      "Normal": "Normal",
+      "Hard": "Schwer",
+      "Expert": "Experte",
+      "Semigod": "Halbgott",
+      "Random": "Zufällig",
+      "No bot can play this room: {detail}": "Kein Bot kann in diesem Raum spielen: {detail}",
+      "Joining of bots is paused": "Der Beitritt von Bots ist pausiert",
+      "The most bots are playing already": "Die höchste Zahl an Bots spielt bereits",
+      "Bots are waiting a moment before trying again": "Die Bots warten einen Moment, bevor sie es erneut versuchen",
+      "No bot can read this room": "Kein Bot kann diesen Raum lesen",
+      "the room rotates through every game": "der Raum wechselt durch alle Spiele"
+    },
+    "pt": {
+      "Bots": "Bots",
+      "Fill room with bots": "Encher a sala com bots",
+      "Stop filling with bots": "Parar de encher com bots",
+      "Bot level": "Nível do bot",
+      "Level of the bot to add": "Nível do bot a adicionar",
+      "Add bot": "Adicionar bot",
+      "Remove bot": "Remover bot",
+      "Bot {level} (joining...)": "Bot {level} (a entrar...)",
+      "Bots fill the empty seats ({level})": "Os bots preenchem os lugares vazios ({level})",
+      "Easy": "Fácil",
+      "Normal": "Normal",
+      "Hard": "Difícil",
+      "Expert": "Especialista",
+      "Semigod": "Semideus",
+      "Random": "Aleatório",
+      "No bot can play this room: {detail}": "Nenhum bot pode jogar nesta sala: {detail}",
+      "Joining of bots is paused": "A entrada de bots está em pausa",
+      "The most bots are playing already": "O máximo de bots já está a jogar",
+      "Bots are waiting a moment before trying again": "Os bots esperam um momento antes de tentar de novo",
+      "No bot can read this room": "Nenhum bot consegue ler esta sala",
+      "the room rotates through every game": "a sala passa por todos os jogos"
+    },
+    "it": {
+      "Bots": "Bot",
+      "Fill room with bots": "Riempi la stanza di bot",
+      "Stop filling with bots": "Smetti di riempire con i bot",
+      "Bot level": "Livello del bot",
+      "Level of the bot to add": "Livello del bot da aggiungere",
+      "Add bot": "Aggiungi bot",
+      "Remove bot": "Rimuovi bot",
+      "Bot {level} (joining...)": "Bot {level} (sta entrando...)",
+      "Bots fill the empty seats ({level})": "I bot riempiono i posti liberi ({level})",
+      "Easy": "Facile",
+      "Normal": "Normale",
+      "Hard": "Difficile",
+      "Expert": "Esperto",
+      "Semigod": "Semidio",
+      "Random": "Casuale",
+      "No bot can play this room: {detail}": "Nessun bot può giocare in questa stanza: {detail}",
+      "Joining of bots is paused": "L’ingresso dei bot è in pausa",
+      "The most bots are playing already": "Il massimo di bot sta già giocando",
+      "Bots are waiting a moment before trying again": "I bot aspettano un momento prima di riprovare",
+      "No bot can read this room": "Nessun bot può leggere questa stanza",
+      "the room rotates through every game": "la stanza passa in rassegna tutti i giochi"
+    }
+  }
+}

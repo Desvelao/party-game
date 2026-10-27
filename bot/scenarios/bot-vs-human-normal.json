@@ -1,0 +1,3 @@
+{ "name": "bot-vs-human-normal", "description": "One normal bot against you. Join the printed room code in the browser.",
+  "game": "ballistix", "variant": "smashball", "options": { "lives": 3 },
+  "seats": [ { "bot": "normal" }, { "human": true } ], "matches": 1 }

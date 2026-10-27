@@ -1,0 +1,1256 @@
+{
+  "id": "spring-showdown",
+  "name": "Spring Showdown",
+  "version": "0.1.0",
+  "author": "Desvelao",
+  "license": "MIT",
+  "description": "Hop across the grid painting tiles your colour and bank them for points. Most points wins.",
+  "order": 3,
+  "character": "blob",
+  "catalog": {
+    "id": "spring-showdown",
+    "tags": [
+      "points"
+    ],
+    "action": "fire",
+    "guide": {
+      "objective": {
+        "en": "Finish the round with the most banked points.",
+        "es": "Termina la ronda con más puntos banqueados.",
+        "fr": "Termine la manche avec le plus de points mis en banque.",
+        "de": "Beende die Runde mit den meisten eingezahlten Punkten.",
+        "pt": "Termina a ronda com mais pontos depositados.",
+        "it": "Concludi il round con più punti messi in banca."
+      },
+      "rules": [
+        {
+          "en": "Hold a direction to hop one tile at a time; each tile you land on becomes yours.",
+          "es": "Mantén una dirección para saltar de casilla en casilla; cada casilla donde caes pasa a ser tuya.",
+          "fr": "Maintiens une direction pour sauter d’une case à la fois ; chaque case sur laquelle tu atterris devient la tienne.",
+          "de": "Halte eine Richtung gedrückt, um ein Feld nach dem anderen zu hüpfen; jedes Feld, auf dem du landest, gehört dir.",
+          "pt": "Mantém uma direção premida para saltares um quadrado de cada vez; cada quadrado onde aterras passa a ser teu.",
+          "it": "Tieni premuta una direzione per saltare una casella alla volta; ogni casella su cui atterri diventa tua."
+        },
+        {
+          "en": "Boots, missiles and arrows appear as items; the action button uses the one you hold.",
+          "es": "Botas, misiles y flechas aparecen como objetos; el botón de acción usa el que llevas.",
+          "fr": "Bottes, missiles et flèches apparaissent comme objets ; le bouton d’action utilise celui que tu tiens.",
+          "de": "Stiefel, Raketen und Pfeile erscheinen als Items; der Aktionsknopf benutzt das, das du hältst.",
+          "pt": "Botas, mísseis e setas aparecem como itens; o botão de ação usa o que seguras.",
+          "it": "Stivali, missili e frecce compaiono come oggetti; il pulsante azione usa quello che tieni."
+        },
+        {
+          "en": "A hit player is stunned and cannot move for a moment.",
+          "es": "Un jugador golpeado queda aturdido y no puede moverse un momento.",
+          "fr": "Un joueur touché est étourdi et ne peut plus bouger un instant.",
+          "de": "Ein getroffener Spieler ist betäubt und kann sich kurz nicht bewegen.",
+          "pt": "Um jogador atingido fica atordoado e não se pode mexer por um momento.",
+          "it": "Un giocatore colpito è stordito e non può muoversi per un momento."
+        }
+      ],
+      "items": [
+        {
+          "name": {
+            "en": "Speedy boots",
+            "es": "Botas veloces",
+            "fr": "Bottes rapides",
+            "de": "Flotte Stiefel",
+            "pt": "Botas velozes",
+            "it": "Stivali veloci"
+          },
+          "description": {
+            "en": "Hop almost twice as fast for a while.",
+            "es": "Saltas casi el doble de rápido durante un rato.",
+            "fr": "Saute presque deux fois plus vite pendant un moment.",
+            "de": "Hüpfe eine Weile fast doppelt so schnell.",
+            "pt": "Salta quase duas vezes mais depressa durante algum tempo.",
+            "it": "Salta quasi il doppio più veloce per un po’."
+          }
+        },
+        {
+          "name": {
+            "en": "Missile",
+            "es": "Misil",
+            "fr": "Missile",
+            "de": "Rakete",
+            "pt": "Míssil",
+            "it": "Missile"
+          },
+          "description": {
+            "en": "Fire it at a rival to stun them.",
+            "es": "Dispáralo a un rival para aturdirlo.",
+            "fr": "Tire-le sur un rival pour l’étourdir.",
+            "de": "Feuere sie auf einen Rivalen ab, um ihn zu betäuben.",
+            "pt": "Dispara-o a um rival para o atordoar.",
+            "it": "Sparalo a un rivale per stordirlo."
+          }
+        }
+      ]
+    },
+    "name": "Spring Showdown",
+    "description": "Hop across the grid painting tiles your colour and bank them for points. Most points wins.",
+    "teams": true,
+    "maxTeamSize": 4,
+    "options": [
+      {
+        "id": "collisions",
+        "label": "Player collisions",
+        "description": "Players cannot share a square: a hop onto an occupied square is blocked.",
+        "type": "boolean",
+        "default": true,
+        "group": "player"
+      }
+    ],
+    "variants": [
+      {
+        "id": "spring-painter",
+        "action": "fire",
+        "guide": {
+          "objective": {
+            "en": "Finish the round with the most banked points.",
+            "es": "Termina la ronda con más puntos banqueados.",
+            "fr": "Termine la manche avec le plus de points mis en banque.",
+            "de": "Beende die Runde mit den meisten eingezahlten Punkten.",
+            "pt": "Termina a ronda com mais pontos depositados.",
+            "it": "Concludi il round con più punti messi in banca."
+          },
+          "rules": [
+            {
+              "en": "Hold a direction to hop one tile at a time; each tile you land on becomes yours.",
+              "es": "Mantén una dirección para saltar de casilla en casilla; cada casilla donde caes pasa a ser tuya.",
+              "fr": "Maintiens une direction pour sauter d’une case à la fois ; chaque case sur laquelle tu atterris devient la tienne.",
+              "de": "Halte eine Richtung gedrückt, um ein Feld nach dem anderen zu hüpfen; jedes Feld, auf dem du landest, gehört dir.",
+              "pt": "Mantém uma direção premida para saltares um quadrado de cada vez; cada quadrado onde aterras passa a ser teu.",
+              "it": "Tieni premuta una direzione per saltare una casella alla volta; ogni casella su cui atterri diventa tua."
+            },
+            {
+              "en": "Boots, missiles and arrows appear as items; the action button uses the one you hold.",
+              "es": "Botas, misiles y flechas aparecen como objetos; el botón de acción usa el que llevas.",
+              "fr": "Bottes, missiles et flèches apparaissent comme objets ; le bouton d’action utilise celui que tu tiens.",
+              "de": "Stiefel, Raketen und Pfeile erscheinen als Items; der Aktionsknopf benutzt das, das du hältst.",
+              "pt": "Botas, mísseis e setas aparecem como itens; o botão de ação usa o que seguras.",
+              "it": "Stivali, missili e frecce compaiono come oggetti; il pulsante azione usa quello che tieni."
+            },
+            {
+              "en": "A hit player is stunned and cannot move for a moment.",
+              "es": "Un jugador golpeado queda aturdido y no puede moverse un momento.",
+              "fr": "Un joueur touché est étourdi et ne peut plus bouger un instant.",
+              "de": "Ein getroffener Spieler ist betäubt und kann sich kurz nicht bewegen.",
+              "pt": "Um jogador atingido fica atordoado e não se pode mexer por um momento.",
+              "it": "Un giocatore colpito è stordito e non può muoversi per un momento."
+            },
+            {
+              "en": "Painted tiles only count once banked: land on a purple ! crate to bank them.",
+              "es": "Las casillas pintadas solo cuentan al banquearlas: cae sobre una caja morada ! para banquearlas.",
+              "fr": "Les cases peintes ne comptent qu’une fois mises en banque : atterris sur une caisse ! violette pour les déposer.",
+              "de": "Bemalte Felder zählen erst, wenn sie eingezahlt sind: Lande auf einer lila !-Kiste, um sie einzuzahlen.",
+              "pt": "Os quadrados pintados só contam depois de depositados: aterra numa caixa ! roxa para os depositares.",
+              "it": "Le caselle dipinte contano solo dopo essere state messe in banca: atterra su una cassa ! viola per depositarle."
+            },
+            {
+              "en": "Rivals can paint over your unbanked tiles.",
+              "es": "Los rivales pueden pintar sobre tus casillas sin banquear.",
+              "fr": "Les rivaux peuvent repeindre tes cases non déposées.",
+              "de": "Rivalen können deine nicht eingezahlten Felder übermalen.",
+              "pt": "Os rivais podem pintar por cima dos teus quadrados não depositados.",
+              "it": "I rivali possono ridipingere le tue caselle non depositate."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Speedy boots",
+                "es": "Botas veloces",
+                "fr": "Bottes rapides",
+                "de": "Flotte Stiefel",
+                "pt": "Botas velozes",
+                "it": "Stivali veloci"
+              },
+              "description": {
+                "en": "Hop almost twice as fast for a while.",
+                "es": "Saltas casi el doble de rápido durante un rato.",
+                "fr": "Saute presque deux fois plus vite pendant un moment.",
+                "de": "Hüpfe eine Weile fast doppelt so schnell.",
+                "pt": "Salta quase duas vezes mais depressa durante algum tempo.",
+                "it": "Salta quasi il doppio più veloce per un po’."
+              }
+            },
+            {
+              "name": {
+                "en": "Missile",
+                "es": "Misil",
+                "fr": "Missile",
+                "de": "Rakete",
+                "pt": "Míssil",
+                "it": "Missile"
+              },
+              "description": {
+                "en": "Fire it at a rival to stun them.",
+                "es": "Dispáralo a un rival para aturdirlo.",
+                "fr": "Tire-le sur un rival pour l’étourdir.",
+                "de": "Feuere sie auf einen Rivalen ab, um ihn zu betäuben.",
+                "pt": "Dispara-o a um rival para o atordoar.",
+                "it": "Sparalo a un rivale per stordirlo."
+              }
+            },
+            {
+              "name": {
+                "en": "Purple ! crate",
+                "es": "Caja morada !",
+                "fr": "Caisse ! violette",
+                "de": "Lila !-Kiste",
+                "pt": "Caixa ! roxa",
+                "it": "Cassa ! viola"
+              },
+              "description": {
+                "en": "Land on it to bank all your painted tiles as points.",
+                "es": "Cae sobre ella para banquear como puntos todas tus casillas pintadas.",
+                "fr": "Atterris dessus pour mettre en banque toutes tes cases peintes sous forme de points.",
+                "de": "Lande darauf, um alle deine bemalten Felder als Punkte einzuzahlen.",
+                "pt": "Aterra nela para depositares todos os teus quadrados pintados como pontos.",
+                "it": "Atterra su di essa per mettere in banca come punti tutte le tue caselle dipinte."
+              }
+            }
+          ]
+        },
+        "name": "Spring Painter",
+        "description": "Paint tiles, then land on a purple ! crate to bank them. Missiles stun.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most banked points wins.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "hopTime",
+            "label": "Hop time",
+            "description": "Seconds per hop (speedy boots hop almost twice as fast).",
+            "type": "number",
+            "default": 0.32,
+            "min": 0.15,
+            "max": 0.6,
+            "step": 0.01,
+            "unit": "s",
+            "group": "player"
+          },
+          {
+            "id": "gridSize",
+            "label": "Grid size",
+            "description": "Tiles per side.",
+            "type": "number",
+            "default": 8,
+            "min": 8,
+            "max": 16,
+            "step": 2,
+            "group": "match"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Item interval",
+            "description": "A boots / missile / arrow item appears this often.",
+            "type": "number",
+            "default": 5,
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Item variance",
+            "description": "How much the time between items varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "stunTime",
+            "label": "Stun time",
+            "description": "How long a hit player is frozen.",
+            "type": "number",
+            "default": 2.5,
+            "min": 1,
+            "max": 5,
+            "step": 0.5,
+            "unit": "s",
+            "group": "player"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "crateEvery",
+            "label": "Crate interval",
+            "description": "A purple ! crate (banks your tiles) appears this often.",
+            "type": "number",
+            "default": 7,
+            "min": 3,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "crateVariance",
+            "label": "Crate variance",
+            "description": "How much the time between crates varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "crateCount",
+            "label": "Crates per spawn",
+            "description": "How many crates appear at the same time.",
+            "type": "number",
+            "default": 2,
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "group": "spawns"
+          }
+        ]
+      },
+      {
+        "id": "spring-rush",
+        "action": "fire",
+        "guide": {
+          "objective": {
+            "en": "Finish the round with the most banked points.",
+            "es": "Termina la ronda con más puntos banqueados.",
+            "fr": "Termine la manche avec le plus de points mis en banque.",
+            "de": "Beende die Runde mit den meisten eingezahlten Punkten.",
+            "pt": "Termina a ronda com mais pontos depositados.",
+            "it": "Concludi il round con più punti messi in banca."
+          },
+          "rules": [
+            {
+              "en": "Hold a direction to hop one tile at a time; each tile you land on becomes yours.",
+              "es": "Mantén una dirección para saltar de casilla en casilla; cada casilla donde caes pasa a ser tuya.",
+              "fr": "Maintiens une direction pour sauter d’une case à la fois ; chaque case sur laquelle tu atterris devient la tienne.",
+              "de": "Halte eine Richtung gedrückt, um ein Feld nach dem anderen zu hüpfen; jedes Feld, auf dem du landest, gehört dir.",
+              "pt": "Mantém uma direção premida para saltares um quadrado de cada vez; cada quadrado onde aterras passa a ser teu.",
+              "it": "Tieni premuta una direzione per saltare una casella alla volta; ogni casella su cui atterri diventa tua."
+            },
+            {
+              "en": "Boots, missiles and arrows appear as items; the action button uses the one you hold.",
+              "es": "Botas, misiles y flechas aparecen como objetos; el botón de acción usa el que llevas.",
+              "fr": "Bottes, missiles et flèches apparaissent comme objets ; le bouton d’action utilise celui que tu tiens.",
+              "de": "Stiefel, Raketen und Pfeile erscheinen als Items; der Aktionsknopf benutzt das, das du hältst.",
+              "pt": "Botas, mísseis e setas aparecem como itens; o botão de ação usa o que seguras.",
+              "it": "Stivali, missili e frecce compaiono come oggetti; il pulsante azione usa quello che tieni."
+            },
+            {
+              "en": "A hit player is stunned and cannot move for a moment.",
+              "es": "Un jugador golpeado queda aturdido y no puede moverse un momento.",
+              "fr": "Un joueur touché est étourdi et ne peut plus bouger un instant.",
+              "de": "Ein getroffener Spieler ist betäubt und kann sich kurz nicht bewegen.",
+              "pt": "Um jogador atingido fica atordoado e não se pode mexer por um momento.",
+              "it": "Un giocatore colpito è stordito e non può muoversi per un momento."
+            },
+            {
+              "en": "There are no crates: enclose an area with your colour and it fills in.",
+              "es": "No hay cajas: encierra un área con tu color y se rellena.",
+              "fr": "Il n’y a pas de caisses : encercle une zone avec ta couleur et elle se remplit.",
+              "de": "Es gibt keine Kisten: Umschließe ein Gebiet mit deiner Farbe, und es füllt sich.",
+              "pt": "Não há caixas: cerca uma área com a tua cor e ela é preenchida.",
+              "it": "Non ci sono casse: racchiudi un’area con il tuo colore e si riempie."
+            },
+            {
+              "en": "You score for every square you own.",
+              "es": "Puntúas por cada casilla que poseas.",
+              "fr": "Tu marques pour chaque case que tu possèdes.",
+              "de": "Du punktest für jedes Feld, das du besitzt.",
+              "pt": "Pontuas por cada quadrado que possuis.",
+              "it": "Ottieni punti per ogni casella che possiedi."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Speedy boots",
+                "es": "Botas veloces",
+                "fr": "Bottes rapides",
+                "de": "Flotte Stiefel",
+                "pt": "Botas velozes",
+                "it": "Stivali veloci"
+              },
+              "description": {
+                "en": "Hop almost twice as fast for a while.",
+                "es": "Saltas casi el doble de rápido durante un rato.",
+                "fr": "Saute presque deux fois plus vite pendant un moment.",
+                "de": "Hüpfe eine Weile fast doppelt so schnell.",
+                "pt": "Salta quase duas vezes mais depressa durante algum tempo.",
+                "it": "Salta quasi il doppio più veloce per un po’."
+              }
+            },
+            {
+              "name": {
+                "en": "Missile",
+                "es": "Misil",
+                "fr": "Missile",
+                "de": "Rakete",
+                "pt": "Míssil",
+                "it": "Missile"
+              },
+              "description": {
+                "en": "Fire it at a rival to stun them.",
+                "es": "Dispáralo a un rival para aturdirlo.",
+                "fr": "Tire-le sur un rival pour l’étourdir.",
+                "de": "Feuere sie auf einen Rivalen ab, um ihn zu betäuben.",
+                "pt": "Dispara-o a um rival para o atordoar.",
+                "it": "Sparalo a un rivale per stordirlo."
+              }
+            }
+          ]
+        },
+        "name": "Spring Rush",
+        "description": "No crates: enclose an area with your colour to fill it and score every square you own.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most banked points wins.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "hopTime",
+            "label": "Hop time",
+            "description": "Seconds per hop (speedy boots hop almost twice as fast).",
+            "type": "number",
+            "default": 0.32,
+            "min": 0.15,
+            "max": 0.6,
+            "step": 0.01,
+            "unit": "s",
+            "group": "player"
+          },
+          {
+            "id": "gridSize",
+            "label": "Grid size",
+            "description": "Tiles per side.",
+            "type": "number",
+            "default": 8,
+            "min": 8,
+            "max": 16,
+            "step": 2,
+            "group": "match"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Item interval",
+            "description": "A boots / missile / arrow item appears this often.",
+            "type": "number",
+            "default": 5,
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Item variance",
+            "description": "How much the time between items varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "stunTime",
+            "label": "Stun time",
+            "description": "How long a hit player is frozen.",
+            "type": "number",
+            "default": 2.5,
+            "min": 1,
+            "max": 5,
+            "step": 0.5,
+            "unit": "s",
+            "group": "player"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          }
+        ]
+      },
+      {
+        "id": "spring-madness",
+        "action": "fire",
+        "guide": {
+          "objective": {
+            "en": "Finish the round with the most banked points.",
+            "es": "Termina la ronda con más puntos banqueados.",
+            "fr": "Termine la manche avec le plus de points mis en banque.",
+            "de": "Beende die Runde mit den meisten eingezahlten Punkten.",
+            "pt": "Termina a ronda com mais pontos depositados.",
+            "it": "Concludi il round con più punti messi in banca."
+          },
+          "rules": [
+            {
+              "en": "Hold a direction to hop one tile at a time; each tile you land on becomes yours.",
+              "es": "Mantén una dirección para saltar de casilla en casilla; cada casilla donde caes pasa a ser tuya.",
+              "fr": "Maintiens une direction pour sauter d’une case à la fois ; chaque case sur laquelle tu atterris devient la tienne.",
+              "de": "Halte eine Richtung gedrückt, um ein Feld nach dem anderen zu hüpfen; jedes Feld, auf dem du landest, gehört dir.",
+              "pt": "Mantém uma direção premida para saltares um quadrado de cada vez; cada quadrado onde aterras passa a ser teu.",
+              "it": "Tieni premuta una direzione per saltare una casella alla volta; ogni casella su cui atterri diventa tua."
+            },
+            {
+              "en": "Boots, missiles and arrows appear as items; the action button uses the one you hold.",
+              "es": "Botas, misiles y flechas aparecen como objetos; el botón de acción usa el que llevas.",
+              "fr": "Bottes, missiles et flèches apparaissent comme objets ; le bouton d’action utilise celui que tu tiens.",
+              "de": "Stiefel, Raketen und Pfeile erscheinen als Items; der Aktionsknopf benutzt das, das du hältst.",
+              "pt": "Botas, mísseis e setas aparecem como itens; o botão de ação usa o que seguras.",
+              "it": "Stivali, missili e frecce compaiono come oggetti; il pulsante azione usa quello che tieni."
+            },
+            {
+              "en": "A hit player is stunned and cannot move for a moment.",
+              "es": "Un jugador golpeado queda aturdido y no puede moverse un momento.",
+              "fr": "Un joueur touché est étourdi et ne peut plus bouger un instant.",
+              "de": "Ein getroffener Spieler ist betäubt und kann sich kurz nicht bewegen.",
+              "pt": "Um jogador atingido fica atordoado e não se pode mexer por um momento.",
+              "it": "Un giocatore colpito è stordito e non può muoversi per un momento."
+            },
+            {
+              "en": "Enclosed areas fill in, but you still need a purple ! crate to bank your squares.",
+              "es": "Las áreas encerradas se rellenan, pero aún necesitas una caja morada ! para banquear tus casillas.",
+              "fr": "Les zones encerclées se remplissent, mais il te faut encore une caisse ! violette pour déposer tes cases.",
+              "de": "Umschlossene Gebiete füllen sich, aber du brauchst weiterhin eine lila !-Kiste, um deine Felder einzuzahlen.",
+              "pt": "As áreas cercadas são preenchidas, mas continuas a precisar de uma caixa ! roxa para depositar os teus quadrados.",
+              "it": "Le aree racchiuse si riempiono, ma serve ancora una cassa ! viola per mettere in banca le tue caselle."
+            },
+            {
+              "en": "Blast Bot lays TNT and fires on the grid: stay clear.",
+              "es": "Blast Bot coloca TNT y dispara en la cuadrícula: mantente lejos.",
+              "fr": "Blast Bot pose du TNT et tire sur la grille : tiens-toi à l’écart.",
+              "de": "Blast Bot legt TNT und schießt auf das Raster: Halte Abstand.",
+              "pt": "O Blast Bot coloca TNT e dispara na grelha: mantém-te afastado.",
+              "it": "Blast Bot piazza TNT e spara sulla griglia: stai alla larga."
+            },
+            {
+              "en": "A lit TNT explodes when its countdown ends, stunning players and wiping the squares around it.",
+              "es": "Un TNT encendido explota al acabar su cuenta atrás, aturdiendo a los jugadores y borrando las casillas a su alrededor.",
+              "fr": "Un TNT allumé explose à la fin de son compte à rebours, étourdissant les joueurs et effaçant les cases autour.",
+              "de": "Ein gezündetes TNT explodiert, wenn der Countdown endet, betäubt Spieler und löscht die Felder ringsum.",
+              "pt": "Um TNT aceso explode no fim da contagem, atordoando jogadores e apagando os quadrados à volta.",
+              "it": "Un TNT acceso esplode alla fine del conto alla rovescia, stordendo i giocatori e cancellando le caselle intorno."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Speedy boots",
+                "es": "Botas veloces",
+                "fr": "Bottes rapides",
+                "de": "Flotte Stiefel",
+                "pt": "Botas velozes",
+                "it": "Stivali veloci"
+              },
+              "description": {
+                "en": "Hop almost twice as fast for a while.",
+                "es": "Saltas casi el doble de rápido durante un rato.",
+                "fr": "Saute presque deux fois plus vite pendant un moment.",
+                "de": "Hüpfe eine Weile fast doppelt so schnell.",
+                "pt": "Salta quase duas vezes mais depressa durante algum tempo.",
+                "it": "Salta quasi il doppio più veloce per un po’."
+              }
+            },
+            {
+              "name": {
+                "en": "Missile",
+                "es": "Misil",
+                "fr": "Missile",
+                "de": "Rakete",
+                "pt": "Míssil",
+                "it": "Missile"
+              },
+              "description": {
+                "en": "Fire it at a rival to stun them.",
+                "es": "Dispáralo a un rival para aturdirlo.",
+                "fr": "Tire-le sur un rival pour l’étourdir.",
+                "de": "Feuere sie auf einen Rivalen ab, um ihn zu betäuben.",
+                "pt": "Dispara-o a um rival para o atordoar.",
+                "it": "Sparalo a un rivale per stordirlo."
+              }
+            },
+            {
+              "name": {
+                "en": "Purple ! crate",
+                "es": "Caja morada !",
+                "fr": "Caisse ! violette",
+                "de": "Lila !-Kiste",
+                "pt": "Caixa ! roxa",
+                "it": "Cassa ! viola"
+              },
+              "description": {
+                "en": "Land on it to bank your squares.",
+                "es": "Cae sobre ella para banquear tus casillas.",
+                "fr": "Atterris dessus pour mettre en banque tes cases.",
+                "de": "Lande darauf, um deine Felder einzuzahlen.",
+                "pt": "Aterra nela para depositares os teus quadrados.",
+                "it": "Atterra su di essa per mettere in banca le tue caselle."
+              }
+            }
+          ]
+        },
+        "name": "Spring Madness",
+        "description": "Enclosed areas fill in, but you still need a crate to score. Blast Bot lays TNT.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most banked points wins.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "hopTime",
+            "label": "Hop time",
+            "description": "Seconds per hop (speedy boots hop almost twice as fast).",
+            "type": "number",
+            "default": 0.32,
+            "min": 0.15,
+            "max": 0.6,
+            "step": 0.01,
+            "unit": "s",
+            "group": "player"
+          },
+          {
+            "id": "gridSize",
+            "label": "Grid size",
+            "description": "Tiles per side.",
+            "type": "number",
+            "default": 8,
+            "min": 8,
+            "max": 16,
+            "step": 2,
+            "group": "match"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Item interval",
+            "description": "A boots / missile / arrow item appears this often.",
+            "type": "number",
+            "default": 5,
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Item variance",
+            "description": "How much the time between items varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "stunTime",
+            "label": "Stun time",
+            "description": "How long a hit player is frozen.",
+            "type": "number",
+            "default": 2.5,
+            "min": 1,
+            "max": 5,
+            "step": 0.5,
+            "unit": "s",
+            "group": "player"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "crateEvery",
+            "label": "Crate interval",
+            "description": "A purple ! crate (banks your tiles) appears this often.",
+            "type": "number",
+            "default": 7,
+            "min": 3,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "crateVariance",
+            "label": "Crate variance",
+            "description": "How much the time between crates varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "crateCount",
+            "label": "Crates per spawn",
+            "description": "How many crates appear at the same time.",
+            "type": "number",
+            "default": 2,
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "group": "spawns"
+          },
+          {
+            "id": "tntEvery",
+            "label": "Blast Bot interval",
+            "description": "Seconds between Bomber laying TNT, firing or arrow-ing.",
+            "type": "number",
+            "default": 4,
+            "min": 1.5,
+            "max": 12,
+            "step": 0.5,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "tntVariance",
+            "label": "Blast Bot variance",
+            "description": "How much the time between Blast Bot actions varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 3,
+            "step": 0.5,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "hazards"
+          },
+          {
+            "id": "tntFuse",
+            "label": "TNT fuse",
+            "description": "Seconds before a TNT explodes, stunning players and wiping squares around it.",
+            "type": "number",
+            "default": 3,
+            "min": 1,
+            "max": 10,
+            "step": 0.5,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "tntRadius",
+            "label": "TNT blast radius",
+            "description": "Squares the explosion reaches around the TNT (1 covers 3x3).",
+            "type": "number",
+            "default": 1,
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "group": "hazards"
+          }
+        ]
+      },
+      {
+        "id": "spring-lock",
+        "action": "fire",
+        "guide": {
+          "objective": {
+            "en": "Finish the round with the most banked points.",
+            "es": "Termina la ronda con más puntos banqueados.",
+            "fr": "Termine la manche avec le plus de points mis en banque.",
+            "de": "Beende die Runde mit den meisten eingezahlten Punkten.",
+            "pt": "Termina a ronda com mais pontos depositados.",
+            "it": "Concludi il round con più punti messi in banca."
+          },
+          "rules": [
+            {
+              "en": "Hold a direction to hop one tile at a time; each tile you land on becomes yours.",
+              "es": "Mantén una dirección para saltar de casilla en casilla; cada casilla donde caes pasa a ser tuya.",
+              "fr": "Maintiens une direction pour sauter d’une case à la fois ; chaque case sur laquelle tu atterris devient la tienne.",
+              "de": "Halte eine Richtung gedrückt, um ein Feld nach dem anderen zu hüpfen; jedes Feld, auf dem du landest, gehört dir.",
+              "pt": "Mantém uma direção premida para saltares um quadrado de cada vez; cada quadrado onde aterras passa a ser teu.",
+              "it": "Tieni premuta una direzione per saltare una casella alla volta; ogni casella su cui atterri diventa tua."
+            },
+            {
+              "en": "Boots, missiles and arrows appear as items; the action button uses the one you hold.",
+              "es": "Botas, misiles y flechas aparecen como objetos; el botón de acción usa el que llevas.",
+              "fr": "Bottes, missiles et flèches apparaissent comme objets ; le bouton d’action utilise celui que tu tiens.",
+              "de": "Stiefel, Raketen und Pfeile erscheinen als Items; der Aktionsknopf benutzt das, das du hältst.",
+              "pt": "Botas, mísseis e setas aparecem como itens; o botão de ação usa o que seguras.",
+              "it": "Stivali, missili e frecce compaiono come oggetti; il pulsante azione usa quello che tieni."
+            },
+            {
+              "en": "A hit player is stunned and cannot move for a moment.",
+              "es": "Un jugador golpeado queda aturdido y no puede moverse un momento.",
+              "fr": "Un joueur touché est étourdi et ne peut plus bouger un instant.",
+              "de": "Ein getroffener Spieler ist betäubt und kann sich kurz nicht bewegen.",
+              "pt": "Um jogador atingido fica atordoado e não se pode mexer por um momento.",
+              "it": "Un giocatore colpito è stordito e non può muoversi per un momento."
+            },
+            {
+              "en": "A missile steals all of a rival's squares.",
+              "es": "Un misil roba todas las casillas de un rival.",
+              "fr": "Un missile vole toutes les cases d’un rival.",
+              "de": "Eine Rakete stiehlt einem Rivalen alle Felder.",
+              "pt": "Um míssil rouba todos os quadrados de um rival.",
+              "it": "Un missile ruba tutte le caselle di un rivale."
+            },
+            {
+              "en": "Landing on your own colour wipes your squares.",
+              "es": "Caer sobre tu propio color borra tus casillas.",
+              "fr": "Atterrir sur ta propre couleur efface tes cases.",
+              "de": "Wer auf der eigenen Farbe landet, löscht seine Felder.",
+              "pt": "Aterrar na tua própria cor apaga os teus quadrados.",
+              "it": "Atterrare sul tuo stesso colore cancella le tue caselle."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Speedy boots",
+                "es": "Botas veloces",
+                "fr": "Bottes rapides",
+                "de": "Flotte Stiefel",
+                "pt": "Botas velozes",
+                "it": "Stivali veloci"
+              },
+              "description": {
+                "en": "Hop almost twice as fast for a while.",
+                "es": "Saltas casi el doble de rápido durante un rato.",
+                "fr": "Saute presque deux fois plus vite pendant un moment.",
+                "de": "Hüpfe eine Weile fast doppelt so schnell.",
+                "pt": "Salta quase duas vezes mais depressa durante algum tempo.",
+                "it": "Salta quasi il doppio più veloce per un po’."
+              }
+            },
+            {
+              "name": {
+                "en": "Missile",
+                "es": "Misil",
+                "fr": "Missile",
+                "de": "Rakete",
+                "pt": "Míssil",
+                "it": "Missile"
+              },
+              "description": {
+                "en": "Fire it at a rival to stun them.",
+                "es": "Dispáralo a un rival para aturdirlo.",
+                "fr": "Tire-le sur un rival pour l’étourdir.",
+                "de": "Feuere sie auf einen Rivalen ab, um ihn zu betäuben.",
+                "pt": "Dispara-o a um rival para o atordoar.",
+                "it": "Sparalo a un rivale per stordirlo."
+              }
+            },
+            {
+              "name": {
+                "en": "Padlock",
+                "es": "Candado",
+                "fr": "Cadenas",
+                "de": "Vorhängeschloss",
+                "pt": "Cadeado",
+                "it": "Lucchetto"
+              },
+              "description": {
+                "en": "Protects your squares for a short time.",
+                "es": "Protege tus casillas durante un rato.",
+                "fr": "Protège tes cases pendant un court instant.",
+                "de": "Schützt deine Felder für kurze Zeit.",
+                "pt": "Protege os teus quadrados durante pouco tempo.",
+                "it": "Protegge le tue caselle per breve tempo."
+              }
+            }
+          ]
+        },
+        "name": "Spring Lock",
+        "description": "Missiles steal all of a rival's squares, but landing on your own colour wipes you. Grab the padlock!",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most banked points wins.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "hopTime",
+            "label": "Hop time",
+            "description": "Seconds per hop (speedy boots hop almost twice as fast).",
+            "type": "number",
+            "default": 0.32,
+            "min": 0.15,
+            "max": 0.6,
+            "step": 0.01,
+            "unit": "s",
+            "group": "player"
+          },
+          {
+            "id": "gridSize",
+            "label": "Grid size",
+            "description": "Tiles per side.",
+            "type": "number",
+            "default": 8,
+            "min": 8,
+            "max": 16,
+            "step": 2,
+            "group": "match"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Item interval",
+            "description": "A boots / missile / arrow item appears this often.",
+            "type": "number",
+            "default": 5,
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Item variance",
+            "description": "How much the time between items varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "stunTime",
+            "label": "Stun time",
+            "description": "How long a hit player is frozen.",
+            "type": "number",
+            "default": 2.5,
+            "min": 1,
+            "max": 5,
+            "step": 0.5,
+            "unit": "s",
+            "group": "player"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "crateEvery",
+            "label": "Crate interval",
+            "description": "A purple ! crate (banks your tiles) appears this often.",
+            "type": "number",
+            "default": 7,
+            "min": 3,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "crateVariance",
+            "label": "Crate variance",
+            "description": "How much the time between crates varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "crateCount",
+            "label": "Crates per spawn",
+            "description": "How many crates appear at the same time.",
+            "type": "number",
+            "default": 2,
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "group": "spawns"
+          },
+          {
+            "id": "padlockTime",
+            "label": "Padlock time",
+            "description": "How long the padlock protects your squares.",
+            "type": "number",
+            "default": 8,
+            "min": 3,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "player"
+          }
+        ]
+      }
+    ]
+  },
+  "locales": {
+    "es": {
+      "Hop across the grid painting tiles your colour and bank them for points. Most points wins.": "Salta por la cuadrícula pintando casillas de tu color y banquéalas para sumar puntos. Gana quien más puntos tenga.",
+      "Paint tiles, then land on a purple ! crate to bank them. Missiles stun.": "Pinta casillas y luego cae sobre una caja morada ! para banquearlas. Los misiles aturden.",
+      "Round length. Most banked points wins.": "Duración de la ronda. Gana quien tenga más puntos banqueados.",
+      "Hop time": "Tiempo de salto",
+      "Seconds per hop (speedy boots hop almost twice as fast).": "Segundos por salto (las botas veloces saltan casi el doble de rápido).",
+      "Grid size": "Tamaño de la cuadrícula",
+      "Tiles per side.": "Casillas por lado.",
+      "Item interval": "Intervalo de objetos",
+      "A boots / missile / arrow item appears this often.": "Aparece un objeto (botas / misil / flecha) con esta frecuencia.",
+      "Stun time": "Tiempo de aturdimiento",
+      "How long a hit player is frozen.": "Cuánto tiempo queda inmóvil un jugador golpeado.",
+      "A purple ! crate (banks your tiles) appears this often.": "Aparece una caja morada ! (banquea tus casillas) con esta frecuencia.",
+      "No crates: enclose an area with your colour to fill it and score every square you own.": "Sin cajas: encierra un área con tu color para rellenarla y puntuar por cada casilla que poseas.",
+      "Enclosed areas fill in, but you still need a crate to score. Blast Bot lays TNT.": "Las áreas encerradas se rellenan, pero aún necesitas una caja para puntuar. Blast Bot coloca TNT.",
+      "Blast Bot interval": "Intervalo de Blast Bot",
+      "Seconds between Bomber laying TNT, firing or arrow-ing.": "Segundos entre que Bomber coloque TNT, dispare o lance flechas.",
+      "TNT fuse": "Mecha del TNT",
+      "Seconds before a TNT explodes, stunning players and wiping squares around it.": "Segundos antes de que un TNT explote, aturdiendo a los jugadores y borrando las casillas a su alrededor.",
+      "TNT blast radius": "Radio de explosión del TNT",
+      "Squares the explosion reaches around the TNT (1 covers 3x3).": "Casillas que alcanza la explosión alrededor del TNT (1 cubre 3x3).",
+      "Missiles steal all of a rival's squares, but landing on your own colour wipes you. Grab the padlock!": "Los misiles roban todas las casillas de un rival, pero caer sobre tu propio color te borra. ¡Coge el candado!",
+      "Padlock time": "Tiempo del candado",
+      "How long the padlock protects your squares.": "Cuánto tiempo protege el candado tus casillas.",
+      "STUNNED": "ATURDIDO",
+      "Item variance": "Variación de objetos",
+      "How much the time between items varies, plus or minus.": "Cuánto varía el tiempo entre objetos, más o menos.",
+      "Crate variance": "Variación de cajas",
+      "How much the time between crates varies, plus or minus.": "Cuánto varía el tiempo entre cajas, más o menos.",
+      "Crates per spawn": "Cajas por aparición",
+      "How many crates appear at the same time.": "Cuántas cajas aparecen a la vez.",
+      "Player collisions": "Colisiones entre jugadores",
+      "Players cannot share a square: a hop onto an occupied square is blocked.": "Los jugadores no pueden compartir casilla: un salto a una casilla ocupada se bloquea.",
+      "Blast Bot variance": "Variación del Bombardero",
+      "How much the time between Blast Bot actions varies, plus or minus.": "Cuánto varía el tiempo entre acciones del Blast Bot, más o menos.",
+      "Off": "Desactivado"
+    },
+    "fr": {
+      "Hop across the grid painting tiles your colour and bank them for points. Most points wins.": "Saute sur la grille en peignant les cases de ta couleur et mets-les en banque pour marquer des points. Le plus de points gagne.",
+      "Paint tiles, then land on a purple ! crate to bank them. Missiles stun.": "Peins des cases, puis atterris sur une caisse ! violette pour les mettre en banque. Les missiles étourdissent.",
+      "Round length. Most banked points wins.": "Durée de la manche. Le plus de points en banque gagne.",
+      "Hop time": "Durée du saut",
+      "Seconds per hop (speedy boots hop almost twice as fast).": "Secondes par saut (les bottes rapides sautent presque deux fois plus vite).",
+      "Grid size": "Taille de la grille",
+      "Tiles per side.": "Cases par côté.",
+      "Item interval": "Intervalle des objets",
+      "A boots / missile / arrow item appears this often.": "Un objet bottes / missile / flèche apparaît à cette fréquence.",
+      "Stun time": "Durée d’étourdissement",
+      "How long a hit player is frozen.": "Durée pendant laquelle un joueur touché reste figé.",
+      "A purple ! crate (banks your tiles) appears this often.": "Une caisse ! violette (qui met tes cases en banque) apparaît à cette fréquence.",
+      "No crates: enclose an area with your colour to fill it and score every square you own.": "Pas de caisses : encercle une zone avec ta couleur pour la remplir et marquer pour chaque case que tu possèdes.",
+      "Enclosed areas fill in, but you still need a crate to score. Blast Bot lays TNT.": "Les zones encerclées se remplissent, mais il te faut encore une caisse pour marquer. Blast Bot pose du TNT.",
+      "Blast Bot interval": "Intervalle de Blast Bot",
+      "Seconds between Bomber laying TNT, firing or arrow-ing.": "Secondes entre deux actions de Bomber : poser du TNT, tirer ou lancer des flèches.",
+      "TNT fuse": "Mèche du TNT",
+      "Seconds before a TNT explodes, stunning players and wiping squares around it.": "Secondes avant qu’un TNT explose, étourdissant les joueurs et effaçant les cases autour.",
+      "TNT blast radius": "Rayon d’explosion du TNT",
+      "Squares the explosion reaches around the TNT (1 covers 3x3).": "Cases touchées par l’explosion autour du TNT (1 couvre 3x3).",
+      "Missiles steal all of a rival's squares, but landing on your own colour wipes you. Grab the padlock!": "Les missiles volent toutes les cases d’un rival, mais atterrir sur ta propre couleur t’efface. Prends le cadenas !",
+      "Padlock time": "Durée du cadenas",
+      "How long the padlock protects your squares.": "Durée pendant laquelle le cadenas protège tes cases.",
+      "STUNNED": "ÉTOURDI",
+      "Item variance": "Variation des objets",
+      "How much the time between items varies, plus or minus.": "Variation du temps entre deux objets, en plus ou en moins.",
+      "Crate variance": "Variation des caisses",
+      "How much the time between crates varies, plus or minus.": "Variation du temps entre deux caisses, en plus ou en moins.",
+      "Crates per spawn": "Caisses par apparition",
+      "How many crates appear at the same time.": "Combien de caisses apparaissent en même temps.",
+      "Player collisions": "Collisions entre joueurs",
+      "Players cannot share a square: a hop onto an occupied square is blocked.": "Les joueurs ne peuvent pas partager une case : un saut vers une case occupée est bloqué.",
+      "Blast Bot variance": "Variation du Bombardier",
+      "How much the time between Blast Bot actions varies, plus or minus.": "De combien varie le temps entre les actions du Blast Bot, en plus ou en moins.",
+      "Off": "Désactivé"
+    },
+    "de": {
+      "Hop across the grid painting tiles your colour and bank them for points. Most points wins.": "Hüpfe über das Raster, bemale Felder in deiner Farbe und zahle sie für Punkte ein. Die meisten Punkte gewinnen.",
+      "Paint tiles, then land on a purple ! crate to bank them. Missiles stun.": "Bemale Felder und lande dann auf einer lila !-Kiste, um sie einzuzahlen. Raketen betäuben.",
+      "Round length. Most banked points wins.": "Rundenlänge. Die meisten eingezahlten Punkte gewinnen.",
+      "Hop time": "Hüpfzeit",
+      "Seconds per hop (speedy boots hop almost twice as fast).": "Sekunden pro Hüpfer (flotte Stiefel hüpfen fast doppelt so schnell).",
+      "Grid size": "Rastergröße",
+      "Tiles per side.": "Felder pro Seite.",
+      "Item interval": "Item-Intervall",
+      "A boots / missile / arrow item appears this often.": "So oft erscheint ein Stiefel- / Raketen- / Pfeil-Item.",
+      "Stun time": "Betäubungszeit",
+      "How long a hit player is frozen.": "Wie lange ein getroffener Spieler erstarrt ist.",
+      "A purple ! crate (banks your tiles) appears this often.": "Eine lila !-Kiste (zahlt deine Felder ein) erscheint so oft.",
+      "No crates: enclose an area with your colour to fill it and score every square you own.": "Keine Kisten: Umschließe ein Gebiet mit deiner Farbe, um es zu füllen und für jedes Feld, das du besitzt, zu punkten.",
+      "Enclosed areas fill in, but you still need a crate to score. Blast Bot lays TNT.": "Umschlossene Gebiete füllen sich, aber du brauchst weiterhin eine Kiste zum Punkten. Blast Bot legt TNT.",
+      "Blast Bot interval": "Intervall von Blast Bot",
+      "Seconds between Bomber laying TNT, firing or arrow-ing.": "Sekunden zwischen Bombers TNT-Legen, Schießen oder Pfeilen.",
+      "TNT fuse": "TNT-Zündschnur",
+      "Seconds before a TNT explodes, stunning players and wiping squares around it.": "Sekunden, bis ein TNT explodiert, Spieler betäubt und Felder in der Umgebung löscht.",
+      "TNT blast radius": "TNT-Explosionsradius",
+      "Squares the explosion reaches around the TNT (1 covers 3x3).": "Felder, die die Explosion um das TNT erreicht (1 deckt 3x3 ab).",
+      "Missiles steal all of a rival's squares, but landing on your own colour wipes you. Grab the padlock!": "Raketen stehlen einem Rivalen alle Felder, aber wer auf der eigenen Farbe landet, wird gelöscht. Schnapp dir das Vorhängeschloss!",
+      "Padlock time": "Schlosszeit",
+      "How long the padlock protects your squares.": "Wie lange das Vorhängeschloss deine Felder schützt.",
+      "STUNNED": "BETÄUBT",
+      "Item variance": "Gegenstandsschwankung",
+      "How much the time between items varies, plus or minus.": "Wie stark die Zeit zwischen Gegenständen schwankt, plus oder minus.",
+      "Crate variance": "Kistenschwankung",
+      "How much the time between crates varies, plus or minus.": "Wie stark die Zeit zwischen Kisten schwankt, plus oder minus.",
+      "Crates per spawn": "Kisten pro Auftritt",
+      "How many crates appear at the same time.": "Wie viele Kisten gleichzeitig erscheinen.",
+      "Player collisions": "Spielerkollisionen",
+      "Players cannot share a square: a hop onto an occupied square is blocked.": "Spieler können sich kein Feld teilen: Ein Sprung auf ein besetztes Feld wird blockiert.",
+      "Blast Bot variance": "Bomber-Schwankung",
+      "How much the time between Blast Bot actions varies, plus or minus.": "Wie stark die Zeit zwischen den Aktionen des Blast Bot schwankt, plus oder minus.",
+      "Off": "Aus"
+    },
+    "pt": {
+      "Hop across the grid painting tiles your colour and bank them for points. Most points wins.": "Salta pela grelha a pintar quadrados da tua cor e deposita-os para ganhares pontos. Ganha quem tiver mais pontos.",
+      "Paint tiles, then land on a purple ! crate to bank them. Missiles stun.": "Pinta quadrados e depois aterra numa caixa ! roxa para os depositares. Os mísseis atordoam.",
+      "Round length. Most banked points wins.": "Duração da ronda. Ganha quem tiver mais pontos depositados.",
+      "Hop time": "Tempo do salto",
+      "Seconds per hop (speedy boots hop almost twice as fast).": "Segundos por salto (as botas velozes saltam quase duas vezes mais depressa).",
+      "Grid size": "Tamanho da grelha",
+      "Tiles per side.": "Quadrados por lado.",
+      "Item interval": "Intervalo dos itens",
+      "A boots / missile / arrow item appears this often.": "Um item de botas / míssil / seta aparece com esta frequência.",
+      "Stun time": "Tempo de atordoamento",
+      "How long a hit player is frozen.": "Quanto tempo um jogador atingido fica imobilizado.",
+      "A purple ! crate (banks your tiles) appears this often.": "Uma caixa ! roxa (que deposita os teus quadrados) aparece com esta frequência.",
+      "No crates: enclose an area with your colour to fill it and score every square you own.": "Sem caixas: cerca uma área com a tua cor para a preencher e pontuar por cada quadrado que possuis.",
+      "Enclosed areas fill in, but you still need a crate to score. Blast Bot lays TNT.": "As áreas cercadas são preenchidas, mas continuas a precisar de uma caixa para pontuar. O Blast Bot coloca TNT.",
+      "Blast Bot interval": "Intervalo do Blast Bot",
+      "Seconds between Bomber laying TNT, firing or arrow-ing.": "Segundos entre o Bomber colocar TNT, disparar ou lançar setas.",
+      "TNT fuse": "Rastilho do TNT",
+      "Seconds before a TNT explodes, stunning players and wiping squares around it.": "Segundos até um TNT explodir, atordoando jogadores e apagando os quadrados à volta.",
+      "TNT blast radius": "Raio da explosão do TNT",
+      "Squares the explosion reaches around the TNT (1 covers 3x3).": "Quadrados que a explosão alcança à volta do TNT (1 cobre 3x3).",
+      "Missiles steal all of a rival's squares, but landing on your own colour wipes you. Grab the padlock!": "Os mísseis roubam todos os quadrados de um rival, mas aterrar na tua própria cor apaga-te. Apanha o cadeado!",
+      "Padlock time": "Tempo do cadeado",
+      "How long the padlock protects your squares.": "Quanto tempo o cadeado protege os teus quadrados.",
+      "STUNNED": "ATORDOADO",
+      "Item variance": "Variação dos itens",
+      "How much the time between items varies, plus or minus.": "Quanto o tempo entre itens varia, para mais ou para menos.",
+      "Crate variance": "Variação das caixas",
+      "How much the time between crates varies, plus or minus.": "Quanto o tempo entre caixas varia, para mais ou para menos.",
+      "Crates per spawn": "Caixas por aparição",
+      "How many crates appear at the same time.": "Quantas caixas aparecem ao mesmo tempo.",
+      "Player collisions": "Colisões entre jogadores",
+      "Players cannot share a square: a hop onto an occupied square is blocked.": "Os jogadores não podem partilhar um quadrado: um salto para um quadrado ocupado é bloqueado.",
+      "Blast Bot variance": "Variação do Bombardeiro",
+      "How much the time between Blast Bot actions varies, plus or minus.": "Quanto varia o tempo entre as ações do Blast Bot, para mais ou para menos.",
+      "Off": "Desativado"
+    },
+    "it": {
+      "Hop across the grid painting tiles your colour and bank them for points. Most points wins.": "Salta sulla griglia dipingendo le caselle del tuo colore e mettile in banca per fare punti. Vince chi ha più punti.",
+      "Paint tiles, then land on a purple ! crate to bank them. Missiles stun.": "Dipingi le caselle, poi atterra su una cassa ! viola per metterle in banca. I missili stordiscono.",
+      "Round length. Most banked points wins.": "Durata del round. Vince chi ha più punti messi in banca.",
+      "Hop time": "Tempo del salto",
+      "Seconds per hop (speedy boots hop almost twice as fast).": "Secondi per salto (gli stivali veloci saltano quasi il doppio più veloci).",
+      "Grid size": "Dimensione della griglia",
+      "Tiles per side.": "Caselle per lato.",
+      "Item interval": "Intervallo degli oggetti",
+      "A boots / missile / arrow item appears this often.": "Un oggetto stivali / missile / freccia compare con questa frequenza.",
+      "Stun time": "Tempo di stordimento",
+      "How long a hit player is frozen.": "Per quanto tempo un giocatore colpito resta immobilizzato.",
+      "A purple ! crate (banks your tiles) appears this often.": "Una cassa ! viola (che mette in banca le tue caselle) compare con questa frequenza.",
+      "No crates: enclose an area with your colour to fill it and score every square you own.": "Niente casse: racchiudi un’area con il tuo colore per riempirla e ottenere punti per ogni casella che possiedi.",
+      "Enclosed areas fill in, but you still need a crate to score. Blast Bot lays TNT.": "Le aree racchiuse si riempiono, ma serve ancora una cassa per fare punti. Blast Bot piazza TNT.",
+      "Blast Bot interval": "Intervallo di Blast Bot",
+      "Seconds between Bomber laying TNT, firing or arrow-ing.": "Secondi tra le azioni di Bomber: piazzare TNT, sparare o lanciare frecce.",
+      "TNT fuse": "Miccia del TNT",
+      "Seconds before a TNT explodes, stunning players and wiping squares around it.": "Secondi prima che un TNT esploda, stordendo i giocatori e cancellando le caselle intorno.",
+      "TNT blast radius": "Raggio d’esplosione del TNT",
+      "Squares the explosion reaches around the TNT (1 covers 3x3).": "Caselle raggiunte dall’esplosione intorno al TNT (1 copre 3x3).",
+      "Missiles steal all of a rival's squares, but landing on your own colour wipes you. Grab the padlock!": "I missili rubano tutte le caselle di un rivale, ma atterrare sul tuo stesso colore ti cancella. Prendi il lucchetto!",
+      "Padlock time": "Tempo del lucchetto",
+      "How long the padlock protects your squares.": "Per quanto tempo il lucchetto protegge le tue caselle.",
+      "STUNNED": "STORDITO",
+      "Item variance": "Variazione degli oggetti",
+      "How much the time between items varies, plus or minus.": "Quanto varia il tempo tra gli oggetti, in più o in meno.",
+      "Crate variance": "Variazione delle casse",
+      "How much the time between crates varies, plus or minus.": "Quanto varia il tempo tra le casse, in più o in meno.",
+      "Crates per spawn": "Casse per comparsa",
+      "How many crates appear at the same time.": "Quante casse compaiono contemporaneamente.",
+      "Player collisions": "Collisioni tra giocatori",
+      "Players cannot share a square: a hop onto an occupied square is blocked.": "I giocatori non possono condividere una casella: un salto su una casella occupata viene bloccato.",
+      "Blast Bot variance": "Variazione del Bombarolo",
+      "How much the time between Blast Bot actions varies, plus or minus.": "Quanto varia il tempo tra le azioni del Blast Bot, in più o in meno.",
+      "Off": "Disattivato"
+    }
+  }
+}

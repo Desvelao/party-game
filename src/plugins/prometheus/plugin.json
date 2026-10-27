@@ -1,0 +1,24 @@
+{
+  "kind": "plugin",
+  "id": "prometheus",
+  "name": "Prometheus metrics",
+  "version": "0.1.0",
+  "author": "Desvelao",
+  "license": "MIT",
+  "description": "Serves the server's counters in the Prometheus text format at GET /metrics, behind the admin token (loopback only without one).",
+  "order": 200,
+  "engines": {
+    "core": ">=0.1.0"
+  },
+  "rootRoutes": ["/metrics"],
+  "config": [
+    {
+      "id": "enabled",
+      "label": "Serve metrics",
+      "description": "Answer GET /metrics. Off by default: nothing is served until you turn it on.",
+      "type": "boolean",
+      "default": false,
+      "env": "METRICS_ENABLED"
+    }
+  ]
+}

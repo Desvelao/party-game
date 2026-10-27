@@ -1,0 +1,3 @@
+{ "name": "bot-vs-human-semigod", "description": "One semigod bot against you. Join the printed room code in the browser.",
+  "game": "ballistix", "variant": "smashball", "options": { "lives": 3 },
+  "seats": [ { "bot": "semigod" }, { "human": true } ], "matches": 1 }

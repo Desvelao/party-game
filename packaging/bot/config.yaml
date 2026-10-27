@@ -1,0 +1,10 @@
+# Party game bot server configuration (see /usr/share/doc/party-game-bot/config.example.yaml for every key).
+# Everything is optional; this file is empty on purpose. A value set here overrides the matching
+# environment variable (/etc/default/party-game-bot). Example:
+#
+# gameServer:
+#   url: "http://localhost:8080"
+# ai:
+#   level: normal
+#
+# After a change: sudo systemctl restart party-game-bot   (check it first with: party-game-bot --check)

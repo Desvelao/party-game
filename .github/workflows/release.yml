@@ -1,0 +1,38 @@
+name: Release
+
+# On a version tag (v1.2.3): runs the checks and creates the GitHub release with its notes.
+# The packages (tar.gz, deb, rpm) are built and attached by packages.yml, the container image by docker-image.yml.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Check and create the release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag matches package.json version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg=$(node -p "require('./package.json').version")
+          if [ "$tag" != "$pkg" ]; then
+            echo "::error::tag v$tag does not match package.json version $pkg"
+            exit 1
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # packages.yml may have created it first (it attaches the packages): then there is nothing to do
+        run: |
+          notes="Packages (tar.gz, deb, rpm) for amd64, arm64, armv7 and armv6. Files with -bare in the name have no games or plugins; the .pgpack files are the games and plugins to install into them. The standalone bot server (AI players) has its own packages, party-game-bot... (the -bare ones have no built-in game AI: install the .pgpack files into them). Container images on ghcr.io: tags X.Y.Z (full) and X.Y.Z-bare, for the game server and for the bot server (-bot)."
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --generate-notes --notes "$notes" || gh release view "$GITHUB_REF_NAME" >/dev/null

@@ -1,0 +1,45 @@
+name: CI
+
+# Typecheck + unit tests (`npm run check`), production build, config example drift check and a dependency
+# audit on every push and pull request. Node 22 everywhere: the version the Dockerfile builds and ships with.
+# The audit also runs weekly, because new advisories appear without any push.
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 5 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Typecheck, test and build
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Config example is up to date (fix with `npm run config:example`)
+        run: npx vitest run src/core/server/configExample.test.ts
+      - run: npm run build
+
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high

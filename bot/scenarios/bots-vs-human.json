@@ -1,0 +1,3 @@
+{ "name": "bots-vs-human", "description": "Three bots of mixed level against you (a 4-seat Smashball room).",
+  "game": "ballistix", "variant": "smashball", "options": { "lives": 3 },
+  "seats": [ { "bot": "easy" }, { "bot": "normal" }, { "bot": "hard" }, { "human": true } ], "matches": 1 }

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1b1033" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Party Game</title>
+  </head>
+  <body>
+    <div id="game"></div>
+    <nav id="topnav" hidden><a id="nav-play" href="/"></a><a id="nav-rooms" href="/rooms"></a><a id="nav-status" href="/status"></a><a id="nav-profile" href="/profile"></a></nav>
+    <button id="room-badge" type="button" hidden></button>
+    <div id="ui"></div>
+    <div id="away" hidden></div>
+    <div id="controls" hidden>
+      <div id="joystick" aria-hidden="true"><div class="knob"></div></div>
+      <div id="cross" aria-hidden="true" hidden>
+        <span class="up"></span><span class="left"></span><span class="right"></span><span class="down"></span>
+      </div>
+      <button id="mine" type="button" hidden>MINE</button>
+      <button id="dash" type="button">DASH</button>
+    </div>
+    <div id="overlay" hidden></div>
+    <div id="controller" hidden></div>
+    <div id="hud-ping" aria-hidden="true"></div>
+    <button id="menu-btn" type="button" hidden>&#9776;</button>
+    <button id="mute-btn" type="button" aria-pressed="false" hidden></button>
+    <button id="emote-btn" type="button" aria-expanded="false" hidden>&#128512;</button>
+    <div id="emote-bar" hidden></div>
+    <div id="emote-float" aria-hidden="true"></div>
+    <div id="spec-hud" hidden>
+      <ol id="spec-rank"></ol>
+      <div id="spec-feed" aria-live="polite"></div>
+      <div id="spec-cam"><button id="spec-prev" type="button">&#9664;</button><span id="spec-cam-label" role="button" tabindex="0"></span><button id="spec-next" type="button">&#9654;</button></div>
+    </div>
+    <div id="sr-live" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div id="vote" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="./src/boot.ts"></script>
+  </body>
+</html>

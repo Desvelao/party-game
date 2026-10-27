@@ -1,0 +1,65 @@
+{
+  "kind": "plugin",
+  "id": "transfer",
+  "name": "Profile transfer",
+  "version": "0.1.0",
+  "author": "Desvelao",
+  "license": "MIT",
+  "description": "Moves a profile to another device with a QR code or a one-time transfer code that works once, for a few minutes.",
+  "order": 150,
+  "engines": {
+    "core": ">=0.1.0"
+  },
+  "locales": {
+    "es": {
+      "On the device that has your profile: tap \"Show QR / transfer code\" (or \"Copy recovery link\").": "En el dispositivo que tiene tu perfil: pulsa \"Mostrar QR / código de transferencia\" (o \"Copiar enlace de recuperación\").",
+      "On the new device: scan the QR with the camera, or open the copied link. Or open this page, tap \"Use another code\" and paste the transfer code, link or profile code.": "En el dispositivo nuevo: escanea el QR con la cámara o abre el enlace copiado. O abre esta página, pulsa \"Usar otro código\" y pega el código de transferencia, el enlace o el código de perfil.",
+      "You will land on your profile with your name, look and stats. The old device keeps working too.": "Llegarás a tu perfil con tu nombre, aspecto y estadísticas. El dispositivo anterior sigue funcionando.",
+      "The QR / transfer code works once, for a few minutes.": "El QR / código de transferencia sirve una vez, durante unos minutos.",
+      "Show QR / transfer code": "Mostrar QR / código de transferencia",
+      "Transfer code: {code}": "Código de transferencia: {code}",
+      "Single use, valid for {min} minutes": "De un solo uso, válido {min} minutos",
+      "Could not create a transfer code": "No se pudo crear el código de transferencia"
+    },
+    "fr": {
+      "On the device that has your profile: tap \"Show QR / transfer code\" (or \"Copy recovery link\").": "Sur l’appareil qui a ton profil : touche « Afficher le QR / code de transfert » (ou « Copier le lien de récupération »).",
+      "On the new device: scan the QR with the camera, or open the copied link. Or open this page, tap \"Use another code\" and paste the transfer code, link or profile code.": "Sur le nouvel appareil : scanne le QR avec l’appareil photo ou ouvre le lien copié. Ou ouvre cette page, touche « Utiliser un autre code » et colle le code de transfert, le lien ou le code de profil.",
+      "You will land on your profile with your name, look and stats. The old device keeps working too.": "Tu arrives sur ton profil avec ton nom, ton apparence et tes statistiques. L’ancien appareil continue de fonctionner aussi.",
+      "The QR / transfer code works once, for a few minutes.": "Le QR / code de transfert ne fonctionne qu’une fois, pendant quelques minutes.",
+      "Show QR / transfer code": "Afficher le QR / code de transfert",
+      "Transfer code: {code}": "Code de transfert : {code}",
+      "Single use, valid for {min} minutes": "Usage unique, valable {min} minutes",
+      "Could not create a transfer code": "Impossible de créer un code de transfert"
+    },
+    "de": {
+      "On the device that has your profile: tap \"Show QR / transfer code\" (or \"Copy recovery link\").": "Auf dem Gerät mit deinem Profil: Tippe auf „QR / Übertragungscode anzeigen“ (oder „Wiederherstellungslink kopieren“).",
+      "On the new device: scan the QR with the camera, or open the copied link. Or open this page, tap \"Use another code\" and paste the transfer code, link or profile code.": "Auf dem neuen Gerät: Scanne den QR-Code mit der Kamera oder öffne den kopierten Link. Oder öffne diese Seite, tippe auf „Anderen Code verwenden“ und füge den Übertragungscode, den Link oder den Profilcode ein.",
+      "You will land on your profile with your name, look and stats. The old device keeps working too.": "Du landest auf deinem Profil mit deinem Namen, Aussehen und deiner Statistik. Das alte Gerät funktioniert weiterhin.",
+      "The QR / transfer code works once, for a few minutes.": "Der QR- / Übertragungscode funktioniert nur einmal und nur für wenige Minuten.",
+      "Show QR / transfer code": "QR / Übertragungscode anzeigen",
+      "Transfer code: {code}": "Übertragungscode: {code}",
+      "Single use, valid for {min} minutes": "Einmalig verwendbar, {min} Minuten gültig",
+      "Could not create a transfer code": "Übertragungscode konnte nicht erstellt werden"
+    },
+    "pt": {
+      "On the device that has your profile: tap \"Show QR / transfer code\" (or \"Copy recovery link\").": "No dispositivo que tem o teu perfil: toca em «Mostrar QR / código de transferência» (ou «Copiar ligação de recuperação»).",
+      "On the new device: scan the QR with the camera, or open the copied link. Or open this page, tap \"Use another code\" and paste the transfer code, link or profile code.": "No novo dispositivo: lê o QR com a câmara ou abre a ligação copiada. Ou abre esta página, toca em «Usar outro código» e cola o código de transferência, a ligação ou o código de perfil.",
+      "You will land on your profile with your name, look and stats. The old device keeps working too.": "Chegas ao teu perfil com o teu nome, aspeto e estatísticas. O dispositivo antigo continua a funcionar.",
+      "The QR / transfer code works once, for a few minutes.": "O QR / código de transferência funciona uma só vez, durante alguns minutos.",
+      "Show QR / transfer code": "Mostrar QR / código de transferência",
+      "Transfer code: {code}": "Código de transferência: {code}",
+      "Single use, valid for {min} minutes": "De uso único, válido durante {min} minutos",
+      "Could not create a transfer code": "Não foi possível criar um código de transferência"
+    },
+    "it": {
+      "On the device that has your profile: tap \"Show QR / transfer code\" (or \"Copy recovery link\").": "Sul dispositivo che ha il tuo profilo: tocca «Mostra QR / codice di trasferimento» (o «Copia link di recupero»).",
+      "On the new device: scan the QR with the camera, or open the copied link. Or open this page, tap \"Use another code\" and paste the transfer code, link or profile code.": "Sul nuovo dispositivo: inquadra il QR con la fotocamera o apri il link copiato. Oppure apri questa pagina, tocca «Usa un altro codice» e incolla il codice di trasferimento, il link o il codice profilo.",
+      "You will land on your profile with your name, look and stats. The old device keeps working too.": "Arrivi sul tuo profilo con nome, aspetto e statistiche. Anche il vecchio dispositivo continua a funzionare.",
+      "The QR / transfer code works once, for a few minutes.": "Il QR / codice di trasferimento funziona una sola volta, per pochi minuti.",
+      "Show QR / transfer code": "Mostra QR / codice di trasferimento",
+      "Transfer code: {code}": "Codice di trasferimento: {code}",
+      "Single use, valid for {min} minutes": "Monouso, valido per {min} minuti",
+      "Could not create a transfer code": "Impossibile creare un codice di trasferimento"
+    }
+  }
+}

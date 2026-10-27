@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b1033">
+<title>Server not reachable</title>
+<style>
+html,body{margin:0;height:100%;background:#1b1033;color:#fff7e6;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif}
+main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center}
+h1{margin:0;font-size:1.5rem}p{margin:0;color:#b9a8e0}
+button{font:inherit;font-weight:800;font-size:1.1rem;padding:12px 28px;border:0;border-radius:14px;background:#ffd23f;color:#2b1a00;cursor:pointer}
+</style>
+</head>
+<body>
+<main>
+<h1 id="t">Server not reachable</h1>
+<p id="p">Check that the server is running and that you are on the same network.</p>
+<button id="b" type="button">Try again</button>
+</main>
+<script>
+// the texts cannot come from t(): this page is served by the service worker without the app. Keep the languages
+// (and the storage key) in step with src/core/shared/i18n.ts; offline.test.ts checks it.
+var T = {
+  en: ['Server not reachable', 'Check that the server is running and that you are on the same network.', 'Try again'],
+  es: ['Servidor no disponible', 'Comprueba que el servidor está encendido y que estás en la misma red.', 'Reintentar'],
+  fr: ['Serveur injoignable', 'Vérifiez que le serveur est lancé et que vous êtes sur le même réseau.', 'Réessayer'],
+  de: ['Server nicht erreichbar', 'Prüfe, ob der Server läuft und du im selben Netzwerk bist.', 'Erneut versuchen'],
+  pt: ['Servidor indisponível', 'Verifique se o servidor está ligado e se você está na mesma rede.', 'Tentar novamente'],
+  it: ['Server non raggiungibile', 'Controlla che il server sia acceso e che tu sia sulla stessa rete.', 'Riprova']
+};
+var lang = (navigator.language || '').slice(0, 2).toLowerCase();
+try { var saved = localStorage.getItem('party-game:lang'); if (T[saved]) lang = saved; } catch (e) {}
+if (!T[lang]) lang = 'en';
+if (lang !== 'en') {
+  document.documentElement.lang = lang;
+  document.title = document.getElementById('t').textContent = T[lang][0];
+  document.getElementById('p').textContent = T[lang][1];
+  document.getElementById('b').textContent = T[lang][2];
+}
+document.getElementById('b').addEventListener('click', function () { location.reload(); });
+</script>
+</body>
+</html>

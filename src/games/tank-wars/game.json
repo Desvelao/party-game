@@ -1,0 +1,1358 @@
+{
+  "id": "tank-wars",
+  "name": "Tank Wars",
+  "version": "0.1.0",
+  "author": "Desvelao",
+  "license": "MIT",
+  "description": "Drive a tank, shoot rivals and plant mines. Last tank standing, or the most health, wins.",
+  "order": 70,
+  "character": "blob",
+  "catalog": {
+    "id": "tank-wars",
+    "tags": [
+      "last-standing",
+      "vehicle"
+    ],
+    "action": "fire",
+    "action2": "mine",
+    "guide": {
+      "objective": {
+        "en": "Be the last tank standing, or have the most health when time runs out.",
+        "es": "Sé el último tanque en pie o ten más vida cuando se acabe el tiempo.",
+        "fr": "Sois le dernier tank debout, ou aie le plus de santé quand le temps est écoulé.",
+        "de": "Sei der letzte Panzer, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+        "pt": "Sê o último tanque de pé ou tem mais vida quando o tempo acabar.",
+        "it": "Sii l’ultimo carro armato in piedi, o avere più salute quando scade il tempo."
+      },
+      "rules": [
+        {
+          "en": "Move with the stick; the fire button shoots the way you face. You can fire again once your shot hits something or runs out.",
+          "es": "Muévete con el stick; el botón de disparo dispara hacia donde miras. Puedes volver a disparar cuando tu disparo impacta o se agota.",
+          "fr": "Déplace-toi avec le stick ; le bouton de tir tire dans la direction où tu regardes. Tu peux tirer de nouveau quand ton tir touche quelque chose ou se termine.",
+          "de": "Bewege dich mit dem Stick; der Feuerknopf schießt in Blickrichtung. Du kannst erneut feuern, sobald dein Schuss etwas trifft oder ausläuft.",
+          "pt": "Move-te com o manche; o botão de disparo atira na direção para onde olhas. Podes disparar de novo quando o teu tiro acertar em algo ou acabar.",
+          "it": "Muoviti con lo stick; il pulsante di fuoco spara nella direzione in cui guardi. Puoi sparare di nuovo quando il colpo colpisce qualcosa o si esaurisce."
+        },
+        {
+          "en": "The mine button plants a mine that explodes after a few seconds and hurts anyone close, you included.",
+          "es": "El botón de mina coloca una mina que explota tras unos segundos y daña a quien esté cerca, tú incluido.",
+          "fr": "Le bouton de mine pose une mine qui explose après quelques secondes et blesse tous ceux qui sont proches, toi compris.",
+          "de": "Der Minen-Knopf legt eine Mine, die nach ein paar Sekunden explodiert und jeden in der Nähe verletzt, dich eingeschlossen.",
+          "pt": "O botão de mina coloca uma mina que explode após alguns segundos e fere quem estiver perto, incluindo-te a ti.",
+          "it": "Il pulsante mina piazza una mina che esplode dopo qualche secondo e ferisce chiunque sia vicino, te compreso."
+        },
+        {
+          "en": "Every player has a different cannon: fast and weak, slow and strong, or fireballs two at a time.",
+          "es": "Cada jugador tiene un cañón distinto: rápido y débil, lento y fuerte, o bolas de fuego de dos en dos.",
+          "fr": "Chaque joueur a un canon différent : rapide et faible, lent et puissant, ou des boules de feu deux à la fois.",
+          "de": "Jeder Spieler hat eine andere Kanone: schnell und schwach, langsam und stark oder Feuerbälle, zwei auf einmal.",
+          "pt": "Cada jogador tem um canhão diferente: rápido e fraco, lento e forte, ou bolas de fogo duas de cada vez.",
+          "it": "Ogni giocatore ha un cannone diverso: veloce e debole, lento e potente, o palle di fuoco due alla volta."
+        }
+      ],
+      "items": [
+        {
+          "name": {
+            "en": "Mine",
+            "es": "Mina",
+            "fr": "Mine",
+            "de": "Mine",
+            "pt": "Mina",
+            "it": "Mina"
+          },
+          "description": {
+            "en": "Plant it with the mine button; you start with a few and can pick up more.",
+            "es": "Colócala con el botón de mina; empiezas con algunas y puedes recoger más.",
+            "fr": "Pose-la avec le bouton de mine ; tu en as quelques-unes au départ et tu peux en ramasser d’autres.",
+            "de": "Lege sie mit dem Minen-Knopf; du startest mit ein paar und kannst weitere aufsammeln.",
+            "pt": "Coloca-a com o botão de mina; começas com algumas e podes apanhar mais.",
+            "it": "Piazzala con il pulsante mina; inizi con qualcuna e puoi raccoglierne altre."
+          }
+        },
+        {
+          "name": {
+            "en": "Berry",
+            "es": "Baya",
+            "fr": "Baie",
+            "de": "Beere",
+            "pt": "Baga",
+            "it": "Bacca"
+          },
+          "description": {
+            "en": "Heals you when collected.",
+            "es": "Te cura al recogerla.",
+            "fr": "Te soigne quand tu le ramasses.",
+            "de": "Heilt dich, wenn du sie einsammelst.",
+            "pt": "Cura-te quando é apanhada.",
+            "it": "Ti cura quando viene raccolto."
+          }
+        }
+      ]
+    },
+    "name": "Tank Wars",
+    "description": "Drive a tank, shoot rivals and plant mines. Last tank standing, or the most health, wins.",
+    "teams": true,
+    "maxTeamSize": 4,
+    "variants": [
+      {
+        "id": "desert-fox",
+        "action": "fire",
+        "action2": "mine",
+        "guide": {
+          "objective": {
+            "en": "Be the last tank standing, or have the most health when time runs out.",
+            "es": "Sé el último tanque en pie o ten más vida cuando se acabe el tiempo.",
+            "fr": "Sois le dernier tank debout, ou aie le plus de santé quand le temps est écoulé.",
+            "de": "Sei der letzte Panzer, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+            "pt": "Sê o último tanque de pé ou tem mais vida quando o tempo acabar.",
+            "it": "Sii l’ultimo carro armato in piedi, o avere più salute quando scade il tempo."
+          },
+          "rules": [
+            {
+              "en": "Move with the stick; the fire button shoots the way you face. You can fire again once your shot hits something or runs out.",
+              "es": "Muévete con el stick; el botón de disparo dispara hacia donde miras. Puedes volver a disparar cuando tu disparo impacta o se agota.",
+              "fr": "Déplace-toi avec le stick ; le bouton de tir tire dans la direction où tu regardes. Tu peux tirer de nouveau quand ton tir touche quelque chose ou se termine.",
+              "de": "Bewege dich mit dem Stick; der Feuerknopf schießt in Blickrichtung. Du kannst erneut feuern, sobald dein Schuss etwas trifft oder ausläuft.",
+              "pt": "Move-te com o manche; o botão de disparo atira na direção para onde olhas. Podes disparar de novo quando o teu tiro acertar em algo ou acabar.",
+              "it": "Muoviti con lo stick; il pulsante di fuoco spara nella direzione in cui guardi. Puoi sparare di nuovo quando il colpo colpisce qualcosa o si esaurisce."
+            },
+            {
+              "en": "The mine button plants a mine that explodes after a few seconds and hurts anyone close, you included.",
+              "es": "El botón de mina coloca una mina que explota tras unos segundos y daña a quien esté cerca, tú incluido.",
+              "fr": "Le bouton de mine pose une mine qui explose après quelques secondes et blesse tous ceux qui sont proches, toi compris.",
+              "de": "Der Minen-Knopf legt eine Mine, die nach ein paar Sekunden explodiert und jeden in der Nähe verletzt, dich eingeschlossen.",
+              "pt": "O botão de mina coloca uma mina que explode após alguns segundos e fere quem estiver perto, incluindo-te a ti.",
+              "it": "Il pulsante mina piazza una mina che esplode dopo qualche secondo e ferisce chiunque sia vicino, te compreso."
+            },
+            {
+              "en": "Every player has a different cannon: fast and weak, slow and strong, or fireballs two at a time.",
+              "es": "Cada jugador tiene un cañón distinto: rápido y débil, lento y fuerte, o bolas de fuego de dos en dos.",
+              "fr": "Chaque joueur a un canon différent : rapide et faible, lent et puissant, ou des boules de feu deux à la fois.",
+              "de": "Jeder Spieler hat eine andere Kanone: schnell und schwach, langsam und stark oder Feuerbälle, zwei auf einmal.",
+              "pt": "Cada jogador tem um canhão diferente: rápido e fraco, lento e forte, ou bolas de fogo duas de cada vez.",
+              "it": "Ogni giocatore ha un cannone diverso: veloce e debole, lento e potente, o palle di fuoco due alla volta."
+            },
+            {
+              "en": "Tanks drive along the rails of the maze and can only turn at the crossings; a mine sends fire along the corridors until it hits a wall.",
+              "es": "Los tanques avanzan por los raíles del laberinto y solo pueden girar en los cruces; una mina lanza fuego por los pasillos hasta que choca con una pared.",
+              "fr": "Les tanks roulent sur les rails du labyrinthe et ne peuvent tourner qu’aux croisements ; une mine envoie du feu le long des couloirs jusqu’à ce qu’il touche un mur.",
+              "de": "Panzer fahren auf den Schienen des Labyrinths und können nur an Kreuzungen abbiegen; eine Mine schickt Feuer durch die Gänge, bis es auf eine Wand trifft.",
+              "pt": "Os tanques circulam pelos carris do labirinto e só podem virar nos cruzamentos; uma mina envia fogo pelos corredores até bater numa parede.",
+              "it": "I carri armati viaggiano sui binari del labirinto e possono girare solo agli incroci; una mina manda fuoco lungo i corridoi finché non colpisce un muro."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Mine",
+                "es": "Mina",
+                "fr": "Mine",
+                "de": "Mine",
+                "pt": "Mina",
+                "it": "Mina"
+              },
+              "description": {
+                "en": "Plant it with the mine button; you start with a few and can pick up more.",
+                "es": "Colócala con el botón de mina; empiezas con algunas y puedes recoger más.",
+                "fr": "Pose-la avec le bouton de mine ; tu en as quelques-unes au départ et tu peux en ramasser d’autres.",
+                "de": "Lege sie mit dem Minen-Knopf; du startest mit ein paar und kannst weitere aufsammeln.",
+                "pt": "Coloca-a com o botão de mina; começas com algumas e podes apanhar mais.",
+                "it": "Piazzala con il pulsante mina; inizi con qualcuna e puoi raccoglierne altre."
+              }
+            },
+            {
+              "name": {
+                "en": "Berry",
+                "es": "Baya",
+                "fr": "Baie",
+                "de": "Beere",
+                "pt": "Baga",
+                "it": "Bacca"
+              },
+              "description": {
+                "en": "Heals you when collected.",
+                "es": "Te cura al recogerla.",
+                "fr": "Te soigne quand tu le ramasses.",
+                "de": "Heilt dich, wenn du sie einsammelst.",
+                "pt": "Cura-te quando é apanhada.",
+                "it": "Ti cura quando viene raccolto."
+              }
+            }
+          ]
+        },
+        "name": "Desert Fox",
+        "description": "A block maze: move in straight lines; mines send fire down the corridors.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most health wins if several survive.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "maxHp",
+            "label": "Health",
+            "description": "Health points each player starts with.",
+            "type": "number",
+            "default": 100,
+            "min": 50,
+            "max": 200,
+            "step": 10,
+            "group": "match"
+          },
+          {
+            "id": "mines",
+            "label": "Mines",
+            "description": "Mines each player starts with.",
+            "type": "number",
+            "default": 3,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "group": "abilities"
+          },
+          {
+            "id": "mineEvery",
+            "label": "Mine pick-up interval",
+            "description": "A mine pick-up appears this often.",
+            "type": "number",
+            "default": 20,
+            "min": 8,
+            "max": 60,
+            "step": 1,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "mineVariance",
+            "label": "Mine pick-up variance",
+            "description": "How much the time between mine pick-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "abilities"
+          },
+          {
+            "id": "cannonTypes",
+            "label": "Different cannons",
+            "description": "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.",
+            "type": "boolean",
+            "default": true,
+            "group": "abilities"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "rails",
+            "label": "Move on rails",
+            "description": "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.",
+            "type": "boolean",
+            "default": true,
+            "group": "match"
+          },
+          {
+            "id": "fruitEvery",
+            "label": "Berry interval",
+            "description": "A berry (heals) appears this often.",
+            "type": "number",
+            "default": 12,
+            "min": 6,
+            "max": 40,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "fruitVariance",
+            "label": "Berry variance",
+            "description": "How much the time between berries varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 5,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          }
+        ]
+      },
+      {
+        "id": "metal-fox",
+        "action": "fire",
+        "action2": "mine",
+        "guide": {
+          "objective": {
+            "en": "Be the last tank standing, or have the most health when time runs out.",
+            "es": "Sé el último tanque en pie o ten más vida cuando se acabe el tiempo.",
+            "fr": "Sois le dernier tank debout, ou aie le plus de santé quand le temps est écoulé.",
+            "de": "Sei der letzte Panzer, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+            "pt": "Sê o último tanque de pé ou tem mais vida quando o tempo acabar.",
+            "it": "Sii l’ultimo carro armato in piedi, o avere più salute quando scade il tempo."
+          },
+          "rules": [
+            {
+              "en": "Move with the stick; the fire button shoots the way you face. You can fire again once your shot hits something or runs out.",
+              "es": "Muévete con el stick; el botón de disparo dispara hacia donde miras. Puedes volver a disparar cuando tu disparo impacta o se agota.",
+              "fr": "Déplace-toi avec le stick ; le bouton de tir tire dans la direction où tu regardes. Tu peux tirer de nouveau quand ton tir touche quelque chose ou se termine.",
+              "de": "Bewege dich mit dem Stick; der Feuerknopf schießt in Blickrichtung. Du kannst erneut feuern, sobald dein Schuss etwas trifft oder ausläuft.",
+              "pt": "Move-te com o manche; o botão de disparo atira na direção para onde olhas. Podes disparar de novo quando o teu tiro acertar em algo ou acabar.",
+              "it": "Muoviti con lo stick; il pulsante di fuoco spara nella direzione in cui guardi. Puoi sparare di nuovo quando il colpo colpisce qualcosa o si esaurisce."
+            },
+            {
+              "en": "The mine button plants a mine that explodes after a few seconds and hurts anyone close, you included.",
+              "es": "El botón de mina coloca una mina que explota tras unos segundos y daña a quien esté cerca, tú incluido.",
+              "fr": "Le bouton de mine pose une mine qui explose après quelques secondes et blesse tous ceux qui sont proches, toi compris.",
+              "de": "Der Minen-Knopf legt eine Mine, die nach ein paar Sekunden explodiert und jeden in der Nähe verletzt, dich eingeschlossen.",
+              "pt": "O botão de mina coloca uma mina que explode após alguns segundos e fere quem estiver perto, incluindo-te a ti.",
+              "it": "Il pulsante mina piazza una mina che esplode dopo qualche secondo e ferisce chiunque sia vicino, te compreso."
+            },
+            {
+              "en": "Every player has a different cannon: fast and weak, slow and strong, or fireballs two at a time.",
+              "es": "Cada jugador tiene un cañón distinto: rápido y débil, lento y fuerte, o bolas de fuego de dos en dos.",
+              "fr": "Chaque joueur a un canon différent : rapide et faible, lent et puissant, ou des boules de feu deux à la fois.",
+              "de": "Jeder Spieler hat eine andere Kanone: schnell und schwach, langsam und stark oder Feuerbälle, zwei auf einmal.",
+              "pt": "Cada jogador tem um canhão diferente: rápido e fraco, lento e forte, ou bolas de fogo duas de cada vez.",
+              "it": "Ogni giocatore ha un cannone diverso: veloce e debole, lento e potente, o palle di fuoco due alla volta."
+            },
+            {
+              "en": "Tanks stay on the rails and turn at the crossings. Metal walls rise and fall in the maze: they block you and your shots while they are up.",
+              "es": "Los tanques siguen los raíles y giran en los cruces. Unas paredes de metal suben y bajan en el laberinto: te bloquean a ti y a tus disparos mientras están arriba.",
+              "fr": "Les tanks restent sur les rails et tournent aux croisements. Des murs métalliques montent et descendent dans le labyrinthe : ils te bloquent, toi et tes tirs, quand ils sont levés.",
+              "de": "Panzer bleiben auf den Schienen und biegen an Kreuzungen ab. Metallwände fahren im Labyrinth auf und ab: Solange sie oben sind, blockieren sie dich und deine Schüsse.",
+              "pt": "Os tanques ficam nos carris e viram nos cruzamentos. Paredes de metal sobem e descem no labirinto: bloqueiam-te a ti e aos teus tiros enquanto estão levantadas.",
+              "it": "I carri armati restano sui binari e girano agli incroci. Pareti di metallo salgono e scendono nel labirinto: bloccano te e i tuoi colpi finché sono alzate."
+            },
+            {
+              "en": "Grab a bomb and press fire to lob it over the walls.",
+              "es": "Coge una bomba y pulsa disparar para lanzarla por encima de las paredes.",
+              "fr": "Prends une bombe et appuie sur tir pour la lancer par-dessus les murs.",
+              "de": "Schnapp dir eine Bombe und drücke Feuer, um sie über die Wände zu werfen.",
+              "pt": "Apanha uma bomba e prime disparo para a lançares por cima das paredes.",
+              "it": "Prendi una bomba e premi fuoco per lanciarla oltre i muri."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Mine",
+                "es": "Mina",
+                "fr": "Mine",
+                "de": "Mine",
+                "pt": "Mina",
+                "it": "Mina"
+              },
+              "description": {
+                "en": "Plant it with the mine button; you start with a few and can pick up more.",
+                "es": "Colócala con el botón de mina; empiezas con algunas y puedes recoger más.",
+                "fr": "Pose-la avec le bouton de mine ; tu en as quelques-unes au départ et tu peux en ramasser d’autres.",
+                "de": "Lege sie mit dem Minen-Knopf; du startest mit ein paar und kannst weitere aufsammeln.",
+                "pt": "Coloca-a com o botão de mina; começas com algumas e podes apanhar mais.",
+                "it": "Piazzala con il pulsante mina; inizi con qualcuna e puoi raccoglierne altre."
+              }
+            },
+            {
+              "name": {
+                "en": "Berry",
+                "es": "Baya",
+                "fr": "Baie",
+                "de": "Beere",
+                "pt": "Baga",
+                "it": "Bacca"
+              },
+              "description": {
+                "en": "Heals you when collected.",
+                "es": "Te cura al recogerla.",
+                "fr": "Te soigne quand tu le ramasses.",
+                "de": "Heilt dich, wenn du sie einsammelst.",
+                "pt": "Cura-te quando é apanhada.",
+                "it": "Ti cura quando viene raccolto."
+              }
+            },
+            {
+              "name": {
+                "en": "Bomb",
+                "es": "Bomba",
+                "fr": "Bombe",
+                "de": "Bombe",
+                "pt": "Bomba",
+                "it": "Bomba"
+              },
+              "description": {
+                "en": "Lobbed over walls for a short distance; a very large blast.",
+                "es": "Se lanza por encima de las paredes a poca distancia; una explosión muy grande.",
+                "fr": "Lancée par-dessus les murs sur une courte distance ; une très grosse explosion.",
+                "de": "Wird über Wände eine kurze Strecke geworfen; eine sehr große Explosion.",
+                "pt": "Lançada por cima das paredes a curta distância; uma explosão muito grande.",
+                "it": "Lanciata oltre i muri per breve distanza; un’esplosione molto grande."
+              }
+            }
+          ]
+        },
+        "name": "Metal Fox",
+        "description": "Metal walls rise and fall in the maze, and bombs fly over them.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most health wins if several survive.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "maxHp",
+            "label": "Health",
+            "description": "Health points each player starts with.",
+            "type": "number",
+            "default": 100,
+            "min": 50,
+            "max": 200,
+            "step": 10,
+            "group": "match"
+          },
+          {
+            "id": "mines",
+            "label": "Mines",
+            "description": "Mines each player starts with.",
+            "type": "number",
+            "default": 3,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "group": "abilities"
+          },
+          {
+            "id": "mineEvery",
+            "label": "Mine pick-up interval",
+            "description": "A mine pick-up appears this often.",
+            "type": "number",
+            "default": 20,
+            "min": 8,
+            "max": 60,
+            "step": 1,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "mineVariance",
+            "label": "Mine pick-up variance",
+            "description": "How much the time between mine pick-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "abilities"
+          },
+          {
+            "id": "cannonTypes",
+            "label": "Different cannons",
+            "description": "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.",
+            "type": "boolean",
+            "default": true,
+            "group": "abilities"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "rails",
+            "label": "Move on rails",
+            "description": "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.",
+            "type": "boolean",
+            "default": true,
+            "group": "match"
+          },
+          {
+            "id": "fruitEvery",
+            "label": "Berry interval",
+            "description": "A berry (heals) appears this often.",
+            "type": "number",
+            "default": 12,
+            "min": 6,
+            "max": 40,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "fruitVariance",
+            "label": "Berry variance",
+            "description": "How much the time between berries varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 5,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "wallEvery",
+            "label": "Metal wall interval",
+            "description": "The metal walls rise and fall this often.",
+            "type": "number",
+            "default": 6,
+            "min": 3,
+            "max": 15,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "wallVariance",
+            "label": "Wall variance",
+            "description": "How much the time between wall switches varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 3,
+            "step": 0.5,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "hazards"
+          },
+          {
+            "id": "bombEvery",
+            "label": "Bomb interval",
+            "description": "A bomb pick-up appears this often.",
+            "type": "number",
+            "default": 14,
+            "min": 6,
+            "max": 40,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "bombVariance",
+            "label": "Bomb variance",
+            "description": "How much the time between bombs varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 5,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "hazards"
+          }
+        ]
+      },
+      {
+        "id": "jungle-fox",
+        "action": "fire",
+        "action2": "mine",
+        "guide": {
+          "objective": {
+            "en": "Be the last tank standing, or have the most health when time runs out.",
+            "es": "Sé el último tanque en pie o ten más vida cuando se acabe el tiempo.",
+            "fr": "Sois le dernier tank debout, ou aie le plus de santé quand le temps est écoulé.",
+            "de": "Sei der letzte Panzer, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+            "pt": "Sê o último tanque de pé ou tem mais vida quando o tempo acabar.",
+            "it": "Sii l’ultimo carro armato in piedi, o avere più salute quando scade il tempo."
+          },
+          "rules": [
+            {
+              "en": "Move with the stick; the fire button shoots the way you face. You can fire again once your shot hits something or runs out.",
+              "es": "Muévete con el stick; el botón de disparo dispara hacia donde miras. Puedes volver a disparar cuando tu disparo impacta o se agota.",
+              "fr": "Déplace-toi avec le stick ; le bouton de tir tire dans la direction où tu regardes. Tu peux tirer de nouveau quand ton tir touche quelque chose ou se termine.",
+              "de": "Bewege dich mit dem Stick; der Feuerknopf schießt in Blickrichtung. Du kannst erneut feuern, sobald dein Schuss etwas trifft oder ausläuft.",
+              "pt": "Move-te com o manche; o botão de disparo atira na direção para onde olhas. Podes disparar de novo quando o teu tiro acertar em algo ou acabar.",
+              "it": "Muoviti con lo stick; il pulsante di fuoco spara nella direzione in cui guardi. Puoi sparare di nuovo quando il colpo colpisce qualcosa o si esaurisce."
+            },
+            {
+              "en": "The mine button plants a mine that explodes after a few seconds and hurts anyone close, you included.",
+              "es": "El botón de mina coloca una mina que explota tras unos segundos y daña a quien esté cerca, tú incluido.",
+              "fr": "Le bouton de mine pose une mine qui explose après quelques secondes et blesse tous ceux qui sont proches, toi compris.",
+              "de": "Der Minen-Knopf legt eine Mine, die nach ein paar Sekunden explodiert und jeden in der Nähe verletzt, dich eingeschlossen.",
+              "pt": "O botão de mina coloca uma mina que explode após alguns segundos e fere quem estiver perto, incluindo-te a ti.",
+              "it": "Il pulsante mina piazza una mina che esplode dopo qualche secondo e ferisce chiunque sia vicino, te compreso."
+            },
+            {
+              "en": "Every player has a different cannon: fast and weak, slow and strong, or fireballs two at a time.",
+              "es": "Cada jugador tiene un cañón distinto: rápido y débil, lento y fuerte, o bolas de fuego de dos en dos.",
+              "fr": "Chaque joueur a un canon différent : rapide et faible, lent et puissant, ou des boules de feu deux à la fois.",
+              "de": "Jeder Spieler hat eine andere Kanone: schnell und schwach, langsam und stark oder Feuerbälle, zwei auf einmal.",
+              "pt": "Cada jogador tem um canhão diferente: rápido e fraco, lento e forte, ou bolas de fogo duas de cada vez.",
+              "it": "Ogni giocatore ha un cannone diverso: veloce e debole, lento e potente, o palle di fuoco due alla volta."
+            },
+            {
+              "en": "You can move freely. The totem pole in the middle falls now and then: keep out of its path once the warning shows.",
+              "es": "Puedes moverte libremente. El tótem del centro cae de vez en cuando: sal de su camino cuando aparezca el aviso.",
+              "fr": "Tu peux te déplacer librement. Le totem au milieu tombe de temps en temps : écarte-toi de sa trajectoire dès que l’avertissement s’affiche.",
+              "de": "Du kannst dich frei bewegen. Der Totempfahl in der Mitte fällt ab und zu um: Bleib aus seiner Bahn, sobald die Warnung erscheint.",
+              "pt": "Podes mover-te livremente. O totem ao meio cai de vez em quando: sai do seu caminho assim que o aviso aparecer.",
+              "it": "Puoi muoverti liberamente. Il totem al centro cade ogni tanto: stai fuori dalla sua traiettoria appena compare l’avviso."
+            },
+            {
+              "en": "Missiles fall from the sky; pick one up and fire twin rockets.",
+              "es": "Caen misiles del cielo; recoge uno y dispara dos cohetes.",
+              "fr": "Des missiles tombent du ciel ; ramasses-en un et tire des roquettes jumelles.",
+              "de": "Raketen fallen vom Himmel; sammle eine auf und feuere Zwillingsraketen.",
+              "pt": "Caem mísseis do céu; apanha um e dispara foguetes gémeos.",
+              "it": "Dal cielo cadono missili; raccoglierne uno e spara razzi gemelli."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Mine",
+                "es": "Mina",
+                "fr": "Mine",
+                "de": "Mine",
+                "pt": "Mina",
+                "it": "Mina"
+              },
+              "description": {
+                "en": "Plant it with the mine button; you start with a few and can pick up more.",
+                "es": "Colócala con el botón de mina; empiezas con algunas y puedes recoger más.",
+                "fr": "Pose-la avec le bouton de mine ; tu en as quelques-unes au départ et tu peux en ramasser d’autres.",
+                "de": "Lege sie mit dem Minen-Knopf; du startest mit ein paar und kannst weitere aufsammeln.",
+                "pt": "Coloca-a com o botão de mina; começas com algumas e podes apanhar mais.",
+                "it": "Piazzala con il pulsante mina; inizi con qualcuna e puoi raccoglierne altre."
+              }
+            },
+            {
+              "name": {
+                "en": "Berry",
+                "es": "Baya",
+                "fr": "Baie",
+                "de": "Beere",
+                "pt": "Baga",
+                "it": "Bacca"
+              },
+              "description": {
+                "en": "Heals you when collected.",
+                "es": "Te cura al recogerla.",
+                "fr": "Te soigne quand tu le ramasses.",
+                "de": "Heilt dich, wenn du sie einsammelst.",
+                "pt": "Cura-te quando é apanhada.",
+                "it": "Ti cura quando viene raccolto."
+              }
+            },
+            {
+              "name": {
+                "en": "Missile",
+                "es": "Misil",
+                "fr": "Missile",
+                "de": "Rakete",
+                "pt": "Míssil",
+                "it": "Missile"
+              },
+              "description": {
+                "en": "Fires twin fast rockets that do a lot of damage.",
+                "es": "Dispara dos cohetes rápidos que hacen mucho daño.",
+                "fr": "Tire deux roquettes rapides qui font beaucoup de dégâts.",
+                "de": "Feuert zwei schnelle Raketen ab, die viel Schaden anrichten.",
+                "pt": "Dispara dois foguetes rápidos que causam muito dano.",
+                "it": "Spara due razzi veloci che fanno molto danno."
+              }
+            }
+          ]
+        },
+        "name": "Jungle Fox",
+        "description": "Open arena: a totem pole falls on it and missiles drop from the sky.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most health wins if several survive.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "maxHp",
+            "label": "Health",
+            "description": "Health points each player starts with.",
+            "type": "number",
+            "default": 100,
+            "min": 50,
+            "max": 200,
+            "step": 10,
+            "group": "match"
+          },
+          {
+            "id": "mines",
+            "label": "Mines",
+            "description": "Mines each player starts with.",
+            "type": "number",
+            "default": 3,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "group": "abilities"
+          },
+          {
+            "id": "arenaSize",
+            "label": "Arena size",
+            "description": "Width of the playing field in squares (11 = the whole arena).",
+            "type": "number",
+            "default": 8,
+            "min": 6,
+            "max": 11,
+            "step": 1,
+            "unit": "squares",
+            "group": "abilities"
+          },
+          {
+            "id": "mineEvery",
+            "label": "Mine pick-up interval",
+            "description": "A mine pick-up appears this often.",
+            "type": "number",
+            "default": 20,
+            "min": 8,
+            "max": 60,
+            "step": 1,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "mineVariance",
+            "label": "Mine pick-up variance",
+            "description": "How much the time between mine pick-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "abilities"
+          },
+          {
+            "id": "cannonTypes",
+            "label": "Different cannons",
+            "description": "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.",
+            "type": "boolean",
+            "default": true,
+            "group": "abilities"
+          },
+          {
+            "id": "shotBounce",
+            "label": "Bouncing shots",
+            "description": "Cannon shots rebound off walls and the edge of the field instead of vanishing.",
+            "type": "boolean",
+            "default": true,
+            "group": "abilities"
+          },
+          {
+            "id": "shotLife",
+            "label": "Shot duration",
+            "description": "Seconds a cannon shot flies before it vanishes.",
+            "type": "number",
+            "default": 3,
+            "min": 1,
+            "max": 10,
+            "step": 0.5,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "rails",
+            "label": "Move on rails",
+            "description": "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.",
+            "type": "boolean",
+            "default": false,
+            "group": "match"
+          },
+          {
+            "id": "fruitEvery",
+            "label": "Berry interval",
+            "description": "A berry (heals) appears this often.",
+            "type": "number",
+            "default": 12,
+            "min": 6,
+            "max": 40,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "fruitVariance",
+            "label": "Berry variance",
+            "description": "How much the time between berries varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 5,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "totemEvery",
+            "label": "Totem interval",
+            "description": "The totem pole falls on the arena this often.",
+            "type": "number",
+            "default": 15,
+            "min": 8,
+            "max": 40,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "totemVariance",
+            "label": "Totem variance",
+            "description": "How much the time between totem attacks varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "hazards"
+          },
+          {
+            "id": "missileEvery",
+            "label": "Missile interval",
+            "description": "A missile falls from the sky this often.",
+            "type": "number",
+            "default": 18,
+            "min": 8,
+            "max": 40,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "missileVariance",
+            "label": "Missile variance",
+            "description": "How much the time between missiles varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "hazards"
+          }
+        ]
+      },
+      {
+        "id": "swamp-fox",
+        "action": "fire",
+        "action2": "mine",
+        "guide": {
+          "objective": {
+            "en": "Be the last tank standing, or have the most health when time runs out.",
+            "es": "Sé el último tanque en pie o ten más vida cuando se acabe el tiempo.",
+            "fr": "Sois le dernier tank debout, ou aie le plus de santé quand le temps est écoulé.",
+            "de": "Sei der letzte Panzer, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+            "pt": "Sê o último tanque de pé ou tem mais vida quando o tempo acabar.",
+            "it": "Sii l’ultimo carro armato in piedi, o avere più salute quando scade il tempo."
+          },
+          "rules": [
+            {
+              "en": "Drive your rotor boat freely and fire the way it faces.",
+              "es": "Conduce libremente tu hovercraft y dispara hacia donde mira.",
+              "fr": "Pilote ton bateau à rotor librement et tire dans la direction où il regarde.",
+              "de": "Steuere dein Rotorboot frei und feuere in Blickrichtung.",
+              "pt": "Conduz o teu barco de hélice livremente e dispara na direção para onde ele aponta.",
+              "it": "Guida liberamente il tuo barca a elica e spara nella direzione in cui è rivolta."
+            },
+            {
+              "en": "Hold the mine button to raise a shield that blocks damage; tap it to drop a mine.",
+              "es": "Mantén el botón de mina para levantar un escudo que bloquea el daño; púlsalo para soltar una mina.",
+              "fr": "Maintiens le bouton de mine pour lever un bouclier qui bloque les dégâts ; tape-le pour poser une mine.",
+              "de": "Halte den Minen-Knopf gedrückt, um einen Schild zu heben, der Schaden blockt; tippe ihn an, um eine Mine zu legen.",
+              "pt": "Mantém o botão de mina premido para levantar um escudo que bloqueia dano; toca-lhe para largar uma mina.",
+              "it": "Tieni premuto il pulsante mina per alzare uno scudo che blocca i danni; toccalo per lasciare una mina."
+            },
+            {
+              "en": "Mines go off only when someone drives over them. There is no berry here.",
+              "es": "Las minas solo explotan cuando alguien pasa por encima. Aquí no hay baya.",
+              "fr": "Les mines n’explosent que lorsque quelqu’un roule dessus. Il n’y a pas de baie ici.",
+              "de": "Minen gehen nur los, wenn jemand darüberfährt. Hier gibt es keine Beeren.",
+              "pt": "As minas só explodem quando alguém passa por cima. Aqui não há baga.",
+              "it": "Le mine esplodono solo quando qualcuno ci passa sopra. Qui non ci sono bacche."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Mine",
+                "es": "Mina",
+                "fr": "Mine",
+                "de": "Mine",
+                "pt": "Mina",
+                "it": "Mina"
+              },
+              "description": {
+                "en": "Dropped where you are; explodes when anyone drives over it.",
+                "es": "Se suelta donde estás; explota cuando alguien pasa por encima.",
+                "fr": "Posée là où tu es ; explose quand quelqu’un roule dessus.",
+                "de": "Wird dort abgelegt, wo du bist; explodiert, wenn jemand darüberfährt.",
+                "pt": "Largada onde estás; explode quando alguém passa por cima.",
+                "it": "Lasciata dove ti trovi; esplode quando qualcuno ci passa sopra."
+              }
+            }
+          ]
+        },
+        "name": "Swamp Fox",
+        "description": "Rotor boats with shields; mines only go off when someone steps on them.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most health wins if several survive.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "maxHp",
+            "label": "Health",
+            "description": "Health points each player starts with.",
+            "type": "number",
+            "default": 100,
+            "min": 50,
+            "max": 200,
+            "step": 10,
+            "group": "match"
+          },
+          {
+            "id": "mines",
+            "label": "Mines",
+            "description": "Mines each player starts with.",
+            "type": "number",
+            "default": 3,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "group": "abilities"
+          },
+          {
+            "id": "arenaSize",
+            "label": "Arena size",
+            "description": "Width of the playing field in squares (11 = the whole arena).",
+            "type": "number",
+            "default": 8,
+            "min": 6,
+            "max": 11,
+            "step": 1,
+            "unit": "squares",
+            "group": "abilities"
+          },
+          {
+            "id": "mineSpeed",
+            "label": "Mine speed",
+            "description": "How fast the wandering mines drift, in units per second.",
+            "type": "number",
+            "default": 35,
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "group": "abilities"
+          },
+          {
+            "id": "cannonTypes",
+            "label": "Different cannons",
+            "description": "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.",
+            "type": "boolean",
+            "default": true,
+            "group": "abilities"
+          },
+          {
+            "id": "shotBounce",
+            "label": "Bouncing shots",
+            "description": "Cannon shots rebound off walls and the edge of the field instead of vanishing.",
+            "type": "boolean",
+            "default": true,
+            "group": "abilities"
+          },
+          {
+            "id": "shotLife",
+            "label": "Shot duration",
+            "description": "Seconds a cannon shot flies before it vanishes.",
+            "type": "number",
+            "default": 3,
+            "min": 1,
+            "max": 10,
+            "step": 0.5,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "rails",
+            "label": "Move on rails",
+            "description": "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.",
+            "type": "boolean",
+            "default": false,
+            "group": "match"
+          },
+          {
+            "id": "shieldTime",
+            "label": "Shield time",
+            "description": "How long a full shield lasts while held.",
+            "type": "number",
+            "default": 2,
+            "min": 0.5,
+            "max": 5,
+            "step": 0.5,
+            "unit": "s",
+            "group": "player"
+          }
+        ]
+      }
+    ],
+    "touchHint": {
+      "en": "Tank Wars with “Move on rails” on suggests the cross.",
+      "es": "Tank Wars con «Moverse por raíles» activado sugiere la cruceta.",
+      "fr": "Tank Wars avec « Se déplacer sur rails » activé suggère la croix.",
+      "de": "Tank Wars mit aktiviertem „Auf Schienen fahren“ legt das Steuerkreuz nahe.",
+      "pt": "Tank Wars com «Mover em carris» ativado sugere a cruz.",
+      "it": "Tank Wars con «Muovi sui binari» attivo suggerisce la croce."
+    }
+  },
+  "locales": {
+    "es": {
+      "Drive a tank, shoot rivals and plant mines. Last tank standing, or the most health, wins.": "Conduce un tanque, dispara a tus rivales y coloca minas. Gana el último tanque en pie o el que más vida tenga.",
+      "A block maze: move in straight lines; mines send fire down the corridors.": "Un laberinto de bloques: te mueves en línea recta; las minas lanzan fuego por los pasillos.",
+      "Time limit": "Tiempo límite",
+      "Round length. Most health wins if several survive.": "Duración de la ronda. Si varios sobreviven, gana quien tenga más vida.",
+      "Health": "Vida",
+      "Health points each player starts with.": "Puntos de vida con los que empieza cada jugador.",
+      "Mines": "Minas",
+      "Mines each player starts with.": "Minas con las que empieza cada jugador.",
+      "Different cannons": "Cañones distintos",
+      "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.": "Cada jugador recibe un cañón distinto (rápido, pesado, bola de fuego). Desactivado: todos tienen el equilibrado.",
+      "Hit protection": "Protección tras golpe",
+      "Seconds a player cannot be hurt again after a hit (0 = off).": "Segundos durante los que un jugador no puede ser herido otra vez tras un golpe (0 = desactivado).",
+      "Off": "Desactivado",
+      "Move on rails": "Mover sobre raíles",
+      "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.": "Los tanques solo avanzan por las líneas de la cuadrícula y giran en los cruces, como en el original. Desactivado: conduce libremente.",
+      "Berry interval": "Intervalo de baya",
+      "A berry (heals) appears this often.": "Aparece una baya (cura) con esta frecuencia.",
+      "Metal walls rise and fall in the maze, and bombs fly over them.": "Paredes de metal suben y bajan en el laberinto, y las bombas vuelan por encima.",
+      "Metal wall interval": "Intervalo de las paredes de metal",
+      "The metal walls rise and fall this often.": "Las paredes de metal suben y bajan con esta frecuencia.",
+      "Bomb interval": "Intervalo de bombas",
+      "A bomb pick-up appears this often.": "Aparece una bomba con esta frecuencia.",
+      "Open arena: a totem pole falls on it and missiles drop from the sky.": "Arena abierta: un tótem cae sobre ella y caen misiles del cielo.",
+      "Totem interval": "Intervalo del tótem",
+      "The totem pole falls on the arena this often.": "El tótem cae sobre la arena con esta frecuencia.",
+      "Missile interval": "Intervalo de misiles",
+      "A missile falls from the sky this often.": "Cae un misil del cielo con esta frecuencia.",
+      "Rotor boats with shields; mines only go off when someone steps on them.": "Hovercrafts con escudo; las minas solo explotan cuando alguien pasa por encima.",
+      "Shield time": "Duración del escudo",
+      "How long a full shield lasts while held.": "Cuánto dura un escudo lleno mientras lo mantienes.",
+      "Berry variance": "Variación de bayas",
+      "How much the time between berries varies, plus or minus.": "Cuánto varía el tiempo entre bayas, más o menos.",
+      "Bomb variance": "Variación de bombas",
+      "How much the time between bombs varies, plus or minus.": "Cuánto varía el tiempo entre bombas, más o menos.",
+      "Missile variance": "Variación de misiles",
+      "How much the time between missiles varies, plus or minus.": "Cuánto varía el tiempo entre misiles, más o menos.",
+      "Totem variance": "Variación de tótems",
+      "How much the time between totem attacks varies, plus or minus.": "Cuánto varía el tiempo entre ataques de tótem, más o menos.",
+      "Wall variance": "Variación de muros",
+      "How much the time between wall switches varies, plus or minus.": "Cuánto varía el tiempo entre cambios de muros, más o menos.",
+      "Mine pick-up interval": "Intervalo de minas",
+      "A mine pick-up appears this often.": "Aparece una mina recogible con esta frecuencia.",
+      "Mine pick-up variance": "Variación de minas",
+      "How much the time between mine pick-ups varies, plus or minus.": "Cuánto varía el tiempo entre minas, más o menos.",
+      "Arena size": "Tamaño de la arena",
+      "Width of the playing field in squares (11 = the whole arena).": "Ancho del campo de juego en casillas (11 = toda la arena).",
+      "Bouncing shots": "Disparos rebotantes",
+      "Cannon shots rebound off walls and the edge of the field instead of vanishing.": "Los disparos del cañón rebotan en los muros y en el borde del campo en lugar de desaparecer.",
+      "Shot duration": "Duración del disparo",
+      "Seconds a cannon shot flies before it vanishes.": "Segundos que vuela un disparo del cañón antes de desaparecer.",
+      "Mine speed": "Velocidad de las minas",
+      "How fast the wandering mines drift, in units per second.": "Lo rápido que se desplazan las minas errantes, en unidades por segundo."
+    },
+    "fr": {
+      "Drive a tank, shoot rivals and plant mines. Last tank standing, or the most health, wins.": "Conduis un tank, tire sur tes rivaux et pose des mines. Le dernier tank debout, ou celui qui a le plus de santé, gagne.",
+      "A block maze: move in straight lines; mines send fire down the corridors.": "Un labyrinthe de blocs : avance en ligne droite ; les mines envoient du feu dans les couloirs.",
+      "Time limit": "Limite de temps",
+      "Round length. Most health wins if several survive.": "Durée de la manche. Le plus de santé gagne si plusieurs survivent.",
+      "Health": "Santé",
+      "Health points each player starts with.": "Points de santé de départ de chaque joueur.",
+      "Mines": "Mines",
+      "Mines each player starts with.": "Mines que chaque joueur a au départ.",
+      "Different cannons": "Canons différents",
+      "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.": "Chaque joueur reçoit un canon différent (rapide, lourd, boule de feu). Désactivé : tout le monde a le canon équilibré.",
+      "Hit protection": "Protection après un coup",
+      "Seconds a player cannot be hurt again after a hit (0 = off).": "Secondes pendant lesquelles un joueur ne peut plus être blessé après un coup (0 = désactivé).",
+      "Off": "Désactivé",
+      "Move on rails": "Se déplacer sur rails",
+      "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.": "Les tanks roulent uniquement sur les lignes de la grille et tournent aux intersections, comme l’original. Désactivé : conduite libre.",
+      "Berry interval": "Intervalle des baies",
+      "A berry (heals) appears this often.": "Une baie (qui soigne) apparaît à cette fréquence.",
+      "Metal walls rise and fall in the maze, and bombs fly over them.": "Des murs métalliques montent et descendent dans le labyrinthe, et les bombes volent par-dessus.",
+      "Metal wall interval": "Intervalle des murs métalliques",
+      "The metal walls rise and fall this often.": "Les murs métalliques montent et descendent à cette fréquence.",
+      "Bomb interval": "Intervalle des bombes",
+      "A bomb pick-up appears this often.": "Un objet bombe apparaît à cette fréquence.",
+      "Open arena: a totem pole falls on it and missiles drop from the sky.": "Arène ouverte : un totem s’abat dessus et des missiles tombent du ciel.",
+      "Totem interval": "Intervalle du totem",
+      "The totem pole falls on the arena this often.": "Le totem s’abat sur l’arène à cette fréquence.",
+      "Missile interval": "Intervalle des missiles",
+      "A missile falls from the sky this often.": "Un missile tombe du ciel à cette fréquence.",
+      "Rotor boats with shields; mines only go off when someone steps on them.": "Bateaux à rotor avec boucliers ; les mines n’explosent que lorsque quelqu’un marche dessus.",
+      "Shield time": "Durée du bouclier",
+      "How long a full shield lasts while held.": "Durée d’un bouclier plein tant qu’il est maintenu.",
+      "Berry variance": "Variation des baies",
+      "How much the time between berries varies, plus or minus.": "De combien varie le temps entre les baies, en plus ou en moins.",
+      "Bomb variance": "Variation des bombes",
+      "How much the time between bombs varies, plus or minus.": "De combien varie le temps entre les bombes, en plus ou en moins.",
+      "Missile variance": "Variation des missiles",
+      "How much the time between missiles varies, plus or minus.": "De combien varie le temps entre les missiles, en plus ou en moins.",
+      "Totem variance": "Variation des totems",
+      "How much the time between totem attacks varies, plus or minus.": "De combien varie le temps entre les attaques de totem, en plus ou en moins.",
+      "Wall variance": "Variation des murs",
+      "How much the time between wall switches varies, plus or minus.": "De combien varie le temps entre les changements de murs, en plus ou en moins.",
+      "Mine pick-up interval": "Intervalle des mines",
+      "A mine pick-up appears this often.": "Une mine à ramasser apparaît à cette fréquence.",
+      "Mine pick-up variance": "Variation des mines",
+      "How much the time between mine pick-ups varies, plus or minus.": "De combien varie le temps entre les mines, en plus ou en moins.",
+      "Arena size": "Taille de l'arène",
+      "Width of the playing field in squares (11 = the whole arena).": "Largeur du terrain en cases (11 = toute l'arène).",
+      "Bouncing shots": "Tirs rebondissants",
+      "Cannon shots rebound off walls and the edge of the field instead of vanishing.": "Les tirs de canon rebondissent sur les murs et le bord du terrain au lieu de disparaître.",
+      "Shot duration": "Durée du tir",
+      "Seconds a cannon shot flies before it vanishes.": "Secondes pendant lesquelles un tir de canon vole avant de disparaître.",
+      "Mine speed": "Vitesse des mines",
+      "How fast the wandering mines drift, in units per second.": "La vitesse de déplacement des mines errantes, en unités par seconde."
+    },
+    "de": {
+      "Drive a tank, shoot rivals and plant mines. Last tank standing, or the most health, wins.": "Fahre einen Panzer, schieße auf Rivalen und lege Minen. Wer zuletzt steht oder die meiste Gesundheit hat, gewinnt.",
+      "A block maze: move in straight lines; mines send fire down the corridors.": "Ein Blocklabyrinth: Bewege dich in geraden Linien; Minen schicken Feuer durch die Gänge.",
+      "Time limit": "Zeitlimit",
+      "Round length. Most health wins if several survive.": "Rundenlänge. Die meiste Gesundheit gewinnt, wenn mehrere überleben.",
+      "Health": "Gesundheit",
+      "Health points each player starts with.": "Lebenspunkte, mit denen jeder Spieler startet.",
+      "Mines": "Minen",
+      "Mines each player starts with.": "Minen, mit denen jeder Spieler startet.",
+      "Different cannons": "Verschiedene Kanonen",
+      "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.": "Jeder Spieler bekommt eine andere Kanone (schnell, schwer, Feuerball). Aus: Alle haben die ausgewogene.",
+      "Hit protection": "Trefferschutz",
+      "Seconds a player cannot be hurt again after a hit (0 = off).": "Sekunden, in denen ein Spieler nach einem Treffer nicht erneut verletzt werden kann (0 = aus).",
+      "Off": "Aus",
+      "Move on rails": "Auf Schienen fahren",
+      "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.": "Panzer fahren nur auf den Rasterlinien und biegen an Kreuzungen ab, wie im Original. Aus: freies Fahren.",
+      "Berry interval": "Beeren-Intervall",
+      "A berry (heals) appears this often.": "So oft erscheint eine Beere (heilt).",
+      "Metal walls rise and fall in the maze, and bombs fly over them.": "Metallwände fahren im Labyrinth auf und ab, und Bomben fliegen darüber.",
+      "Metal wall interval": "Metallwand-Intervall",
+      "The metal walls rise and fall this often.": "So oft fahren die Metallwände auf und ab.",
+      "Bomb interval": "Bomben-Intervall",
+      "A bomb pick-up appears this often.": "So oft erscheint ein Bomben-Pickup.",
+      "Open arena: a totem pole falls on it and missiles drop from the sky.": "Offene Arena: Ein Totempfahl fällt darauf, und Raketen fallen vom Himmel.",
+      "Totem interval": "Totem-Intervall",
+      "The totem pole falls on the arena this often.": "So oft fällt der Totempfahl auf die Arena.",
+      "Missile interval": "Raketen-Intervall",
+      "A missile falls from the sky this often.": "So oft fällt eine Rakete vom Himmel.",
+      "Rotor boats with shields; mines only go off when someone steps on them.": "Rotorboote mit Schilden; Minen gehen nur los, wenn jemand darauftritt.",
+      "Shield time": "Schildzeit",
+      "How long a full shield lasts while held.": "Wie lange ein voller Schild hält, solange er gehalten wird.",
+      "Berry variance": "Beerenschwankung",
+      "How much the time between berries varies, plus or minus.": "Wie stark die Zeit zwischen den Beeren schwankt, plus oder minus.",
+      "Bomb variance": "Bombenschwankung",
+      "How much the time between bombs varies, plus or minus.": "Wie stark die Zeit zwischen den Bomben schwankt, plus oder minus.",
+      "Missile variance": "Raketenschwankung",
+      "How much the time between missiles varies, plus or minus.": "Wie stark die Zeit zwischen den Raketen schwankt, plus oder minus.",
+      "Totem variance": "Totemschwankung",
+      "How much the time between totem attacks varies, plus or minus.": "Wie stark die Zeit zwischen den Totemangriffen schwankt, plus oder minus.",
+      "Wall variance": "Wandschwankung",
+      "How much the time between wall switches varies, plus or minus.": "Wie stark die Zeit zwischen den Wandwechseln schwankt, plus oder minus.",
+      "Mine pick-up interval": "Minenintervall",
+      "A mine pick-up appears this often.": "Eine einsammelbare Mine erscheint so oft.",
+      "Mine pick-up variance": "Minen-Schwankung",
+      "How much the time between mine pick-ups varies, plus or minus.": "Wie stark die Zeit zwischen den Minen schwankt, plus oder minus.",
+      "Arena size": "Arenagröße",
+      "Width of the playing field in squares (11 = the whole arena).": "Breite des Spielfelds in Feldern (11 = die ganze Arena).",
+      "Bouncing shots": "Abprallende Schüsse",
+      "Cannon shots rebound off walls and the edge of the field instead of vanishing.": "Kanonenschüsse prallen an Wänden und am Spielfeldrand ab, statt zu verschwinden.",
+      "Shot duration": "Schussdauer",
+      "Seconds a cannon shot flies before it vanishes.": "Sekunden, die ein Kanonenschuss fliegt, bevor er verschwindet.",
+      "Mine speed": "Minengeschwindigkeit",
+      "How fast the wandering mines drift, in units per second.": "Wie schnell die wandernden Minen treiben, in Einheiten pro Sekunde."
+    },
+    "pt": {
+      "Drive a tank, shoot rivals and plant mines. Last tank standing, or the most health, wins.": "Conduz um tanque, dispara aos rivais e coloca minas. Ganha o último tanque de pé ou quem tiver mais vida.",
+      "A block maze: move in straight lines; mines send fire down the corridors.": "Um labirinto de blocos: move-te em linha reta; as minas enviam fogo pelos corredores.",
+      "Time limit": "Limite de tempo",
+      "Round length. Most health wins if several survive.": "Duração da ronda. Ganha quem tiver mais vida se vários sobreviverem.",
+      "Health": "Vida",
+      "Health points each player starts with.": "Pontos de vida com que cada jogador começa.",
+      "Mines": "Minas",
+      "Mines each player starts with.": "Minas com que cada jogador começa.",
+      "Different cannons": "Canhões diferentes",
+      "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.": "Cada jogador recebe um canhão diferente (rápido, pesado, bola de fogo). Desligado: todos têm o equilibrado.",
+      "Hit protection": "Proteção após um golpe",
+      "Seconds a player cannot be hurt again after a hit (0 = off).": "Segundos em que um jogador não pode voltar a ser ferido após um golpe (0 = desligado).",
+      "Off": "Desligado",
+      "Move on rails": "Mover em carris",
+      "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.": "Os tanques circulam apenas nas linhas da grelha e viram nos cruzamentos, como no original. Desligado: condução livre.",
+      "Berry interval": "Intervalo das bagas",
+      "A berry (heals) appears this often.": "Uma baga (que cura) aparece com esta frequência.",
+      "Metal walls rise and fall in the maze, and bombs fly over them.": "Paredes de metal sobem e descem no labirinto, e as bombas voam por cima delas.",
+      "Metal wall interval": "Intervalo das paredes de metal",
+      "The metal walls rise and fall this often.": "As paredes de metal sobem e descem com esta frequência.",
+      "Bomb interval": "Intervalo das bombas",
+      "A bomb pick-up appears this often.": "Um item de bomba aparece com esta frequência.",
+      "Open arena: a totem pole falls on it and missiles drop from the sky.": "Arena aberta: um totem cai sobre ela e caem mísseis do céu.",
+      "Totem interval": "Intervalo do totem",
+      "The totem pole falls on the arena this often.": "O totem cai sobre a arena com esta frequência.",
+      "Missile interval": "Intervalo dos mísseis",
+      "A missile falls from the sky this often.": "Um míssil cai do céu com esta frequência.",
+      "Rotor boats with shields; mines only go off when someone steps on them.": "Barcos de hélice com escudos; as minas só explodem quando alguém passa por cima.",
+      "Shield time": "Tempo do escudo",
+      "How long a full shield lasts while held.": "Quanto tempo dura um escudo cheio enquanto é mantido.",
+      "Berry variance": "Variação das bagas",
+      "How much the time between berries varies, plus or minus.": "Quanto varia o tempo entre as bagas, para mais ou para menos.",
+      "Bomb variance": "Variação das bombas",
+      "How much the time between bombs varies, plus or minus.": "Quanto varia o tempo entre as bombas, para mais ou para menos.",
+      "Missile variance": "Variação dos mísseis",
+      "How much the time between missiles varies, plus or minus.": "Quanto varia o tempo entre os mísseis, para mais ou para menos.",
+      "Totem variance": "Variação dos totens",
+      "How much the time between totem attacks varies, plus or minus.": "Quanto varia o tempo entre os ataques de totem, para mais ou para menos.",
+      "Wall variance": "Variação das paredes",
+      "How much the time between wall switches varies, plus or minus.": "Quanto varia o tempo entre as trocas de paredes, para mais ou para menos.",
+      "Mine pick-up interval": "Intervalo das minas",
+      "A mine pick-up appears this often.": "Surge uma mina para apanhar com esta frequência.",
+      "Mine pick-up variance": "Variação das minas",
+      "How much the time between mine pick-ups varies, plus or minus.": "Quanto varia o tempo entre as minas, para mais ou para menos.",
+      "Arena size": "Tamanho da arena",
+      "Width of the playing field in squares (11 = the whole arena).": "Largura do campo de jogo em quadrados (11 = a arena toda).",
+      "Bouncing shots": "Tiros ricocheteantes",
+      "Cannon shots rebound off walls and the edge of the field instead of vanishing.": "Os tiros do canhão ricocheteiam nas paredes e na borda do campo em vez de desaparecerem.",
+      "Shot duration": "Duração do tiro",
+      "Seconds a cannon shot flies before it vanishes.": "Segundos que um tiro do canhão voa antes de desaparecer.",
+      "Mine speed": "Velocidade das minas",
+      "How fast the wandering mines drift, in units per second.": "A rapidez com que as minas errantes se deslocam, em unidades por segundo."
+    },
+    "it": {
+      "Drive a tank, shoot rivals and plant mines. Last tank standing, or the most health, wins.": "Guida un carro armato, spara ai rivali e piazza mine. Vince l’ultimo in piedi, o chi ha più salute.",
+      "A block maze: move in straight lines; mines send fire down the corridors.": "Un labirinto di blocchi: muoviti in linea retta; le mine mandano fuoco lungo i corridoi.",
+      "Time limit": "Limite di tempo",
+      "Round length. Most health wins if several survive.": "Durata del round. Vince chi ha più salute se più giocatori sopravvivono.",
+      "Health": "Salute",
+      "Health points each player starts with.": "Punti salute con cui inizia ogni giocatore.",
+      "Mines": "Mine",
+      "Mines each player starts with.": "Mine con cui inizia ogni giocatore.",
+      "Different cannons": "Cannoni diversi",
+      "Each player gets a different cannon (fast, heavy, fireball). Off: everyone has the balanced one.": "Ogni giocatore riceve un cannone diverso (veloce, pesante, palla di fuoco). Disattivato: tutti hanno quello bilanciato.",
+      "Hit protection": "Protezione dopo un colpo",
+      "Seconds a player cannot be hurt again after a hit (0 = off).": "Secondi in cui un giocatore non può essere colpito di nuovo dopo un colpo (0 = disattivato).",
+      "Off": "Disattivato",
+      "Move on rails": "Muovi sui binari",
+      "Tanks only drive along the grid lines and turn at junctions, like the original. Off: drive freely.": "I carri armati viaggiano solo sulle linee della griglia e girano agli incroci, come nell’originale. Disattivato: guida libera.",
+      "Berry interval": "Intervallo delle bacche",
+      "A berry (heals) appears this often.": "Una bacca (che cura) compare con questa frequenza.",
+      "Metal walls rise and fall in the maze, and bombs fly over them.": "Pareti di metallo salgono e scendono nel labirinto, e le bombe ci volano sopra.",
+      "Metal wall interval": "Intervallo dei muri di metallo",
+      "The metal walls rise and fall this often.": "I muri di metallo salgono e scendono con questa frequenza.",
+      "Bomb interval": "Intervallo delle bombe",
+      "A bomb pick-up appears this often.": "Un oggetto bomba compare con questa frequenza.",
+      "Open arena: a totem pole falls on it and missiles drop from the sky.": "Arena aperta: un totem vi cade sopra e dal cielo cadono missili.",
+      "Totem interval": "Intervallo del totem",
+      "The totem pole falls on the arena this often.": "Il totem cade sull’arena con questa frequenza.",
+      "Missile interval": "Intervallo dei missili",
+      "A missile falls from the sky this often.": "Un missile cade dal cielo con questa frequenza.",
+      "Rotor boats with shields; mines only go off when someone steps on them.": "Barche a elica con scudi; le mine esplodono solo quando qualcuno ci passa sopra.",
+      "Shield time": "Durata dello scudo",
+      "How long a full shield lasts while held.": "Quanto dura uno scudo pieno finché viene tenuto.",
+      "Berry variance": "Variazione delle bacche",
+      "How much the time between berries varies, plus or minus.": "Quanto varia il tempo tra le bacche, in più o in meno.",
+      "Bomb variance": "Variazione delle bombe",
+      "How much the time between bombs varies, plus or minus.": "Quanto varia il tempo tra le bombe, in più o in meno.",
+      "Missile variance": "Variazione dei missili",
+      "How much the time between missiles varies, plus or minus.": "Quanto varia il tempo tra i missili, in più o in meno.",
+      "Totem variance": "Variazione dei totem",
+      "How much the time between totem attacks varies, plus or minus.": "Quanto varia il tempo tra gli attacchi del totem, in più o in meno.",
+      "Wall variance": "Variazione dei muri",
+      "How much the time between wall switches varies, plus or minus.": "Quanto varia il tempo tra i cambi dei muri, in più o in meno.",
+      "Mine pick-up interval": "Intervallo delle mine",
+      "A mine pick-up appears this often.": "Compare una mina da raccogliere con questa frequenza.",
+      "Mine pick-up variance": "Variazione delle mine",
+      "How much the time between mine pick-ups varies, plus or minus.": "Quanto varia il tempo tra le mine, in più o in meno.",
+      "Arena size": "Dimensione dell'arena",
+      "Width of the playing field in squares (11 = the whole arena).": "Larghezza del campo di gioco in caselle (11 = tutta l'arena).",
+      "Bouncing shots": "Colpi rimbalzanti",
+      "Cannon shots rebound off walls and the edge of the field instead of vanishing.": "I colpi del cannone rimbalzano su muri e bordo del campo invece di sparire.",
+      "Shot duration": "Durata del colpo",
+      "Seconds a cannon shot flies before it vanishes.": "Secondi di volo di un colpo del cannone prima di sparire.",
+      "Mine speed": "Velocità delle mine",
+      "How fast the wandering mines drift, in units per second.": "Quanto velocemente si spostano le mine vaganti, in unità al secondo."
+    }
+  }
+}

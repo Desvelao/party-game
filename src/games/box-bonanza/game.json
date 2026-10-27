@@ -1,0 +1,1533 @@
+{
+  "id": "box-bonanza",
+  "name": "Box Bonanza",
+  "version": "0.1.0",
+  "author": "Desvelao",
+  "license": "MIT",
+  "description": "Pick up and throw crates at your rivals with one button, kick with the other. Last one standing, or the most health, wins.",
+  "order": 4,
+  "character": "blob",
+  "catalog": {
+    "id": "box-bonanza",
+    "tags": [
+      "last-standing",
+      "hazards"
+    ],
+    "action": "grab",
+    "action2": "kick",
+    "guide": {
+      "objective": {
+        "en": "Be the last one standing, or have the most health when time runs out.",
+        "es": "Sé el último en pie o ten más vida cuando se acabe el tiempo.",
+        "fr": "Sois le dernier debout, ou aie le plus de santé quand le temps est écoulé.",
+        "de": "Sei der Letzte, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+        "pt": "Sê o último de pé ou tem mais vida quando o tempo acabar.",
+        "it": "Sii l’ultimo in piedi, o avere più salute quando scade il tempo."
+      },
+      "rules": [
+        {
+          "en": "The first button picks up a nearby crate or throws the one you hold; the second one kicks.",
+          "es": "El primer botón recoge una caja cercana o lanza la que llevas; el segundo da una patada.",
+          "fr": "Le premier bouton ramasse une caisse proche ou lance celle que tu tiens ; le second donne un coup de pied.",
+          "de": "Der erste Knopf hebt eine Kiste in der Nähe auf oder wirft die, die du hältst; der zweite tritt.",
+          "pt": "O primeiro botão apanha uma caixa próxima ou atira a que seguras; o segundo dá um pontapé.",
+          "it": "Il primo pulsante raccoglie una cassa vicina o lancia quella che tieni; il secondo calcia."
+        },
+        {
+          "en": "Thrown crates and explosions damage players; you start with a set amount of health.",
+          "es": "Las cajas lanzadas y las explosiones dañan a los jugadores; empiezas con una cantidad de vida.",
+          "fr": "Les caisses lancées et les explosions blessent les joueurs ; tu commences avec une certaine quantité de santé.",
+          "de": "Geworfene Kisten und Explosionen verletzen Spieler; du startest mit einer festen Menge Gesundheit.",
+          "pt": "Caixas atiradas e explosões ferem os jogadores; começas com uma quantidade fixa de vida.",
+          "it": "Le casse lanciate e le esplosioni feriscono i giocatori; inizi con una certa quantità di salute."
+        },
+        {
+          "en": "New crates keep dropping into the arena.",
+          "es": "Siguen cayendo cajas nuevas en la arena.",
+          "fr": "De nouvelles caisses continuent de tomber dans l’arène.",
+          "de": "Immer neue Kisten fallen in die Arena.",
+          "pt": "Continuam a cair novas caixas na arena.",
+          "it": "Nuove casse continuano a cadere nell’arena."
+        }
+      ],
+      "items": [
+        {
+          "name": {
+            "en": "TNT crate",
+            "es": "Caja de TNT",
+            "fr": "Caisse TNT",
+            "de": "TNT-Kiste",
+            "pt": "Caixa de TNT",
+            "it": "Cassa TNT"
+          },
+          "description": {
+            "en": "Once picked up, thrown or kicked it counts down and then explodes, hurting everyone nearby.",
+            "es": "Al recogerla, lanzarla o patearla hace una cuenta atrás y explota, dañando a todos los cercanos.",
+            "fr": "Une fois ramassée, lancée ou frappée, elle décompte puis explose en blessant tous ceux qui sont proches.",
+            "de": "Nach dem Aufheben, Werfen oder Treten zählt sie herunter und explodiert dann, wobei alle in der Nähe verletzt werden.",
+            "pt": "Depois de apanhada, atirada ou chutada, faz uma contagem decrescente e explode, ferindo todos os que estiverem perto.",
+            "it": "Una volta raccolta, lanciata o calciata, fa il conto alla rovescia ed esplode, ferendo chiunque sia vicino."
+          }
+        },
+        {
+          "name": {
+            "en": "Berry",
+            "es": "Baya",
+            "fr": "Baie",
+            "de": "Beere",
+            "pt": "Baga",
+            "it": "Bacca"
+          },
+          "description": {
+            "en": "Heals you when collected.",
+            "es": "Te cura al recogerla.",
+            "fr": "Te soigne quand tu le ramasses.",
+            "de": "Heilt dich, wenn du sie einsammelst.",
+            "pt": "Cura-te quando é apanhada.",
+            "it": "Ti cura quando viene raccolto."
+          }
+        }
+      ]
+    },
+    "name": "Box Bonanza",
+    "description": "Pick up and throw crates at your rivals with one button, kick with the other. Last one standing, or the most health, wins.",
+    "teams": true,
+    "maxTeamSize": 4,
+    "variants": [
+      {
+        "id": "jungle-bonanza",
+        "action": "grab",
+        "action2": "kick",
+        "guide": {
+          "objective": {
+            "en": "Be the last one standing, or have the most health when time runs out.",
+            "es": "Sé el último en pie o ten más vida cuando se acabe el tiempo.",
+            "fr": "Sois le dernier debout, ou aie le plus de santé quand le temps est écoulé.",
+            "de": "Sei der Letzte, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+            "pt": "Sê o último de pé ou tem mais vida quando o tempo acabar.",
+            "it": "Sii l’ultimo in piedi, o avere più salute quando scade il tempo."
+          },
+          "rules": [
+            {
+              "en": "The first button picks up a nearby crate or throws the one you hold; the second one kicks.",
+              "es": "El primer botón recoge una caja cercana o lanza la que llevas; el segundo da una patada.",
+              "fr": "Le premier bouton ramasse une caisse proche ou lance celle que tu tiens ; le second donne un coup de pied.",
+              "de": "Der erste Knopf hebt eine Kiste in der Nähe auf oder wirft die, die du hältst; der zweite tritt.",
+              "pt": "O primeiro botão apanha uma caixa próxima ou atira a que seguras; o segundo dá um pontapé.",
+              "it": "Il primo pulsante raccoglie una cassa vicina o lancia quella che tieni; il secondo calcia."
+            },
+            {
+              "en": "Thrown crates and explosions damage players; you start with a set amount of health.",
+              "es": "Las cajas lanzadas y las explosiones dañan a los jugadores; empiezas con una cantidad de vida.",
+              "fr": "Les caisses lancées et les explosions blessent les joueurs ; tu commences avec une certaine quantité de santé.",
+              "de": "Geworfene Kisten und Explosionen verletzen Spieler; du startest mit einer festen Menge Gesundheit.",
+              "pt": "Caixas atiradas e explosões ferem os jogadores; começas com uma quantidade fixa de vida.",
+              "it": "Le casse lanciate e le esplosioni feriscono i giocatori; inizi con una certa quantità di salute."
+            },
+            {
+              "en": "New crates keep dropping into the arena.",
+              "es": "Siguen cayendo cajas nuevas en la arena.",
+              "fr": "De nouvelles caisses continuent de tomber dans l’arène.",
+              "de": "Immer neue Kisten fallen in die Arena.",
+              "pt": "Continuam a cair novas caixas na arena.",
+              "it": "Nuove casse continuano a cadere nell’arena."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "TNT crate",
+                "es": "Caja de TNT",
+                "fr": "Caisse TNT",
+                "de": "TNT-Kiste",
+                "pt": "Caixa de TNT",
+                "it": "Cassa TNT"
+              },
+              "description": {
+                "en": "Once picked up, thrown or kicked it counts down and then explodes, hurting everyone nearby.",
+                "es": "Al recogerla, lanzarla o patearla hace una cuenta atrás y explota, dañando a todos los cercanos.",
+                "fr": "Une fois ramassée, lancée ou frappée, elle décompte puis explose en blessant tous ceux qui sont proches.",
+                "de": "Nach dem Aufheben, Werfen oder Treten zählt sie herunter und explodiert dann, wobei alle in der Nähe verletzt werden.",
+                "pt": "Depois de apanhada, atirada ou chutada, faz uma contagem decrescente e explode, ferindo todos os que estiverem perto.",
+                "it": "Una volta raccolta, lanciata o calciata, fa il conto alla rovescia ed esplode, ferendo chiunque sia vicino."
+              }
+            },
+            {
+              "name": {
+                "en": "Nitro crate",
+                "es": "Caja de nitro",
+                "fr": "Caisse nitro",
+                "de": "Nitro-Kiste",
+                "pt": "Caixa de nitro",
+                "it": "Cassa nitro"
+              },
+              "description": {
+                "en": "Explodes on impact; a little smaller blast than TNT.",
+                "es": "Explota al impactar; una explosión algo menor que la del TNT.",
+                "fr": "Explose à l’impact ; une explosion un peu plus petite que celle du TNT.",
+                "de": "Explodiert beim Aufprall; eine etwas kleinere Explosion als TNT.",
+                "pt": "Explode ao impacto; uma explosão um pouco menor do que a do TNT.",
+                "it": "Esplode all’impatto; un’esplosione un po’ più piccola del TNT."
+              }
+            },
+            {
+              "name": {
+                "en": "Berry",
+                "es": "Baya",
+                "fr": "Baie",
+                "de": "Beere",
+                "pt": "Baga",
+                "it": "Bacca"
+              },
+              "description": {
+                "en": "Heals you when collected.",
+                "es": "Te cura al recogerla.",
+                "fr": "Te soigne quand tu le ramasses.",
+                "de": "Heilt dich, wenn du sie einsammelst.",
+                "pt": "Cura-te quando é apanhada.",
+                "it": "Ti cura quando viene raccolto."
+              }
+            }
+          ]
+        },
+        "name": "Jungle Bonanza",
+        "description": "Blocks, TNT and nitro crates, plus berry to heal.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most health wins if several survive.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "maxHp",
+            "label": "Health",
+            "description": "Health points each player starts with.",
+            "type": "number",
+            "default": 10,
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "group": "match"
+          },
+          {
+            "id": "crateEvery",
+            "label": "Crate interval",
+            "description": "A new crate drops this often (while the arena is not full).",
+            "type": "number",
+            "default": 4,
+            "min": 2,
+            "max": 12,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "crateVariance",
+            "label": "Crate variance",
+            "description": "How much the time between crates varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "berryEvery",
+            "label": "Berry interval",
+            "description": "A healing berry appears this often.",
+            "type": "number",
+            "default": 7,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "berryVariance",
+            "label": "Berry variance",
+            "description": "How much the time between berries varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "tntFuse",
+            "label": "TNT countdown",
+            "description": "Seconds a TNT crate burns after it is picked up, thrown or kicked.",
+            "type": "number",
+            "default": 3,
+            "min": 1,
+            "max": 8,
+            "step": 0.5,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "tntDamage",
+            "label": "TNT damage",
+            "description": "Health lost by each player caught in a TNT blast.",
+            "type": "number",
+            "default": 4,
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "group": "hazards"
+          },
+          {
+            "id": "blastRadius",
+            "label": "TNT blast radius",
+            "description": "How far a TNT blast reaches (nitro blasts are a little smaller).",
+            "type": "number",
+            "default": 130,
+            "min": 80,
+            "max": 200,
+            "step": 10,
+            "group": "hazards"
+          },
+          {
+            "id": "pickupRange",
+            "label": "Pick up distance",
+            "description": "How far away a crate can be to pick it up (first button).",
+            "type": "number",
+            "default": 62,
+            "min": 30,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "group": "abilities"
+          },
+          {
+            "id": "pickupCooldown",
+            "label": "Pick up cooldown",
+            "description": "Seconds before the first button works again after picking up or throwing (0 = none).",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "kickRange",
+            "label": "Kick distance",
+            "description": "How far the kick (second button) reaches crates and rivals.",
+            "type": "number",
+            "default": 74,
+            "min": 40,
+            "max": 140,
+            "step": 2,
+            "unit": "px",
+            "group": "abilities"
+          },
+          {
+            "id": "kickCooldown",
+            "label": "Kick cooldown",
+            "description": "Seconds before the kick can be used again.",
+            "type": "number",
+            "default": 0.55,
+            "min": 0,
+            "max": 3,
+            "step": 0.05,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "solidCrates",
+            "label": "Solid crates",
+            "description": "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.",
+            "type": "boolean",
+            "default": true,
+            "group": "match"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          }
+        ]
+      },
+      {
+        "id": "space-bonanza",
+        "action": "grab",
+        "action2": "kick",
+        "guide": {
+          "objective": {
+            "en": "Be the last one standing, or have the most health when time runs out.",
+            "es": "Sé el último en pie o ten más vida cuando se acabe el tiempo.",
+            "fr": "Sois le dernier debout, ou aie le plus de santé quand le temps est écoulé.",
+            "de": "Sei der Letzte, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+            "pt": "Sê o último de pé ou tem mais vida quando o tempo acabar.",
+            "it": "Sii l’ultimo in piedi, o avere più salute quando scade il tempo."
+          },
+          "rules": [
+            {
+              "en": "The first button picks up a nearby crate or throws the one you hold; the second one kicks.",
+              "es": "El primer botón recoge una caja cercana o lanza la que llevas; el segundo da una patada.",
+              "fr": "Le premier bouton ramasse une caisse proche ou lance celle que tu tiens ; le second donne un coup de pied.",
+              "de": "Der erste Knopf hebt eine Kiste in der Nähe auf oder wirft die, die du hältst; der zweite tritt.",
+              "pt": "O primeiro botão apanha uma caixa próxima ou atira a que seguras; o segundo dá um pontapé.",
+              "it": "Il primo pulsante raccoglie una cassa vicina o lancia quella che tieni; il secondo calcia."
+            },
+            {
+              "en": "Thrown crates and explosions damage players; you start with a set amount of health.",
+              "es": "Las cajas lanzadas y las explosiones dañan a los jugadores; empiezas con una cantidad de vida.",
+              "fr": "Les caisses lancées et les explosions blessent les joueurs ; tu commences avec une certaine quantité de santé.",
+              "de": "Geworfene Kisten und Explosionen verletzen Spieler; du startest mit einer festen Menge Gesundheit.",
+              "pt": "Caixas atiradas e explosões ferem os jogadores; começas com uma quantidade fixa de vida.",
+              "it": "Le casse lanciate e le esplosioni feriscono i giocatori; inizi con una certa quantità di salute."
+            },
+            {
+              "en": "New crates keep dropping into the arena.",
+              "es": "Siguen cayendo cajas nuevas en la arena.",
+              "fr": "De nouvelles caisses continuent de tomber dans l’arène.",
+              "de": "Immer neue Kisten fallen in die Arena.",
+              "pt": "Continuam a cair novas caixas na arena.",
+              "it": "Nuove casse continuano a cadere nell’arena."
+            },
+            {
+              "en": "Explosions blow holes in the floor: do not fall in.",
+              "es": "Las explosiones abren agujeros en el suelo: no caigas.",
+              "fr": "Les explosions percent des trous dans le sol : ne tombe pas dedans.",
+              "de": "Explosionen reißen Löcher in den Boden: Fall nicht hinein.",
+              "pt": "As explosões abrem buracos no chão: não caias lá dentro.",
+              "it": "Le esplosioni aprono buchi nel pavimento: non cadere dentro."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "TNT crate",
+                "es": "Caja de TNT",
+                "fr": "Caisse TNT",
+                "de": "TNT-Kiste",
+                "pt": "Caixa de TNT",
+                "it": "Cassa TNT"
+              },
+              "description": {
+                "en": "Once picked up, thrown or kicked it counts down and then explodes, hurting everyone nearby.",
+                "es": "Al recogerla, lanzarla o patearla hace una cuenta atrás y explota, dañando a todos los cercanos.",
+                "fr": "Une fois ramassée, lancée ou frappée, elle décompte puis explose en blessant tous ceux qui sont proches.",
+                "de": "Nach dem Aufheben, Werfen oder Treten zählt sie herunter und explodiert dann, wobei alle in der Nähe verletzt werden.",
+                "pt": "Depois de apanhada, atirada ou chutada, faz uma contagem decrescente e explode, ferindo todos os que estiverem perto.",
+                "it": "Una volta raccolta, lanciata o calciata, fa il conto alla rovescia ed esplode, ferendo chiunque sia vicino."
+              }
+            },
+            {
+              "name": {
+                "en": "Mask / boots / Z / weight",
+                "es": "Máscara / botas / Z / peso",
+                "fr": "Masque / bottes / Z / poids",
+                "de": "Maske / Stiefel / Z / Gewicht",
+                "pt": "Máscara / botas / Z / peso",
+                "it": "Maschera / stivali / Z / peso"
+              },
+              "description": {
+                "en": "Power-ups that appear now and then and give you an edge. With the weight, pass it on by touching another player before its countdown ends.",
+                "es": "Potenciadores que aparecen de vez en cuando y te dan ventaja. Con el peso, pásalo tocando a otro jugador antes de que acabe la cuenta atrás.",
+                "fr": "Des bonus qui apparaissent de temps en temps et te donnent un avantage. Avec le poids, passe-le en touchant un autre joueur avant la fin de son compte à rebours.",
+                "de": "Power-ups, die ab und zu erscheinen und dir einen Vorteil verschaffen. Gib das Gewicht weiter, indem du einen anderen Spieler berührst, bevor sein Countdown endet.",
+                "pt": "Power-ups que aparecem de vez em quando e te dão vantagem. Com o peso, passa-o tocando noutro jogador antes de a contagem decrescente acabar.",
+                "it": "Potenziamenti che compaiono ogni tanto e ti danno un vantaggio. Con il peso, passalo toccando un altro giocatore prima che finisca il conto alla rovescia."
+              }
+            }
+          ]
+        },
+        "name": "Space Bonanza",
+        "description": "Explosions blow holes in the floor, and power-ups (mask, boots, Z, weight) appear.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most health wins if several survive.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "maxHp",
+            "label": "Health",
+            "description": "Health points each player starts with.",
+            "type": "number",
+            "default": 10,
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "group": "match"
+          },
+          {
+            "id": "crateEvery",
+            "label": "Crate interval",
+            "description": "A new crate drops this often (while the arena is not full).",
+            "type": "number",
+            "default": 4,
+            "min": 2,
+            "max": 12,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "crateVariance",
+            "label": "Crate variance",
+            "description": "How much the time between crates varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "berryEvery",
+            "label": "Berry interval",
+            "description": "A healing berry appears this often.",
+            "type": "number",
+            "default": 7,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "berryVariance",
+            "label": "Berry variance",
+            "description": "How much the time between berries varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "tntFuse",
+            "label": "TNT countdown",
+            "description": "Seconds a TNT crate burns after it is picked up, thrown or kicked.",
+            "type": "number",
+            "default": 3,
+            "min": 1,
+            "max": 8,
+            "step": 0.5,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "tntDamage",
+            "label": "TNT damage",
+            "description": "Health lost by each player caught in a TNT blast.",
+            "type": "number",
+            "default": 4,
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "group": "hazards"
+          },
+          {
+            "id": "blastRadius",
+            "label": "TNT blast radius",
+            "description": "How far a TNT blast reaches (nitro blasts are a little smaller).",
+            "type": "number",
+            "default": 130,
+            "min": 80,
+            "max": 200,
+            "step": 10,
+            "group": "hazards"
+          },
+          {
+            "id": "pickupRange",
+            "label": "Pick up distance",
+            "description": "How far away a crate can be to pick it up (first button).",
+            "type": "number",
+            "default": 62,
+            "min": 30,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "group": "abilities"
+          },
+          {
+            "id": "pickupCooldown",
+            "label": "Pick up cooldown",
+            "description": "Seconds before the first button works again after picking up or throwing (0 = none).",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "kickRange",
+            "label": "Kick distance",
+            "description": "How far the kick (second button) reaches crates and rivals.",
+            "type": "number",
+            "default": 74,
+            "min": 40,
+            "max": 140,
+            "step": 2,
+            "unit": "px",
+            "group": "abilities"
+          },
+          {
+            "id": "kickCooldown",
+            "label": "Kick cooldown",
+            "description": "Seconds before the kick can be used again.",
+            "type": "number",
+            "default": 0.55,
+            "min": 0,
+            "max": 3,
+            "step": 0.05,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "solidCrates",
+            "label": "Solid crates",
+            "description": "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.",
+            "type": "boolean",
+            "default": true,
+            "group": "match"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "powerupEvery",
+            "label": "Power-up interval",
+            "description": "A mask / boots / Z / weight appears this often.",
+            "type": "number",
+            "default": 9,
+            "min": 4,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "powerupVariance",
+            "label": "Power-up variance",
+            "description": "How much the time between power-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "weightTime",
+            "label": "Weight time",
+            "description": "Seconds the weight carrier has before it kills them, unless they pass it on by touching someone.",
+            "type": "number",
+            "default": 5,
+            "min": 3,
+            "max": 15,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          }
+        ]
+      },
+      {
+        "id": "snow-bonanza",
+        "action": "grab",
+        "action2": "kick",
+        "guide": {
+          "objective": {
+            "en": "Be the last one standing, or have the most health when time runs out.",
+            "es": "Sé el último en pie o ten más vida cuando se acabe el tiempo.",
+            "fr": "Sois le dernier debout, ou aie le plus de santé quand le temps est écoulé.",
+            "de": "Sei der Letzte, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+            "pt": "Sê o último de pé ou tem mais vida quando o tempo acabar.",
+            "it": "Sii l’ultimo in piedi, o avere più salute quando scade il tempo."
+          },
+          "rules": [
+            {
+              "en": "The first button picks up a nearby crate or throws the one you hold; the second one kicks.",
+              "es": "El primer botón recoge una caja cercana o lanza la que llevas; el segundo da una patada.",
+              "fr": "Le premier bouton ramasse une caisse proche ou lance celle que tu tiens ; le second donne un coup de pied.",
+              "de": "Der erste Knopf hebt eine Kiste in der Nähe auf oder wirft die, die du hältst; der zweite tritt.",
+              "pt": "O primeiro botão apanha uma caixa próxima ou atira a que seguras; o segundo dá um pontapé.",
+              "it": "Il primo pulsante raccoglie una cassa vicina o lancia quella che tieni; il secondo calcia."
+            },
+            {
+              "en": "Thrown crates and explosions damage players; you start with a set amount of health.",
+              "es": "Las cajas lanzadas y las explosiones dañan a los jugadores; empiezas con una cantidad de vida.",
+              "fr": "Les caisses lancées et les explosions blessent les joueurs ; tu commences avec une certaine quantité de santé.",
+              "de": "Geworfene Kisten und Explosionen verletzen Spieler; du startest mit einer festen Menge Gesundheit.",
+              "pt": "Caixas atiradas e explosões ferem os jogadores; começas com uma quantidade fixa de vida.",
+              "it": "Le casse lanciate e le esplosioni feriscono i giocatori; inizi con una certa quantità di salute."
+            },
+            {
+              "en": "New crates keep dropping into the arena.",
+              "es": "Siguen cayendo cajas nuevas en la arena.",
+              "fr": "De nouvelles caisses continuent de tomber dans l’arène.",
+              "de": "Immer neue Kisten fallen in die Arena.",
+              "pt": "Continuam a cair novas caixas na arena.",
+              "it": "Nuove casse continuano a cadere nell’arena."
+            },
+            {
+              "en": "The ice is slippery.",
+              "es": "El hielo es resbaladizo.",
+              "fr": "La glace est glissante.",
+              "de": "Das Eis ist rutschig.",
+              "pt": "O gelo é escorregadio.",
+              "it": "Il ghiaccio è scivoloso."
+            },
+            {
+              "en": "A sleeping penguin goes on a rampage if disturbed, hurting and throwing players and flinging crates out of its way.",
+              "es": "Un pingüino dormido se enfurece si lo molestan: daña y lanza a los jugadores y lanza las cajas que encuentra.",
+              "fr": "Un pingouin endormi se déchaîne s’il est dérangé : il blesse et lance les joueurs et projette les caisses sur son passage.",
+              "de": "Ein schlafender Pinguin rastet aus, wenn er gestört wird: Er verletzt und schleudert Spieler und fegt Kisten aus dem Weg.",
+              "pt": "Um pinguim a dormir fica furioso se for incomodado: fere e atira os jogadores e lança as caixas para fora do caminho.",
+              "it": "Un pinguino addormentato si scatena se disturbato: ferisce e scaraventa i giocatori e lancia via le casse che incontra."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "TNT crate",
+                "es": "Caja de TNT",
+                "fr": "Caisse TNT",
+                "de": "TNT-Kiste",
+                "pt": "Caixa de TNT",
+                "it": "Cassa TNT"
+              },
+              "description": {
+                "en": "Once picked up, thrown or kicked it counts down and then explodes, hurting everyone nearby.",
+                "es": "Al recogerla, lanzarla o patearla hace una cuenta atrás y explota, dañando a todos los cercanos.",
+                "fr": "Une fois ramassée, lancée ou frappée, elle décompte puis explose en blessant tous ceux qui sont proches.",
+                "de": "Nach dem Aufheben, Werfen oder Treten zählt sie herunter und explodiert dann, wobei alle in der Nähe verletzt werden.",
+                "pt": "Depois de apanhada, atirada ou chutada, faz uma contagem decrescente e explode, ferindo todos os que estiverem perto.",
+                "it": "Una volta raccolta, lanciata o calciata, fa il conto alla rovescia ed esplode, ferendo chiunque sia vicino."
+              }
+            },
+            {
+              "name": {
+                "en": "Mask / boots / Z / weight",
+                "es": "Máscara / botas / Z / peso",
+                "fr": "Masque / bottes / Z / poids",
+                "de": "Maske / Stiefel / Z / Gewicht",
+                "pt": "Máscara / botas / Z / peso",
+                "it": "Maschera / stivali / Z / peso"
+              },
+              "description": {
+                "en": "Power-ups that appear now and then and give you an edge. With the weight, pass it on by touching another player before its countdown ends.",
+                "es": "Potenciadores que aparecen de vez en cuando y te dan ventaja. Con el peso, pásalo tocando a otro jugador antes de que acabe la cuenta atrás.",
+                "fr": "Des bonus qui apparaissent de temps en temps et te donnent un avantage. Avec le poids, passe-le en touchant un autre joueur avant la fin de son compte à rebours.",
+                "de": "Power-ups, die ab und zu erscheinen und dir einen Vorteil verschaffen. Gib das Gewicht weiter, indem du einen anderen Spieler berührst, bevor sein Countdown endet.",
+                "pt": "Power-ups que aparecem de vez em quando e te dão vantagem. Com o peso, passa-o tocando noutro jogador antes de a contagem decrescente acabar.",
+                "it": "Potenziamenti che compaiono ogni tanto e ti danno un vantaggio. Con il peso, passalo toccando un altro giocatore prima che finisca il conto alla rovescia."
+              }
+            }
+          ]
+        },
+        "name": "Snow Bonanza",
+        "description": "Slippery ice, and a sleeping penguin who goes on a rampage if disturbed.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most health wins if several survive.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "maxHp",
+            "label": "Health",
+            "description": "Health points each player starts with.",
+            "type": "number",
+            "default": 10,
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "group": "match"
+          },
+          {
+            "id": "crateEvery",
+            "label": "Crate interval",
+            "description": "A new crate drops this often (while the arena is not full).",
+            "type": "number",
+            "default": 4,
+            "min": 2,
+            "max": 12,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "crateVariance",
+            "label": "Crate variance",
+            "description": "How much the time between crates varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "berryEvery",
+            "label": "Berry interval",
+            "description": "A healing berry appears this often.",
+            "type": "number",
+            "default": 7,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "berryVariance",
+            "label": "Berry variance",
+            "description": "How much the time between berries varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "tntFuse",
+            "label": "TNT countdown",
+            "description": "Seconds a TNT crate burns after it is picked up, thrown or kicked.",
+            "type": "number",
+            "default": 3,
+            "min": 1,
+            "max": 8,
+            "step": 0.5,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "tntDamage",
+            "label": "TNT damage",
+            "description": "Health lost by each player caught in a TNT blast.",
+            "type": "number",
+            "default": 4,
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "group": "hazards"
+          },
+          {
+            "id": "blastRadius",
+            "label": "TNT blast radius",
+            "description": "How far a TNT blast reaches (nitro blasts are a little smaller).",
+            "type": "number",
+            "default": 130,
+            "min": 80,
+            "max": 200,
+            "step": 10,
+            "group": "hazards"
+          },
+          {
+            "id": "pickupRange",
+            "label": "Pick up distance",
+            "description": "How far away a crate can be to pick it up (first button).",
+            "type": "number",
+            "default": 62,
+            "min": 30,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "group": "abilities"
+          },
+          {
+            "id": "pickupCooldown",
+            "label": "Pick up cooldown",
+            "description": "Seconds before the first button works again after picking up or throwing (0 = none).",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "kickRange",
+            "label": "Kick distance",
+            "description": "How far the kick (second button) reaches crates and rivals.",
+            "type": "number",
+            "default": 74,
+            "min": 40,
+            "max": 140,
+            "step": 2,
+            "unit": "px",
+            "group": "abilities"
+          },
+          {
+            "id": "kickCooldown",
+            "label": "Kick cooldown",
+            "description": "Seconds before the kick can be used again.",
+            "type": "number",
+            "default": 0.55,
+            "min": 0,
+            "max": 3,
+            "step": 0.05,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "solidCrates",
+            "label": "Solid crates",
+            "description": "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.",
+            "type": "boolean",
+            "default": true,
+            "group": "match"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "powerupEvery",
+            "label": "Power-up interval",
+            "description": "A mask / boots / Z / weight appears this often.",
+            "type": "number",
+            "default": 9,
+            "min": 4,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "powerupVariance",
+            "label": "Power-up variance",
+            "description": "How much the time between power-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "weightTime",
+            "label": "Weight time",
+            "description": "Seconds the weight carrier has before it kills them, unless they pass it on by touching someone.",
+            "type": "number",
+            "default": 5,
+            "min": 3,
+            "max": 15,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "penguinTime",
+            "label": "Penguin rampage",
+            "description": "How long the penguin spins once woken.",
+            "type": "number",
+            "default": 8,
+            "min": 4,
+            "max": 15,
+            "step": 1,
+            "unit": "s",
+            "group": "player"
+          }
+        ]
+      },
+      {
+        "id": "drain-bonanza",
+        "action": "grab",
+        "action2": "kick",
+        "guide": {
+          "objective": {
+            "en": "Be the last one standing, or have the most health when time runs out.",
+            "es": "Sé el último en pie o ten más vida cuando se acabe el tiempo.",
+            "fr": "Sois le dernier debout, ou aie le plus de santé quand le temps est écoulé.",
+            "de": "Sei der Letzte, der steht, oder habe die meiste Gesundheit, wenn die Zeit abläuft.",
+            "pt": "Sê o último de pé ou tem mais vida quando o tempo acabar.",
+            "it": "Sii l’ultimo in piedi, o avere più salute quando scade il tempo."
+          },
+          "rules": [
+            {
+              "en": "The first button picks up a nearby crate or throws the one you hold; the second one kicks.",
+              "es": "El primer botón recoge una caja cercana o lanza la que llevas; el segundo da una patada.",
+              "fr": "Le premier bouton ramasse une caisse proche ou lance celle que tu tiens ; le second donne un coup de pied.",
+              "de": "Der erste Knopf hebt eine Kiste in der Nähe auf oder wirft die, die du hältst; der zweite tritt.",
+              "pt": "O primeiro botão apanha uma caixa próxima ou atira a que seguras; o segundo dá um pontapé.",
+              "it": "Il primo pulsante raccoglie una cassa vicina o lancia quella che tieni; il secondo calcia."
+            },
+            {
+              "en": "Thrown crates and explosions damage players; you start with a set amount of health.",
+              "es": "Las cajas lanzadas y las explosiones dañan a los jugadores; empiezas con una cantidad de vida.",
+              "fr": "Les caisses lancées et les explosions blessent les joueurs ; tu commences avec une certaine quantité de santé.",
+              "de": "Geworfene Kisten und Explosionen verletzen Spieler; du startest mit einer festen Menge Gesundheit.",
+              "pt": "Caixas atiradas e explosões ferem os jogadores; começas com uma quantidade fixa de vida.",
+              "it": "Le casse lanciate e le esplosioni feriscono i giocatori; inizi con una certa quantità di salute."
+            },
+            {
+              "en": "New crates keep dropping into the arena.",
+              "es": "Siguen cayendo cajas nuevas en la arena.",
+              "fr": "De nouvelles caisses continuent de tomber dans l’arène.",
+              "de": "Immer neue Kisten fallen in die Arena.",
+              "pt": "Continuam a cair novas caixas na arena.",
+              "it": "Nuove casse continuano a cadere nell’arena."
+            },
+            {
+              "en": "Locked crates, TNT and ? crates drop into the arena.",
+              "es": "En la arena caen cajas con candado, de TNT y cajas ?.",
+              "fr": "Des caisses verrouillées, des TNT et des caisses ? tombent dans l’arène.",
+              "de": "Verschlossene Kisten, TNT und ?-Kisten fallen in die Arena.",
+              "pt": "Caixas trancadas, TNT e caixas ? caem na arena.",
+              "it": "Casse bloccate, TNT e casse ? cadono nell’arena."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "TNT crate",
+                "es": "Caja de TNT",
+                "fr": "Caisse TNT",
+                "de": "TNT-Kiste",
+                "pt": "Caixa de TNT",
+                "it": "Cassa TNT"
+              },
+              "description": {
+                "en": "Once picked up, thrown or kicked it counts down and then explodes, hurting everyone nearby.",
+                "es": "Al recogerla, lanzarla o patearla hace una cuenta atrás y explota, dañando a todos los cercanos.",
+                "fr": "Une fois ramassée, lancée ou frappée, elle décompte puis explose en blessant tous ceux qui sont proches.",
+                "de": "Nach dem Aufheben, Werfen oder Treten zählt sie herunter und explodiert dann, wobei alle in der Nähe verletzt werden.",
+                "pt": "Depois de apanhada, atirada ou chutada, faz uma contagem decrescente e explode, ferindo todos os que estiverem perto.",
+                "it": "Una volta raccolta, lanciata o calciata, fa il conto alla rovescia ed esplode, ferendo chiunque sia vicino."
+              }
+            },
+            {
+              "name": {
+                "en": "? crate",
+                "es": "Caja ?",
+                "fr": "Caisse ?",
+                "de": "?-Kiste",
+                "pt": "Caixa ?",
+                "it": "Cassa ?"
+              },
+              "description": {
+                "en": "Holds a berry or a weapon: ring, 8-way missile or homing orb.",
+                "es": "Contiene una baya o un arma: anillo, misil de 8 direcciones u orbe teledirigido.",
+                "fr": "Contient une baie ou une arme : anneau, missile à 8 directions ou orbe à tête chercheuse.",
+                "de": "Enthält eine Beere oder eine Waffe: Ring, 8-Wege-Rakete oder Zielsuch-Orb.",
+                "pt": "Contém uma baga ou uma arma: anel, míssil de 8 direções ou orbe teleguiado.",
+                "it": "Contiene una bacca o un’arma: anello, missile a 8 direzioni od orbe a ricerca."
+              }
+            }
+          ]
+        },
+        "name": "Drain Bonanza",
+        "description": "Locked crates, TNT and ? crates holding a berry or a weapon: ring, 8-way missile, homing orb.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "Round length. Most health wins if several survive.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "maxHp",
+            "label": "Health",
+            "description": "Health points each player starts with.",
+            "type": "number",
+            "default": 10,
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "group": "match"
+          },
+          {
+            "id": "crateEvery",
+            "label": "Crate interval",
+            "description": "A new crate drops this often (while the arena is not full).",
+            "type": "number",
+            "default": 4,
+            "min": 2,
+            "max": 12,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "crateVariance",
+            "label": "Crate variance",
+            "description": "How much the time between crates varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "berryEvery",
+            "label": "Berry interval",
+            "description": "A healing berry appears this often.",
+            "type": "number",
+            "default": 7,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "berryVariance",
+            "label": "Berry variance",
+            "description": "How much the time between berries varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 6,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "tntFuse",
+            "label": "TNT countdown",
+            "description": "Seconds a TNT crate burns after it is picked up, thrown or kicked.",
+            "type": "number",
+            "default": 3,
+            "min": 1,
+            "max": 8,
+            "step": 0.5,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "tntDamage",
+            "label": "TNT damage",
+            "description": "Health lost by each player caught in a TNT blast.",
+            "type": "number",
+            "default": 4,
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "group": "hazards"
+          },
+          {
+            "id": "blastRadius",
+            "label": "TNT blast radius",
+            "description": "How far a TNT blast reaches (nitro blasts are a little smaller).",
+            "type": "number",
+            "default": 130,
+            "min": 80,
+            "max": 200,
+            "step": 10,
+            "group": "hazards"
+          },
+          {
+            "id": "pickupRange",
+            "label": "Pick up distance",
+            "description": "How far away a crate can be to pick it up (first button).",
+            "type": "number",
+            "default": 62,
+            "min": 30,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "group": "abilities"
+          },
+          {
+            "id": "pickupCooldown",
+            "label": "Pick up cooldown",
+            "description": "Seconds before the first button works again after picking up or throwing (0 = none).",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "kickRange",
+            "label": "Kick distance",
+            "description": "How far the kick (second button) reaches crates and rivals.",
+            "type": "number",
+            "default": 74,
+            "min": 40,
+            "max": 140,
+            "step": 2,
+            "unit": "px",
+            "group": "abilities"
+          },
+          {
+            "id": "kickCooldown",
+            "label": "Kick cooldown",
+            "description": "Seconds before the kick can be used again.",
+            "type": "number",
+            "default": 0.55,
+            "min": 0,
+            "max": 3,
+            "step": 0.05,
+            "unit": "s",
+            "group": "abilities"
+          },
+          {
+            "id": "solidCrates",
+            "label": "Solid crates",
+            "description": "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.",
+            "type": "boolean",
+            "default": true,
+            "group": "match"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "boxEvery",
+            "label": "? crate interval",
+            "description": "A set of four ? crates (3 berries, 1 weapon) appears this often.",
+            "type": "number",
+            "default": 12,
+            "min": 6,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "boxVariance",
+            "label": "? crate variance",
+            "description": "How much the time between ? crates varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          }
+        ]
+      }
+    ]
+  },
+  "locales": {
+    "es": {
+      "Pick up and throw crates at your rivals with one button, kick with the other. Last one standing, or the most health, wins.": "Recoge y lanza cajas a tus rivales con un botón y da patadas con el otro. Gana el último en pie o quien tenga más vida.",
+      "Blocks, TNT and nitro crates, plus berry to heal.": "Cajas normales, de TNT y de nitro, además de baya para curarte.",
+      "Round length. Most health wins if several survive.": "Duración de la ronda. Si varios sobreviven, gana quien tenga más vida.",
+      "Health": "Vida",
+      "Health points each player starts with.": "Puntos de vida con los que empieza cada jugador.",
+      "Crate interval": "Intervalo de cajas",
+      "A new crate drops this often (while the arena is not full).": "Cae una caja nueva con esta frecuencia (mientras la arena no esté llena).",
+      "TNT countdown": "Cuenta atrás del TNT",
+      "Seconds a TNT crate burns after it is picked up, thrown or kicked.": "Segundos que arde una caja de TNT tras recogerla, lanzarla o patearla.",
+      "TNT damage": "Daño del TNT",
+      "Health lost by each player caught in a TNT blast.": "Vida que pierde cada jugador atrapado en una explosión de TNT.",
+      "TNT blast radius": "Radio de explosión de TNT",
+      "How far a TNT blast reaches (nitro blasts are a little smaller).": "Hasta dónde llega la explosión de TNT (las de nitro son algo menores).",
+      "Pick up distance": "Distancia para recoger",
+      "How far away a crate can be to pick it up (first button).": "A qué distancia puede estar una caja para recogerla (primer botón).",
+      "Pick up cooldown": "Recarga de recoger",
+      "Seconds before the first button works again after picking up or throwing (0 = none).": "Segundos antes de que el primer botón funcione otra vez tras recoger o lanzar (0 = ninguno).",
+      "Kick distance": "Distancia de patada",
+      "How far the kick (second button) reaches crates and rivals.": "Hasta dónde llega la patada (segundo botón) a cajas y rivales.",
+      "Kick cooldown": "Recarga de patada",
+      "Seconds before the kick can be used again.": "Segundos antes de poder dar otra patada.",
+      "Solid crates": "Cajas sólidas",
+      "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.": "Los jugadores no pueden atravesar las cajas, y una caja que golpea a otra la empuja. La nitro sigue explotando al tocarla.",
+      "Explosions blow holes in the floor, and power-ups (mask, boots, Z, weight) appear.": "Las explosiones abren agujeros en el suelo y aparecen potenciadores (máscara, botas, Z, peso).",
+      "Power-up interval": "Intervalo de potenciadores",
+      "A mask / boots / Z / weight appears this often.": "Aparece una máscara / botas / Z / peso con esta frecuencia.",
+      "Weight time": "Tiempo del peso",
+      "Seconds the weight carrier has before it kills them, unless they pass it on by touching someone.": "Segundos que tiene quien lleva el peso antes de morir, salvo que lo pase tocando a alguien.",
+      "Slippery ice, and a sleeping penguin who goes on a rampage if disturbed.": "Hielo resbaladizo y un pingüino dormido que se enfurece si lo molestan.",
+      "Penguin rampage": "Furia del pingüino",
+      "How long the penguin spins once woken.": "Cuánto tiempo gira el pingüino una vez despierto.",
+      "Locked crates, TNT and ? crates holding a berry or a weapon: ring, 8-way missile, homing orb.": "Cajas con candado, TNT y cajas ? con una baya o un arma: anillo, misil de 8 direcciones u orbe teledirigido.",
+      "? crate interval": "Intervalo de cajas ?",
+      "A set of four ? crates (3 berries, 1 weapon) appears this often.": "Aparece un conjunto de cuatro cajas ? (3 bayas, 1 arma) con esta frecuencia.",
+      "Crate variance": "Variación de cajas",
+      "How much the time between crates varies, plus or minus.": "Cuánto varía el tiempo entre cajas, más o menos.",
+      "Off": "Desactivado",
+      "Power-up variance": "Variación de potenciadores",
+      "How much the time between power-ups varies, plus or minus.": "Cuánto varía el tiempo entre potenciadores, más o menos.",
+      "? crate variance": "Variación de cajas ?",
+      "How much the time between ? crates varies, plus or minus.": "Cuánto varía el tiempo entre cajas ?, más o menos.",
+      "Berry interval": "Intervalo de bayas",
+      "A healing berry appears this often.": "Aparece una baya curativa con esta frecuencia.",
+      "Berry variance": "Variación de bayas",
+      "How much the time between berries varies, plus or minus.": "Cuánto varía el tiempo entre bayas, más o menos."
+    },
+    "fr": {
+      "Pick up and throw crates at your rivals with one button, kick with the other. Last one standing, or the most health, wins.": "Ramasse des caisses et lance-les sur tes rivaux avec un bouton, donne des coups de pied avec l’autre. Le dernier debout, ou celui qui a le plus de santé, gagne.",
+      "Blocks, TNT and nitro crates, plus berry to heal.": "Des blocs, des caisses TNT et nitro, plus des baies pour se soigner.",
+      "Round length. Most health wins if several survive.": "Durée de la manche. Le plus de santé gagne si plusieurs survivent.",
+      "Health": "Santé",
+      "Health points each player starts with.": "Points de santé de départ de chaque joueur.",
+      "Crate interval": "Intervalle des caisses",
+      "A new crate drops this often (while the arena is not full).": "Une nouvelle caisse tombe à cette fréquence (tant que l’arène n’est pas pleine).",
+      "TNT countdown": "Compte à rebours TNT",
+      "Seconds a TNT crate burns after it is picked up, thrown or kicked.": "Secondes pendant lesquelles une caisse TNT brûle après avoir été ramassée, lancée ou frappée.",
+      "TNT damage": "Dégâts du TNT",
+      "Health lost by each player caught in a TNT blast.": "Santé perdue par chaque joueur pris dans une explosion de TNT.",
+      "TNT blast radius": "Rayon d’explosion du TNT",
+      "How far a TNT blast reaches (nitro blasts are a little smaller).": "Portée d’une explosion de TNT (les explosions de nitro sont un peu plus petites).",
+      "Pick up distance": "Distance de ramassage",
+      "How far away a crate can be to pick it up (first button).": "Distance maximale à laquelle on peut ramasser une caisse (premier bouton).",
+      "Pick up cooldown": "Recharge du ramassage",
+      "Seconds before the first button works again after picking up or throwing (0 = none).": "Secondes avant que le premier bouton refonctionne après un ramassage ou un lancer (0 = aucune).",
+      "Kick distance": "Portée du coup de pied",
+      "How far the kick (second button) reaches crates and rivals.": "Distance à laquelle le coup de pied (second bouton) atteint caisses et rivaux.",
+      "Kick cooldown": "Recharge du coup de pied",
+      "Seconds before the kick can be used again.": "Secondes avant de pouvoir redonner un coup de pied.",
+      "Solid crates": "Caisses solides",
+      "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.": "Les joueurs ne peuvent pas traverser les caisses, et une caisse qui en touche une autre la pousse. Le nitro explose toujours au toucher.",
+      "Explosions blow holes in the floor, and power-ups (mask, boots, Z, weight) appear.": "Les explosions percent des trous dans le sol, et des bonus (masque, bottes, Z, poids) apparaissent.",
+      "Power-up interval": "Intervalle des bonus",
+      "A mask / boots / Z / weight appears this often.": "Un masque / des bottes / un Z / un poids apparaît à cette fréquence.",
+      "Weight time": "Durée du poids",
+      "Seconds the weight carrier has before it kills them, unless they pass it on by touching someone.": "Secondes dont dispose le porteur du poids avant qu’il ne le tue, sauf s’il le passe en touchant quelqu’un.",
+      "Slippery ice, and a sleeping penguin who goes on a rampage if disturbed.": "Glace glissante et pingouin endormi qui se déchaîne s’il est dérangé.",
+      "Penguin rampage": "Déchaînement du pingouin",
+      "How long the penguin spins once woken.": "Durée pendant laquelle le pingouin tourne une fois réveillé.",
+      "Locked crates, TNT and ? crates holding a berry or a weapon: ring, 8-way missile, homing orb.": "Des caisses verrouillées, des TNT et des caisses ? contenant une baie ou une arme : anneau, missile à 8 directions, orbe à tête chercheuse.",
+      "? crate interval": "Intervalle des caisses ?",
+      "A set of four ? crates (3 berries, 1 weapon) appears this often.": "Un lot de quatre caisses ? (3 baies, 1 arme) apparaît à cette fréquence.",
+      "Crate variance": "Variation des caisses",
+      "How much the time between crates varies, plus or minus.": "De combien varie le temps entre les caisses, en plus ou en moins.",
+      "Off": "Désactivé",
+      "Power-up variance": "Variation des bonus",
+      "How much the time between power-ups varies, plus or minus.": "De combien varie le temps entre les bonus, en plus ou en moins.",
+      "? crate variance": "Variation des caisses ?",
+      "How much the time between ? crates varies, plus or minus.": "De combien varie le temps entre les caisses ?, en plus ou en moins.",
+      "Berry interval": "Intervalle des baies",
+      "A healing berry appears this often.": "Une baie de soin apparaît à cette fréquence.",
+      "Berry variance": "Variation des baies",
+      "How much the time between berries varies, plus or minus.": "De combien varie le temps entre les baies, en plus ou en moins."
+    },
+    "de": {
+      "Pick up and throw crates at your rivals with one button, kick with the other. Last one standing, or the most health, wins.": "Hebe Kisten auf und wirf sie mit einem Knopf auf deine Rivalen, tritt mit dem anderen. Wer zuletzt steht oder die meiste Gesundheit hat, gewinnt.",
+      "Blocks, TNT and nitro crates, plus berry to heal.": "Blöcke, TNT- und Nitro-Kisten sowie Beeren zum Heilen.",
+      "Round length. Most health wins if several survive.": "Rundenlänge. Die meiste Gesundheit gewinnt, wenn mehrere überleben.",
+      "Health": "Gesundheit",
+      "Health points each player starts with.": "Lebenspunkte, mit denen jeder Spieler startet.",
+      "Crate interval": "Kisten-Intervall",
+      "A new crate drops this often (while the arena is not full).": "So oft fällt eine neue Kiste (solange die Arena nicht voll ist).",
+      "TNT countdown": "TNT-Countdown",
+      "Seconds a TNT crate burns after it is picked up, thrown or kicked.": "Sekunden, die eine TNT-Kiste brennt, nachdem sie aufgehoben, geworfen oder getreten wurde.",
+      "TNT damage": "TNT-Schaden",
+      "Health lost by each player caught in a TNT blast.": "Gesundheit, die jeder von einer TNT-Explosion erfasste Spieler verliert.",
+      "TNT blast radius": "TNT-Explosionsradius",
+      "How far a TNT blast reaches (nitro blasts are a little smaller).": "Wie weit eine TNT-Explosion reicht (Nitro-Explosionen sind etwas kleiner).",
+      "Pick up distance": "Aufhebe-Distanz",
+      "How far away a crate can be to pick it up (first button).": "Wie weit entfernt eine Kiste sein darf, um sie aufzuheben (erster Knopf).",
+      "Pick up cooldown": "Aufhebe-Abklingzeit",
+      "Seconds before the first button works again after picking up or throwing (0 = none).": "Sekunden, bis der erste Knopf nach Aufheben oder Werfen wieder funktioniert (0 = keine).",
+      "Kick distance": "Trittreichweite",
+      "How far the kick (second button) reaches crates and rivals.": "Wie weit der Tritt (zweiter Knopf) Kisten und Rivalen erreicht.",
+      "Kick cooldown": "Tritt-Abklingzeit",
+      "Seconds before the kick can be used again.": "Sekunden, bis der Tritt wieder genutzt werden kann.",
+      "Solid crates": "Feste Kisten",
+      "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.": "Spieler können nicht durch Kisten laufen, und eine Kiste, die eine andere trifft, schiebt sie. Nitro explodiert weiterhin bei Berührung.",
+      "Explosions blow holes in the floor, and power-ups (mask, boots, Z, weight) appear.": "Explosionen reißen Löcher in den Boden, und Power-ups (Maske, Stiefel, Z, Gewicht) erscheinen.",
+      "Power-up interval": "Power-up-Intervall",
+      "A mask / boots / Z / weight appears this often.": "So oft erscheint eine Maske / Stiefel / ein Z / ein Gewicht.",
+      "Weight time": "Gewichtszeit",
+      "Seconds the weight carrier has before it kills them, unless they pass it on by touching someone.": "Sekunden, die der Träger des Gewichts hat, bevor es ihn tötet, außer er gibt es durch Berühren eines anderen weiter.",
+      "Slippery ice, and a sleeping penguin who goes on a rampage if disturbed.": "Rutschiges Eis und ein schlafender Pinguin, der ausrastet, wenn er gestört wird.",
+      "Penguin rampage": "Pinguin-Amoklauf",
+      "How long the penguin spins once woken.": "Wie lange sich der Pinguin dreht, wenn er geweckt wurde.",
+      "Locked crates, TNT and ? crates holding a berry or a weapon: ring, 8-way missile, homing orb.": "Verschlossene Kisten, TNT und ?-Kisten mit einer Beere oder einer Waffe: Ring, 8-Wege-Rakete, Zielsuch-Orb.",
+      "? crate interval": "?-Kisten-Intervall",
+      "A set of four ? crates (3 berries, 1 weapon) appears this often.": "So oft erscheint ein Satz aus vier ?-Kisten (3 Beeren, 1 Waffe).",
+      "Crate variance": "Kistenschwankung",
+      "How much the time between crates varies, plus or minus.": "Wie stark die Zeit zwischen den Kisten schwankt, plus oder minus.",
+      "Off": "Aus",
+      "Power-up variance": "Power-up-Schwankung",
+      "How much the time between power-ups varies, plus or minus.": "Wie stark die Zeit zwischen den Power-ups schwankt, plus oder minus.",
+      "? crate variance": "?-Kisten-Schwankung",
+      "How much the time between ? crates varies, plus or minus.": "Wie stark die Zeit zwischen den ?-Kisten schwankt, plus oder minus.",
+      "Berry interval": "Beerenintervall",
+      "A healing berry appears this often.": "Eine Heilbeere erscheint so oft.",
+      "Berry variance": "Beerenschwankung",
+      "How much the time between berries varies, plus or minus.": "Wie stark die Zeit zwischen den Beeren schwankt, plus oder minus."
+    },
+    "pt": {
+      "Pick up and throw crates at your rivals with one button, kick with the other. Last one standing, or the most health, wins.": "Apanha caixas e atira-as aos rivais com um botão, chuta com o outro. Ganha o último de pé ou quem tiver mais vida.",
+      "Blocks, TNT and nitro crates, plus berry to heal.": "Blocos, caixas de TNT e de nitro, mais bagas para curar.",
+      "Round length. Most health wins if several survive.": "Duração da ronda. Ganha quem tiver mais vida se vários sobreviverem.",
+      "Health": "Vida",
+      "Health points each player starts with.": "Pontos de vida com que cada jogador começa.",
+      "Crate interval": "Intervalo das caixas",
+      "A new crate drops this often (while the arena is not full).": "Uma nova caixa cai com esta frequência (enquanto a arena não estiver cheia).",
+      "TNT countdown": "Contagem decrescente do TNT",
+      "Seconds a TNT crate burns after it is picked up, thrown or kicked.": "Segundos que uma caixa de TNT arde depois de apanhada, atirada ou chutada.",
+      "TNT damage": "Dano do TNT",
+      "Health lost by each player caught in a TNT blast.": "Vida perdida por cada jogador apanhado numa explosão de TNT.",
+      "TNT blast radius": "Raio da explosão do TNT",
+      "How far a TNT blast reaches (nitro blasts are a little smaller).": "Alcance de uma explosão de TNT (as de nitro são um pouco menores).",
+      "Pick up distance": "Distância para apanhar",
+      "How far away a crate can be to pick it up (first button).": "A que distância uma caixa pode estar para ser apanhada (primeiro botão).",
+      "Pick up cooldown": "Recarga de apanhar",
+      "Seconds before the first button works again after picking up or throwing (0 = none).": "Segundos até o primeiro botão voltar a funcionar após apanhar ou atirar (0 = nenhuma).",
+      "Kick distance": "Alcance do pontapé",
+      "How far the kick (second button) reaches crates and rivals.": "A que distância o pontapé (segundo botão) alcança caixas e rivais.",
+      "Kick cooldown": "Recarga do pontapé",
+      "Seconds before the kick can be used again.": "Segundos até o pontapé poder ser usado de novo.",
+      "Solid crates": "Caixas sólidas",
+      "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.": "Os jogadores não conseguem atravessar as caixas, e uma caixa que bata noutra empurra-a. O nitro continua a explodir ao toque.",
+      "Explosions blow holes in the floor, and power-ups (mask, boots, Z, weight) appear.": "As explosões abrem buracos no chão e aparecem power-ups (máscara, botas, Z, peso).",
+      "Power-up interval": "Intervalo dos power-ups",
+      "A mask / boots / Z / weight appears this often.": "Uma máscara / botas / Z / peso aparece com esta frequência.",
+      "Weight time": "Tempo do peso",
+      "Seconds the weight carrier has before it kills them, unless they pass it on by touching someone.": "Segundos que o portador do peso tem antes de este o matar, a menos que o passe tocando em alguém.",
+      "Slippery ice, and a sleeping penguin who goes on a rampage if disturbed.": "Gelo escorregadio e um pinguim a dormir que fica furioso se for incomodado.",
+      "Penguin rampage": "Fúria do pinguim",
+      "How long the penguin spins once woken.": "Quanto tempo o pinguim gira depois de acordar.",
+      "Locked crates, TNT and ? crates holding a berry or a weapon: ring, 8-way missile, homing orb.": "Caixas trancadas, TNT e caixas ? com uma baga ou uma arma: anel, míssil de 8 direções, orbe teleguiado.",
+      "? crate interval": "Intervalo das caixas ?",
+      "A set of four ? crates (3 berries, 1 weapon) appears this often.": "Um conjunto de quatro caixas ? (3 bagas, 1 arma) aparece com esta frequência.",
+      "Crate variance": "Variação das caixas",
+      "How much the time between crates varies, plus or minus.": "Quanto varia o tempo entre as caixas, para mais ou para menos.",
+      "Off": "Desativado",
+      "Power-up variance": "Variação dos potenciadores",
+      "How much the time between power-ups varies, plus or minus.": "Quanto varia o tempo entre os potenciadores, para mais ou para menos.",
+      "? crate variance": "Variação das caixas ?",
+      "How much the time between ? crates varies, plus or minus.": "Quanto varia o tempo entre as caixas ?, para mais ou para menos.",
+      "Berry interval": "Intervalo das bagas",
+      "A healing berry appears this often.": "Surge uma baga curativa com esta frequência.",
+      "Berry variance": "Variação das bagas",
+      "How much the time between berries varies, plus or minus.": "Quanto varia o tempo entre as bagas, para mais ou para menos."
+    },
+    "it": {
+      "Pick up and throw crates at your rivals with one button, kick with the other. Last one standing, or the most health, wins.": "Raccogli le casse e lanciale contro i rivali con un pulsante, calcia con l’altro. Vince l’ultimo in piedi, o chi ha più salute.",
+      "Blocks, TNT and nitro crates, plus berry to heal.": "Blocchi, casse TNT e nitro, più bacche per curarsi.",
+      "Round length. Most health wins if several survive.": "Durata del round. Vince chi ha più salute se più giocatori sopravvivono.",
+      "Health": "Salute",
+      "Health points each player starts with.": "Punti salute con cui inizia ogni giocatore.",
+      "Crate interval": "Intervallo delle casse",
+      "A new crate drops this often (while the arena is not full).": "Una nuova cassa cade con questa frequenza (finché l’arena non è piena).",
+      "TNT countdown": "Conto alla rovescia TNT",
+      "Seconds a TNT crate burns after it is picked up, thrown or kicked.": "Secondi per cui una cassa TNT brucia dopo essere stata raccolta, lanciata o calciata.",
+      "TNT damage": "Danno del TNT",
+      "Health lost by each player caught in a TNT blast.": "Salute persa da ogni giocatore colpito da un’esplosione TNT.",
+      "TNT blast radius": "Raggio dell’esplosione TNT",
+      "How far a TNT blast reaches (nitro blasts are a little smaller).": "Fino a dove arriva un’esplosione TNT (quelle nitro sono un po’ più piccole).",
+      "Pick up distance": "Distanza di raccolta",
+      "How far away a crate can be to pick it up (first button).": "A che distanza può essere una cassa per raccoglierla (primo pulsante).",
+      "Pick up cooldown": "Ricarica della raccolta",
+      "Seconds before the first button works again after picking up or throwing (0 = none).": "Secondi prima che il primo pulsante funzioni di nuovo dopo aver raccolto o lanciato (0 = nessuna).",
+      "Kick distance": "Raggio del calcio",
+      "How far the kick (second button) reaches crates and rivals.": "Fino a dove il calcio (secondo pulsante) raggiunge casse e rivali.",
+      "Kick cooldown": "Ricarica del calcio",
+      "Seconds before the kick can be used again.": "Secondi prima di poter calciare di nuovo.",
+      "Solid crates": "Casse solide",
+      "Players cannot walk through crates, and a crate that hits another pushes it. Nitro still explodes on touch.": "I giocatori non possono attraversare le casse, e una cassa che ne colpisce un’altra la spinge. Il nitro esplode comunque al contatto.",
+      "Explosions blow holes in the floor, and power-ups (mask, boots, Z, weight) appear.": "Le esplosioni aprono buchi nel pavimento e compaiono potenziamenti (maschera, stivali, Z, peso).",
+      "Power-up interval": "Intervallo dei potenziamenti",
+      "A mask / boots / Z / weight appears this often.": "Una maschera / stivali / Z / peso compare con questa frequenza.",
+      "Weight time": "Tempo del peso",
+      "Seconds the weight carrier has before it kills them, unless they pass it on by touching someone.": "Secondi che ha chi porta il peso prima che lo uccida, a meno che non lo passi toccando qualcuno.",
+      "Slippery ice, and a sleeping penguin who goes on a rampage if disturbed.": "Ghiaccio scivoloso e un pinguino addormentato che si scatena se disturbato.",
+      "Penguin rampage": "Furia del pinguino",
+      "How long the penguin spins once woken.": "Per quanto tempo il pinguino ruota una volta svegliato.",
+      "Locked crates, TNT and ? crates holding a berry or a weapon: ring, 8-way missile, homing orb.": "Casse bloccate, TNT e casse ? con una bacca o un’arma: anello, missile a 8 direzioni, orbe a ricerca.",
+      "? crate interval": "Intervallo delle casse ?",
+      "A set of four ? crates (3 berries, 1 weapon) appears this often.": "Un set di quattro casse ? (3 bacche, 1 arma) compare con questa frequenza.",
+      "Crate variance": "Variazione delle casse",
+      "How much the time between crates varies, plus or minus.": "Quanto varia il tempo tra le casse, in più o in meno.",
+      "Off": "Disattivato",
+      "Power-up variance": "Variazione dei potenziamenti",
+      "How much the time between power-ups varies, plus or minus.": "Quanto varia il tempo tra i potenziamenti, in più o in meno.",
+      "? crate variance": "Variazione delle casse ?",
+      "How much the time between ? crates varies, plus or minus.": "Quanto varia il tempo tra le casse ?, in più o in meno.",
+      "Berry interval": "Intervallo delle bacche",
+      "A healing berry appears this often.": "Compare una bacca curativa con questa frequenza.",
+      "Berry variance": "Variazione delle bacche",
+      "How much the time between berries varies, plus or minus.": "Quanto varia il tempo tra le bacche, in più o in meno."
+    }
+  }
+}

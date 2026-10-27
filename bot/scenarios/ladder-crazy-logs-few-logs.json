@@ -1,0 +1,25 @@
+{
+  "name": "ladder-crazy-logs-few-logs",
+  "description": "Four logs. Four levels in one 4-seat room (easy, normal, hard, semigod). Run several matches/rooms, then npm run bot:analyze for the level-vs-level matrix and ladder check.",
+  "game": "crazy-logs",
+  "options": {
+    "timeLimit": 60,
+    "logCount": 4
+  },
+  "seats": [
+    {
+      "bot": "easy"
+    },
+    {
+      "bot": "normal"
+    },
+    {
+      "bot": "hard"
+    },
+    {
+      "bot": "semigod"
+    }
+  ],
+  "matches": 3,
+  "rooms": 2
+}

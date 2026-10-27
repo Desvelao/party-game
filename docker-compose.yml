@@ -1,0 +1,130 @@
+# Development environment.
+#   docker compose up --build        -> game at http://localhost:5173 (Vite, HMR)
+#                                       server/stats at http://localhost:8080/stats
+#                                       bots: the bots plugin plays them inside `server` (BOTS_MODE=embedded); its dashboard is http://localhost:5173/plugins/bots/ (admin token ADMIN_TOKEN). The bot service (dashboard http://localhost:8090, token ADMIN_TOKEN)
+#                                       plays them when you start with BOTS_MODE=external
+#   docker compose run --rm loadtest -> headless bot load test against `server`
+#                                       override args: LOADTEST_ARGS="--players 16 --rooms 2 --duration 60" docker compose run --rm loadtest
+#
+# What needs what:
+#   edit src/core/                  -> nothing: tsx watch restarts the server, Vite hot-reloads the client
+#   edit a game under src/games/    -> `docker compose restart server` (the games are packed when the server starts)
+#   edit package.json               -> `docker compose restart` (the entrypoint runs npm install if needed)
+#   edit bot/                       -> nothing: the bot server runs from the bind mount; `docker compose restart bot` to reload it
+#   edit docker/ or this file      -> `docker compose up --build` (recreates the affected containers)
+#   HTTPS in dev                    -> `TLS_SELF_SIGNED=1 SERVER_TARGET=https://server:8080 docker compose up --build`
+#                                      (open http://localhost:5173 as usual; Vite talks to the server over HTTPS)
+#
+# Containers run as the unprivileged `node` user (uid 1000), so node_modules/ and anything
+# built into dist/ belong to your user. If they are root-owned from an older setup, STOP the
+# stack first (a running container keeps a handle on the deleted directory and breaks):
+#   docker compose down && sudo rm -rf node_modules dist && docker compose up --build
+#
+# Vite logs "ECONNREFUSED :8080" / the server log shows "Cannot find module .../tsx"?
+# The containers predate a config or node_modules change: docker compose down && docker compose up --build
+#
+# On filesystems without inotify (Docker Desktop, WSL, network mounts):  WATCH_POLLING=1 docker compose up
+# (the client service already polls by default: Vite missed edits made on the host; WATCH_POLLING=0 turns that off)
+x-dev: &dev
+  build:
+    context: .
+    dockerfile: docker/Dockerfile.dev
+  working_dir: /app
+  user: node
+  entrypoint: ["sh", "/app/docker/dev-entrypoint.sh"]
+  environment: &dev-env
+    CHOKIDAR_USEPOLLING: ${WATCH_POLLING:-}
+    WATCH_POLLING: ${WATCH_POLLING:-}
+  volumes:
+    - .:/app
+
+services:
+  server:
+    <<: *dev
+    command: npm run dev:server
+    develop:
+      watch:
+        - { action: restart, path: ./package.json }
+    environment:
+      <<: *dev-env
+      PORT: "8080"
+      PROFILE: ${PROFILE:-NORMAL}          # LOW_POWER | NORMAL | HIGH
+      TICK_RATE: ${TICK_RATE:-}
+      NET_RATE: ${NET_RATE:-}
+      MAX_PLAYERS: ${MAX_PLAYERS:-}
+      MAX_ROOMS: ${MAX_ROOMS:-}
+      MAX_SPECTATORS: ${MAX_SPECTATORS:-}
+      CONSOLE_MODE: ${CONSOLE_MODE:-1}         # a TV (/tv) owns a room, a phone paired with its PIN (/console) hosts it (docs/party-box.md)
+      CONSOLE_SCREEN_ANY: ${CONSOLE_SCREEN_ANY:-1}   # dev only: the browser reaches the container through Docker, not from localhost
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-dev-stats}   # admin login + /stats?reset=1 (loadtest sends it)
+      BOTS_ALLOW_FILL: ${BOTS_ALLOW_FILL:-1}   # hosts may fill their room with bots / add bots (the bots plugin)
+      BOTS_MODE: ${BOTS_MODE:-embedded}        # embedded: this server plays them; external: the bot service below (start it with --profile external)
+      BOTS_DEFAULT_LEVEL: ${BOTS_DEFAULT_LEVEL:-}   # easy | normal | hard | expert | semigod | random (default normal)
+      BOTS_MIXED: ${BOTS_MIXED:-}              # always: bots also join rooms that rotate through every game
+      BOTS_METRICS: ${BOTS_METRICS:-}          # 1: Prometheus metrics at /api/bots/prometheus
+      BOTS_TOKEN: ${BOTS_TOKEN:-dev-bots}     # secret shared with the bot service (GAME_SERVER_BOT_TOKEN)
+      TLS_SELF_SIGNED: ${TLS_SELF_SIGNED:-}    # 1: serve HTTPS with a self-signed certificate kept in the party-game-certs volume
+      TLS_HOSTNAME: ${TLS_HOSTNAME:-}
+      TLS_ALT_NAMES: ${TLS_ALT_NAMES:-}
+      TLS_CERT: ${TLS_CERT:-}                 # or your own files (paths inside the container, e.g. under /certs)
+      TLS_KEY: ${TLS_KEY:-}
+    volumes:
+      - .:/app
+      - party-game-certs:/certs               # outside /app, so no folder appears in the repo
+    ports:
+      - "8080:8080"
+
+  client:
+    <<: *dev
+    command: npm run dev:client
+    develop:
+      watch:
+        - { action: restart, path: ./package.json }
+    environment:
+      <<: *dev-env
+      SERVER_TARGET: ${SERVER_TARGET:-http://server:8080}   # https://server:8080 when the server has TLS_SELF_SIGNED=1
+      WATCH_POLLING: ${WATCH_POLLING:-1}      # Vite polls for changes: the bind mount did not deliver file events (set WATCH_POLLING=0 to use inotify)
+      CHOKIDAR_USEPOLLING: ${WATCH_POLLING:-1}
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+
+  bot:
+    <<: *dev
+    command: npm run bot:server
+    develop:
+      watch:
+        - { action: restart, path: ./package.json }
+    environment:
+      <<: *dev-env
+      GAME_SERVER_URL: ${GAME_SERVER_URL:-http://server:8080}   # https://server:8080 when the server has TLS_SELF_SIGNED=1
+      NODE_TLS_REJECT_UNAUTHORIZED: ${BOT_TLS_INSECURE:-}      # 0: accept the self-signed certificate (dev only)
+      BOT_HOST: "0.0.0.0"                      # reachable from the host; the bot server then requires a token
+      BOT_PORT: "8090"
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-dev-stats}   # token for the bot dashboard/API
+      GAME_SERVER_ADMIN_TOKEN: ${ADMIN_TOKEN:-dev-stats}   # lets the dashboard read the game server's /stats
+      GAME_SERVER_BOT_TOKEN: ${BOTS_TOKEN:-dev-bots}       # the game server's BOTS_TOKEN: lets the bots join rooms whose host asked for bots
+      BOT_LEVEL: ${BOT_LEVEL:-}                # easy | normal | hard | expert | semigod | random
+      BOT_MAX_BOTS: ${BOT_MAX_BOTS:-}
+      BOT_BOTS_PER_ROOM: ${BOT_BOTS_PER_ROOM:-}
+      BOT_MIN_HUMANS: ${BOT_MIN_HUMANS:-}
+      BOT_MIXED: ${BOT_MIXED:-}
+      BOT_POLL_SECONDS: ${BOT_POLL_SECONDS:-}
+    ports:
+      - "8090:8090"
+    depends_on:
+      - server
+
+  loadtest:
+    <<: *dev
+    profiles: ["tools"]
+    command: npm run loadtest -- --url ws://server:8080/ws ${LOADTEST_ARGS:---players 8 --rooms 1 --duration 30}
+    environment:
+      <<: *dev-env
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-dev-stats}
+    depends_on:
+      - server
+
+volumes:
+  party-game-certs:

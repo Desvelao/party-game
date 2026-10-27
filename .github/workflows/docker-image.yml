@@ -1,0 +1,197 @@
+name: Docker image
+
+# Builds the production image (see Dockerfile) and publishes it to GitHub Container Registry:
+#  - on a version tag (v1.2.3): tags 1.2.3, 1.2, latest and the short commit sha (the bot server image, <image>-bot, gets the same tags); the bare image (no games or
+#    plugins, install them into the data volume) gets the same tags with a -bare suffix (1.2.3-bare, latest-bare)
+#  - on demand (Actions tab -> Run workflow): choose the platforms and an optional extra tag
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: Target platforms (comma separated)
+        default: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+        required: true
+      tag:
+        description: Extra image tag to publish (optional)
+        required: false
+
+concurrency:
+  group: docker-image-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  smoke:
+    name: Build and smoke test (amd64, ${{ matrix.flavor }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - flavor: full
+            games: all
+          - flavor: bare
+            games: none
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          load: true
+          tags: party-game:smoke
+          build-args: |
+            GAMES=${{ matrix.games }}
+            BUILD_PLUGINS=${{ matrix.games }}
+          cache-from: type=gha,scope=amd64-${{ matrix.flavor }}
+          cache-to: type=gha,scope=amd64-${{ matrix.flavor }},mode=max
+      - name: Games and plugins match the flavor
+        run: |
+          games=$(docker run --rm party-game:smoke node dist/games.js list)
+          plugins=$(docker run --rm party-game:smoke node dist/plugins.js list)
+          echo "$games"; echo "$plugins"
+          if [ "${{ matrix.flavor }}" = full ]; then
+            echo "$games" | grep -q ballistix
+            echo "$plugins" | grep -q bots
+          else
+            ! echo "$games" | grep -q ballistix
+            ! echo "$plugins" | grep -q bots
+          fi
+      - name: Run and probe
+        run: |
+          docker run -d --name pg -p 8080:8080 party-game:smoke
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:8080/stats && break
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8080/stats > /dev/null
+          curl -fsS http://127.0.0.1:8080/ | grep -qi "<html"
+          curl -fsS "http://127.0.0.1:8080/status?format=json" > /dev/null
+          docker logs pg
+          docker rm -f pg
+      - name: SQLite profile store
+        run: |
+          docker run -d --name pg-sqlite -p 8081:8080 -e PROFILE_STORE=sqlite party-game:smoke
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:8081/stats > /dev/null && break
+            sleep 1
+          done
+          key=$(printf 'ab%.0s' $(seq 1 16))
+          curl -fsS -X PUT http://127.0.0.1:8081/api/profile -H "Authorization: Bearer $key" -d '{"name":"CI"}' | grep -q '"name":"CI"'
+          curl -fsS http://127.0.0.1:8081/api/profile -H "Authorization: Bearer $key" | grep -q '"name":"CI"'
+          docker logs pg-sqlite | grep -q "profile store: sqlite"
+          docker rm -f pg-sqlite
+      - name: Bot server image
+        run: |
+          docker build -f docker/Dockerfile.bot --build-arg BOT_GAMES=${{ matrix.games == 'none' && 'none' || 'all' }} -t party-game-bot:smoke .
+          docker run -d --name pg-bot -p 8090:8090 -e ADMIN_TOKEN=ci party-game-bot:smoke
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:8090/healthz > /dev/null && break
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8090/healthz | grep -q '"ok":true'
+          docker logs pg-bot
+          if [ "${{ matrix.flavor }}" = full ]; then
+            docker logs pg-bot 2>&1 | grep -q "AI available: .*ballistix"
+          else
+            docker logs pg-bot 2>&1 | grep -q "AI available: none"
+          fi
+          docker run --rm party-game-bot:smoke node dist/games.js list
+          docker rm -f pg-bot
+
+  publish:
+    name: Publish multi-arch image (${{ matrix.flavor }})
+    needs: smoke
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - flavor: full
+            games: all
+            suffix: ""
+          - flavor: bare
+            games: none
+            suffix: "-bare"
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag matches package.json version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg=$(node -p "require('./package.json').version")
+          if [ "$tag" != "$pkg" ]; then
+            echo "::error::tag v$tag does not match package.json version $pkg"
+            exit 1
+          fi
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Image name (ghcr requires lowercase)
+        id: image
+        run: echo "name=${REGISTRY}/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+      - name: Tags and labels
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.image.outputs.name }}
+          flavor: |
+            suffix=${{ matrix.suffix }},onlatest=true
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+            type=sha,format=short
+            type=raw,value=${{ inputs.tag }},enable=${{ inputs.tag != '' }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: ${{ inputs.platforms || 'linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6' }}
+          push: true
+          build-args: |
+            GAMES=${{ matrix.games }}
+            BUILD_PLUGINS=${{ matrix.games }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha,scope=multiarch-${{ matrix.flavor }}
+          cache-to: type=gha,scope=multiarch-${{ matrix.flavor }},mode=max
+      - name: Bot server tags and labels
+        id: meta-bot
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.image.outputs.name }}-bot
+          flavor: |
+            suffix=${{ matrix.suffix }},onlatest=true
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+            type=sha,format=short
+            type=raw,value=${{ inputs.tag }},enable=${{ inputs.tag != '' }}
+      - name: Build and push bot server
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile.bot
+          platforms: ${{ inputs.platforms || 'linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6' }}
+          push: true
+          build-args: |
+            BOT_GAMES=${{ matrix.games == 'none' && 'none' || 'all' }}
+          tags: ${{ steps.meta-bot.outputs.tags }}
+          labels: ${{ steps.meta-bot.outputs.labels }}
+          cache-from: type=gha,scope=multiarch-bot-${{ matrix.flavor }}
+          cache-to: type=gha,scope=multiarch-bot-${{ matrix.flavor }},mode=max

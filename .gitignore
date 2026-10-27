@@ -1,0 +1,30 @@
+node_modules
+/data
+dist
+*.log
+*.tar.gz
+bot/reports
+bot/data
+build
+*.deb
+*.rpm
+
+# secrets and local config
+.env
+.env.*
+!.env.example
+/config.yaml
+*.pem
+*.key
+*.db
+*.sqlite*
+*.corrupt-*
+
+# local tooling and generated output
+.claude/
+plans/
+prompts/
+tasks.csv
+tasks.csv.lock
+tack.yaml
+balance.jsonl

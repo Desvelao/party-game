@@ -1,0 +1,1240 @@
+{
+  "id": "frost-shove",
+  "name": "Frost Shove",
+  "version": "0.1.0",
+  "author": "Desvelao",
+  "license": "MIT",
+  "description": "Ride a polar bear on an ice floe and charge rivals into the water. Last bear on the ice wins.",
+  "order": 2,
+  "catalog": {
+    "id": "frost-shove",
+    "tags": [
+      "last-standing",
+      "hazards"
+    ],
+    "action": "charge",
+    "guide": {
+      "objective": {
+        "en": "Be the last bear standing on the ice.",
+        "es": "Sé el último oso en pie sobre el hielo.",
+        "fr": "Sois le dernier ours debout sur la glace.",
+        "de": "Sei der letzte Bär, der auf dem Eis steht.",
+        "pt": "Sê o último urso de pé no gelo.",
+        "it": "Sii l’ultimo orso in piedi sul ghiaccio."
+      },
+      "rules": [
+        {
+          "en": "Move your bear; the action button charges forward and shoves whoever you hit.",
+          "es": "Mueve tu oso; el botón de acción embiste y empuja a quien golpees.",
+          "fr": "Déplace ton ours ; le bouton d’action charge en avant et pousse celui que tu touches.",
+          "de": "Bewege deinen Bären; der Aktionsknopf stürmt nach vorn und stößt, wen du triffst.",
+          "pt": "Move o teu urso; o botão de ação investe em frente e empurra quem acertares.",
+          "it": "Muovi il tuo orso; il pulsante azione carica in avanti e spinge chi colpisci."
+        },
+        {
+          "en": "Charging uses stamina, which refills over time.",
+          "es": "Cargar gasta energía, que se recupera con el tiempo.",
+          "fr": "Charger consomme de l’endurance, qui se recharge avec le temps.",
+          "de": "Das Stürmen verbraucht Ausdauer, die sich mit der Zeit auffüllt.",
+          "pt": "Investir gasta resistência, que recarrega com o tempo.",
+          "it": "La carica consuma resistenza, che si ricarica col tempo."
+        },
+        {
+          "en": "The ice shrinks during the second half of the round.",
+          "es": "El hielo se encoge durante la segunda mitad de la ronda.",
+          "fr": "La glace rétrécit durant la seconde moitié de la manche.",
+          "de": "Das Eis schrumpft in der zweiten Hälfte der Runde.",
+          "pt": "O gelo encolhe durante a segunda metade da ronda.",
+          "it": "Il ghiaccio si restringe nella seconda metà del round."
+        },
+        {
+          "en": "Slip off the edge gently and you can mash the button to climb back onto the ice; a hard push sends you in for good.",
+          "es": "Si te deslizas suavemente por el borde, machaca el botón para volver al hielo; un empujón fuerte te manda al agua para siempre.",
+          "fr": "Si tu glisses doucement par-dessus le bord, martèle le bouton pour remonter sur la glace ; une forte poussée t’envoie à l’eau pour de bon.",
+          "de": "Rutschst du sanft über den Rand, hämmere auf den Knopf, um aufs Eis zurückzuklettern; ein harter Stoß schickt dich endgültig ins Wasser.",
+          "pt": "Se escorregares devagar pela borda, carrega repetidamente no botão para voltar ao gelo; um empurrão forte manda-te para a água de vez.",
+          "it": "Se scivoli piano oltre il bordo, martella il pulsante per risalire sul ghiaccio; una spinta forte ti manda in acqua per sempre."
+        }
+      ],
+      "items": [
+        {
+          "name": {
+            "en": "Power-up beam",
+            "es": "Rayo de potenciador",
+            "fr": "Rayon bonus",
+            "de": "Power-up-Strahl",
+            "pt": "Feixe de power-up",
+            "it": "Raggio potenziamento"
+          },
+          "description": {
+            "en": "The robot lights a beam on the ice now and then. Walk into it for a random power-up that helps you or hinders rivals.",
+            "es": "El robot ilumina un haz en el hielo de vez en cuando. Entra en él para conseguir un potenciador aleatorio que te ayuda o estorba a tus rivales.",
+            "fr": "Le robot allume parfois un rayon sur la glace. Entre-y pour obtenir un bonus aléatoire qui t’aide ou gêne tes rivaux.",
+            "de": "Der Roboter lässt ab und zu einen Strahl aufs Eis fallen. Geh hinein, um ein zufälliges Power-up zu erhalten, das dir hilft oder Rivalen behindert.",
+            "pt": "O robô acende de vez em quando um feixe no gelo. Entra nele para obteres um power-up aleatório que te ajuda ou atrapalha os rivais.",
+            "it": "Il robot accende ogni tanto un raggio sul ghiaccio. Entraci per ottenere un potenziamento casuale che aiuta te o ostacola i rivali."
+          }
+        },
+        {
+          "name": {
+            "en": "Lightning and Weight",
+            "es": "Rayo y Peso",
+            "fr": "Éclair et Poids",
+            "de": "Blitz und Gewicht",
+            "pt": "Relâmpago e Peso",
+            "it": "Fulmine e Peso"
+          },
+          "description": {
+            "en": "Touch a bear to pass it on; after 10 seconds Lightning stuns everyone else for 6 seconds, but Weight knocks out the bear holding it.",
+            "es": "Toca a un oso para pasársela; a los 10 segundos el Rayo aturde a todos los demás durante 6 segundos, pero el Peso elimina al oso que lo lleva.",
+            "fr": "Touche un ours pour la lui passer ; au bout de 10 secondes, l’Éclair étourdit tous les autres pendant 6 secondes, mais le Poids élimine l’ours qui le porte.",
+            "de": "Berühre einen Bären, um es weiterzugeben; nach 10 Sekunden betäubt der Blitz alle anderen für 6 Sekunden, das Gewicht aber schaltet den Bären aus, der es trägt.",
+            "pt": "Toca num urso para lhe passares o item; ao fim de 10 segundos o Relâmpago atordoa todos os outros durante 6 segundos, mas o Peso elimina o urso que o leva.",
+            "it": "Tocca un orso per passargliela; dopo 10 secondi il Fulmine stordisce tutti gli altri per 6 secondi, ma il Peso elimina l’orso che lo porta."
+          }
+        }
+      ]
+    },
+    "name": "Frost Shove",
+    "description": "Ride a polar bear on an ice floe and charge rivals into the water. Last bear on the ice wins.",
+    "teams": true,
+    "maxTeamSize": 4,
+    "variants": [
+      {
+        "id": "frost-classic",
+        "action": "charge",
+        "guide": {
+          "objective": {
+            "en": "Be the last bear standing on the ice.",
+            "es": "Sé el último oso en pie sobre el hielo.",
+            "fr": "Sois le dernier ours debout sur la glace.",
+            "de": "Sei der letzte Bär, der auf dem Eis steht.",
+            "pt": "Sê o último urso de pé no gelo.",
+            "it": "Sii l’ultimo orso in piedi sul ghiaccio."
+          },
+          "rules": [
+            {
+              "en": "Move your bear; the action button charges forward and shoves whoever you hit.",
+              "es": "Mueve tu oso; el botón de acción embiste y empuja a quien golpees.",
+              "fr": "Déplace ton ours ; le bouton d’action charge en avant et pousse celui que tu touches.",
+              "de": "Bewege deinen Bären; der Aktionsknopf stürmt nach vorn und stößt, wen du triffst.",
+              "pt": "Move o teu urso; o botão de ação investe em frente e empurra quem acertares.",
+              "it": "Muovi il tuo orso; il pulsante azione carica in avanti e spinge chi colpisci."
+            },
+            {
+              "en": "Charging uses stamina, which refills over time.",
+              "es": "Cargar gasta energía, que se recupera con el tiempo.",
+              "fr": "Charger consomme de l’endurance, qui se recharge avec le temps.",
+              "de": "Das Stürmen verbraucht Ausdauer, die sich mit der Zeit auffüllt.",
+              "pt": "Investir gasta resistência, que recarrega com o tempo.",
+              "it": "La carica consuma resistenza, che si ricarica col tempo."
+            },
+            {
+              "en": "The ice shrinks during the second half of the round.",
+              "es": "El hielo se encoge durante la segunda mitad de la ronda.",
+              "fr": "La glace rétrécit durant la seconde moitié de la manche.",
+              "de": "Das Eis schrumpft in der zweiten Hälfte der Runde.",
+              "pt": "O gelo encolhe durante a segunda metade da ronda.",
+              "it": "Il ghiaccio si restringe nella seconda metà del round."
+            },
+            {
+              "en": "Slip off the edge gently and you can mash the button to climb back onto the ice; a hard push sends you in for good.",
+              "es": "Si te deslizas suavemente por el borde, machaca el botón para volver al hielo; un empujón fuerte te manda al agua para siempre.",
+              "fr": "Si tu glisses doucement par-dessus le bord, martèle le bouton pour remonter sur la glace ; une forte poussée t’envoie à l’eau pour de bon.",
+              "de": "Rutschst du sanft über den Rand, hämmere auf den Knopf, um aufs Eis zurückzuklettern; ein harter Stoß schickt dich endgültig ins Wasser.",
+              "pt": "Se escorregares devagar pela borda, carrega repetidamente no botão para voltar ao gelo; um empurrão forte manda-te para a água de vez.",
+              "it": "Se scivoli piano oltre il bordo, martella il pulsante per risalire sul ghiaccio; una spinta forte ti manda in acqua per sempre."
+            },
+            {
+              "en": "A wall of ice slices guards the edge. Dash into it to break a slice and open a gap.",
+              "es": "Un muro de bloques de hielo protege el borde. Embiste para romper un bloque y abrir un hueco.",
+              "fr": "Un mur de blocs de glace protège le bord. Fonce dessus pour casser un bloc et ouvrir une brèche.",
+              "de": "Eine Mauer aus Eisblöcken schützt den Rand. Stürme hinein, um einen Block zu zerbrechen und eine Lücke zu öffnen.",
+              "pt": "Uma parede de blocos de gelo protege a borda. Investe contra ela para partir um bloco e abrir uma brecha.",
+              "it": "Un muro di blocchi di ghiaccio protegge il bordo. Caricalo per rompere un blocco e aprire un varco."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Power-up beam",
+                "es": "Rayo de potenciador",
+                "fr": "Rayon bonus",
+                "de": "Power-up-Strahl",
+                "pt": "Feixe de power-up",
+                "it": "Raggio potenziamento"
+              },
+              "description": {
+                "en": "The robot lights a beam on the ice now and then. Walk into it to grow, shrink, or get Lightning or Weight.",
+                "es": "El robot ilumina un haz en el hielo de vez en cuando. Entra en él para crecer, encoger o conseguir el Rayo o el Peso.",
+                "fr": "Le robot allume parfois un rayon sur la glace. Entre-y pour grandir, rétrécir, ou obtenir l’Éclair ou le Poids.",
+                "de": "Der Roboter lässt ab und zu einen Strahl aufs Eis fallen. Geh hinein, um zu wachsen, zu schrumpfen oder Blitz oder Gewicht zu erhalten.",
+                "pt": "O robô acende de vez em quando um feixe no gelo. Entra nele para cresceres, encolheres ou obteres o Relâmpago ou o Peso.",
+                "it": "Il robot accende ogni tanto un raggio sul ghiaccio. Entraci per crescere, rimpicciolire o ottenere il Fulmine o il Peso."
+              }
+            },
+            {
+              "name": {
+                "en": "Lightning and Weight",
+                "es": "Rayo y Peso",
+                "fr": "Éclair et Poids",
+                "de": "Blitz und Gewicht",
+                "pt": "Relâmpago e Peso",
+                "it": "Fulmine e Peso"
+              },
+              "description": {
+                "en": "Touch a bear to pass it on; after 10 seconds Lightning stuns everyone else for 6 seconds, but Weight knocks out the bear holding it.",
+                "es": "Toca a un oso para pasársela; a los 10 segundos el Rayo aturde a todos los demás durante 6 segundos, pero el Peso elimina al oso que lo lleva.",
+                "fr": "Touche un ours pour la lui passer ; au bout de 10 secondes, l’Éclair étourdit tous les autres pendant 6 secondes, mais le Poids élimine l’ours qui le porte.",
+                "de": "Berühre einen Bären, um es weiterzugeben; nach 10 Sekunden betäubt der Blitz alle anderen für 6 Sekunden, das Gewicht aber schaltet den Bären aus, der es trägt.",
+                "pt": "Toca num urso para lhe passares o item; ao fim de 10 segundos o Relâmpago atordoa todos os outros durante 6 segundos, mas o Peso elimina o urso que o leva.",
+                "it": "Tocca un orso per passargliela; dopo 10 secondi il Fulmine stordisce tutti gli altri per 6 secondi, ma il Peso elimina l’orso che lo porta."
+              }
+            }
+          ]
+        },
+        "name": "Frost Classic",
+        "description": "Classic: charge with a stamina bar, grab power-ups, mash to climb back in.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "The ice shrinks away over the second half of the round.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "staminaRegen",
+            "label": "Stamina regen",
+            "description": "Stamina refilled per second (a charge costs half a bar).",
+            "type": "number",
+            "default": 0.35,
+            "min": 0.1,
+            "max": 1,
+            "step": 0.05,
+            "group": "player"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Power-up interval",
+            "description": "A power-up beam lights up this often.",
+            "type": "number",
+            "default": 15,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Power-up variance",
+            "description": "How much the time between power-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          }
+        ]
+      },
+      {
+        "id": "frost-frenzy",
+        "action": "charge",
+        "guide": {
+          "objective": {
+            "en": "Be the last bear standing on the ice.",
+            "es": "Sé el último oso en pie sobre el hielo.",
+            "fr": "Sois le dernier ours debout sur la glace.",
+            "de": "Sei der letzte Bär, der auf dem Eis steht.",
+            "pt": "Sê o último urso de pé no gelo.",
+            "it": "Sii l’ultimo orso in piedi sul ghiaccio."
+          },
+          "rules": [
+            {
+              "en": "Move your bear; the action button charges forward and shoves whoever you hit.",
+              "es": "Mueve tu oso; el botón de acción embiste y empuja a quien golpees.",
+              "fr": "Déplace ton ours ; le bouton d’action charge en avant et pousse celui que tu touches.",
+              "de": "Bewege deinen Bären; der Aktionsknopf stürmt nach vorn und stößt, wen du triffst.",
+              "pt": "Move o teu urso; o botão de ação investe em frente e empurra quem acertares.",
+              "it": "Muovi il tuo orso; il pulsante azione carica in avanti e spinge chi colpisci."
+            },
+            {
+              "en": "Charging uses stamina, which refills over time.",
+              "es": "Cargar gasta energía, que se recupera con el tiempo.",
+              "fr": "Charger consomme de l’endurance, qui se recharge avec le temps.",
+              "de": "Das Stürmen verbraucht Ausdauer, die sich mit der Zeit auffüllt.",
+              "pt": "Investir gasta resistência, que recarrega com o tempo.",
+              "it": "La carica consuma resistenza, che si ricarica col tempo."
+            },
+            {
+              "en": "The ice shrinks during the second half of the round.",
+              "es": "El hielo se encoge durante la segunda mitad de la ronda.",
+              "fr": "La glace rétrécit durant la seconde moitié de la manche.",
+              "de": "Das Eis schrumpft in der zweiten Hälfte der Runde.",
+              "pt": "O gelo encolhe durante a segunda metade da ronda.",
+              "it": "Il ghiaccio si restringe nella seconda metà del round."
+            },
+            {
+              "en": "Slip off the edge gently and you can mash the button to climb back onto the ice; a hard push sends you in for good.",
+              "es": "Si te deslizas suavemente por el borde, machaca el botón para volver al hielo; un empujón fuerte te manda al agua para siempre.",
+              "fr": "Si tu glisses doucement par-dessus le bord, martèle le bouton pour remonter sur la glace ; une forte poussée t’envoie à l’eau pour de bon.",
+              "de": "Rutschst du sanft über den Rand, hämmere auf den Knopf, um aufs Eis zurückzuklettern; ein harter Stoß schickt dich endgültig ins Wasser.",
+              "pt": "Se escorregares devagar pela borda, carrega repetidamente no botão para voltar ao gelo; um empurrão forte manda-te para a água de vez.",
+              "it": "Se scivoli piano oltre il bordo, martella il pulsante per risalire sul ghiaccio; una spinta forte ti manda in acqua per sempre."
+            },
+            {
+              "en": "A generator sweeps energy bolts across the ice: dodge them.",
+              "es": "Un generador lanza rayos de energía por el hielo: esquívalos.",
+              "fr": "Un générateur balaie la glace de rayons d’énergie : esquive-les.",
+              "de": "Ein Generator fegt Energieblitze über das Eis: Weiche ihnen aus.",
+              "pt": "Um gerador varre o gelo com raios de energia: esquiva-te deles.",
+              "it": "Un generatore spazza il ghiaccio con fulmini di energia: schivali."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Power-up beam",
+                "es": "Rayo de potenciador",
+                "fr": "Rayon bonus",
+                "de": "Power-up-Strahl",
+                "pt": "Feixe de power-up",
+                "it": "Raggio potenziamento"
+              },
+              "description": {
+                "en": "The robot lights a beam on the ice now and then. Walk into it for a random power-up that helps you or hinders rivals.",
+                "es": "El robot ilumina un haz en el hielo de vez en cuando. Entra en él para conseguir un potenciador aleatorio que te ayuda o estorba a tus rivales.",
+                "fr": "Le robot allume parfois un rayon sur la glace. Entre-y pour obtenir un bonus aléatoire qui t’aide ou gêne tes rivaux.",
+                "de": "Der Roboter lässt ab und zu einen Strahl aufs Eis fallen. Geh hinein, um ein zufälliges Power-up zu erhalten, das dir hilft oder Rivalen behindert.",
+                "pt": "O robô acende de vez em quando um feixe no gelo. Entra nele para obteres um power-up aleatório que te ajuda ou atrapalha os rivais.",
+                "it": "Il robot accende ogni tanto un raggio sul ghiaccio. Entraci per ottenere un potenziamento casuale che aiuta te o ostacola i rivali."
+              }
+            },
+            {
+              "name": {
+                "en": "Lightning and Weight",
+                "es": "Rayo y Peso",
+                "fr": "Éclair et Poids",
+                "de": "Blitz und Gewicht",
+                "pt": "Relâmpago e Peso",
+                "it": "Fulmine e Peso"
+              },
+              "description": {
+                "en": "Touch a bear to pass it on; after 10 seconds Lightning stuns everyone else for 6 seconds, but Weight knocks out the bear holding it.",
+                "es": "Toca a un oso para pasársela; a los 10 segundos el Rayo aturde a todos los demás durante 6 segundos, pero el Peso elimina al oso que lo lleva.",
+                "fr": "Touche un ours pour la lui passer ; au bout de 10 secondes, l’Éclair étourdit tous les autres pendant 6 secondes, mais le Poids élimine l’ours qui le porte.",
+                "de": "Berühre einen Bären, um es weiterzugeben; nach 10 Sekunden betäubt der Blitz alle anderen für 6 Sekunden, das Gewicht aber schaltet den Bären aus, der es trägt.",
+                "pt": "Toca num urso para lhe passares o item; ao fim de 10 segundos o Relâmpago atordoa todos os outros durante 6 segundos, mas o Peso elimina o urso que o leva.",
+                "it": "Tocca un orso per passargliela; dopo 10 secondi il Fulmine stordisce tutti gli altri per 6 secondi, ma il Peso elimina l’orso che lo porta."
+              }
+            }
+          ]
+        },
+        "name": "Frost Frenzy",
+        "description": "A beam generator sweeps energy bolts across the ice. Dodge them.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "The ice shrinks away over the second half of the round.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "staminaRegen",
+            "label": "Stamina regen",
+            "description": "Stamina refilled per second (a charge costs half a bar).",
+            "type": "number",
+            "default": 0.35,
+            "min": 0.1,
+            "max": 1,
+            "step": 0.05,
+            "group": "player"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Power-up interval",
+            "description": "A power-up beam lights up this often.",
+            "type": "number",
+            "default": 15,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Power-up variance",
+            "description": "How much the time between power-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "boltEvery",
+            "label": "Bolt interval",
+            "description": "Seconds between energy bolts.",
+            "type": "number",
+            "default": 2.5,
+            "min": 1,
+            "max": 8,
+            "step": 0.5,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "boltVariance",
+            "label": "Bolt variance",
+            "description": "How much the time between bolts varies, plus or minus.",
+            "type": "number",
+            "default": 0.75,
+            "min": 0,
+            "max": 2,
+            "step": 0.25,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "maxBolts",
+            "label": "Most bolts at once",
+            "description": "Lightning bolts that can be falling at the same time.",
+            "type": "number",
+            "default": 3,
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "group": "hazards"
+          }
+        ]
+      },
+      {
+        "id": "tip-tumble",
+        "action": "charge",
+        "guide": {
+          "objective": {
+            "en": "Be the last bear standing on the ice.",
+            "es": "Sé el último oso en pie sobre el hielo.",
+            "fr": "Sois le dernier ours debout sur la glace.",
+            "de": "Sei der letzte Bär, der auf dem Eis steht.",
+            "pt": "Sê o último urso de pé no gelo.",
+            "it": "Sii l’ultimo orso in piedi sul ghiaccio."
+          },
+          "rules": [
+            {
+              "en": "Move your bear; the action button charges forward and shoves whoever you hit.",
+              "es": "Mueve tu oso; el botón de acción embiste y empuja a quien golpees.",
+              "fr": "Déplace ton ours ; le bouton d’action charge en avant et pousse celui que tu touches.",
+              "de": "Bewege deinen Bären; der Aktionsknopf stürmt nach vorn und stößt, wen du triffst.",
+              "pt": "Move o teu urso; o botão de ação investe em frente e empurra quem acertares.",
+              "it": "Muovi il tuo orso; il pulsante azione carica in avanti e spinge chi colpisci."
+            },
+            {
+              "en": "Charging uses stamina, which refills over time.",
+              "es": "Cargar gasta energía, que se recupera con el tiempo.",
+              "fr": "Charger consomme de l’endurance, qui se recharge avec le temps.",
+              "de": "Das Stürmen verbraucht Ausdauer, die sich mit der Zeit auffüllt.",
+              "pt": "Investir gasta resistência, que recarrega com o tempo.",
+              "it": "La carica consuma resistenza, che si ricarica col tempo."
+            },
+            {
+              "en": "The ice shrinks during the second half of the round.",
+              "es": "El hielo se encoge durante la segunda mitad de la ronda.",
+              "fr": "La glace rétrécit durant la seconde moitié de la manche.",
+              "de": "Das Eis schrumpft in der zweiten Hälfte der Runde.",
+              "pt": "O gelo encolhe durante a segunda metade da ronda.",
+              "it": "Il ghiaccio si restringe nella seconda metà del round."
+            },
+            {
+              "en": "Slip off the edge gently and you can mash the button to climb back onto the ice; a hard push sends you in for good.",
+              "es": "Si te deslizas suavemente por el borde, machaca el botón para volver al hielo; un empujón fuerte te manda al agua para siempre.",
+              "fr": "Si tu glisses doucement par-dessus le bord, martèle le bouton pour remonter sur la glace ; une forte poussée t’envoie à l’eau pour de bon.",
+              "de": "Rutschst du sanft über den Rand, hämmere auf den Knopf, um aufs Eis zurückzuklettern; ein harter Stoß schickt dich endgültig ins Wasser.",
+              "pt": "Se escorregares devagar pela borda, carrega repetidamente no botão para voltar ao gelo; um empurrão forte manda-te para a água de vez.",
+              "it": "Se scivoli piano oltre il bordo, martella il pulsante per risalire sul ghiaccio; una spinta forte ti manda in acqua per sempre."
+            },
+            {
+              "en": "The floe tilts toward where the bears are crowded, so spread out.",
+              "es": "El témpano se inclina hacia donde se amontonan los osos, así que dispérsate.",
+              "fr": "La banquise penche du côté où les ours sont regroupés, alors éparpillez-vous.",
+              "de": "Die Scholle neigt sich dorthin, wo sich die Bären drängen, also verteilt euch.",
+              "pt": "A placa inclina para onde os ursos estão aglomerados, por isso espalhem-se.",
+              "it": "Il lastrone si inclina dove gli orsi sono ammassati, quindi sparpagliatevi."
+            },
+            {
+              "en": "Now and then a fish jumps onto the ice and a walrus comes to catch it: its weight tips the floe.",
+              "es": "De vez en cuando un pez salta al hielo y una morsa viene a atraparlo: su peso inclina el témpano.",
+              "fr": "De temps en temps, un poisson saute sur la glace et un morse vient l’attraper : son poids fait pencher la banquise.",
+              "de": "Ab und zu springt ein Fisch aufs Eis und ein Walross holt ihn sich: Sein Gewicht kippt die Scholle.",
+              "pt": "De vez em quando um peixe salta para o gelo e uma morsa vem apanhá-lo: o seu peso inclina o icebergue.",
+              "it": "Ogni tanto un pesce salta sul ghiaccio e un tricheco viene a prenderlo: il suo peso inclina la banchisa."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Power-up beam",
+                "es": "Rayo de potenciador",
+                "fr": "Rayon bonus",
+                "de": "Power-up-Strahl",
+                "pt": "Feixe de power-up",
+                "it": "Raggio potenziamento"
+              },
+              "description": {
+                "en": "The robot lights a beam on the ice now and then. Walk into it for a random power-up that helps you or hinders rivals.",
+                "es": "El robot ilumina un haz en el hielo de vez en cuando. Entra en él para conseguir un potenciador aleatorio que te ayuda o estorba a tus rivales.",
+                "fr": "Le robot allume parfois un rayon sur la glace. Entre-y pour obtenir un bonus aléatoire qui t’aide ou gêne tes rivaux.",
+                "de": "Der Roboter lässt ab und zu einen Strahl aufs Eis fallen. Geh hinein, um ein zufälliges Power-up zu erhalten, das dir hilft oder Rivalen behindert.",
+                "pt": "O robô acende de vez em quando um feixe no gelo. Entra nele para obteres um power-up aleatório que te ajuda ou atrapalha os rivais.",
+                "it": "Il robot accende ogni tanto un raggio sul ghiaccio. Entraci per ottenere un potenziamento casuale che aiuta te o ostacola i rivali."
+              }
+            },
+            {
+              "name": {
+                "en": "Lightning and Weight",
+                "es": "Rayo y Peso",
+                "fr": "Éclair et Poids",
+                "de": "Blitz und Gewicht",
+                "pt": "Relâmpago e Peso",
+                "it": "Fulmine e Peso"
+              },
+              "description": {
+                "en": "Touch a bear to pass it on; after 10 seconds Lightning stuns everyone else for 6 seconds, but Weight knocks out the bear holding it.",
+                "es": "Toca a un oso para pasársela; a los 10 segundos el Rayo aturde a todos los demás durante 6 segundos, pero el Peso elimina al oso que lo lleva.",
+                "fr": "Touche un ours pour la lui passer ; au bout de 10 secondes, l’Éclair étourdit tous les autres pendant 6 secondes, mais le Poids élimine l’ours qui le porte.",
+                "de": "Berühre einen Bären, um es weiterzugeben; nach 10 Sekunden betäubt der Blitz alle anderen für 6 Sekunden, das Gewicht aber schaltet den Bären aus, der es trägt.",
+                "pt": "Toca num urso para lhe passares o item; ao fim de 10 segundos o Relâmpago atordoa todos os outros durante 6 segundos, mas o Peso elimina o urso que o leva.",
+                "it": "Tocca un orso per passargliela; dopo 10 secondi il Fulmine stordisce tutti gli altri per 6 secondi, ma il Peso elimina l’orso che lo porta."
+              }
+            }
+          ]
+        },
+        "name": "Tip Tumble",
+        "description": "The floe tilts toward where the bears are crowded and everyone slides downhill.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "The ice shrinks away over the second half of the round.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "staminaRegen",
+            "label": "Stamina regen",
+            "description": "Stamina refilled per second (a charge costs half a bar).",
+            "type": "number",
+            "default": 0.35,
+            "min": 0.1,
+            "max": 1,
+            "step": 0.05,
+            "group": "player"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Power-up interval",
+            "description": "A power-up beam lights up this often.",
+            "type": "number",
+            "default": 15,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Power-up variance",
+            "description": "How much the time between power-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "tiltStrength",
+            "label": "Tilt strength",
+            "description": "How hard the floe pulls everyone downhill.",
+            "type": "number",
+            "default": 320,
+            "min": 100,
+            "max": 700,
+            "step": 20,
+            "group": "hazards"
+          },
+          {
+            "id": "walrusEvery",
+            "label": "Walrus interval",
+            "description": "Seconds between the walrus visits.",
+            "type": "number",
+            "default": 25,
+            "min": 8,
+            "max": 90,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "walrusVariance",
+            "label": "Walrus variance",
+            "description": "The interval varies by up to this many seconds, either way.",
+            "type": "number",
+            "default": 10,
+            "min": 0,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          }
+        ]
+      },
+      {
+        "id": "thaw-frenzy",
+        "action": "charge",
+        "guide": {
+          "objective": {
+            "en": "Be the last bear standing on the ice.",
+            "es": "Sé el último oso en pie sobre el hielo.",
+            "fr": "Sois le dernier ours debout sur la glace.",
+            "de": "Sei der letzte Bär, der auf dem Eis steht.",
+            "pt": "Sê o último urso de pé no gelo.",
+            "it": "Sii l’ultimo orso in piedi sul ghiaccio."
+          },
+          "rules": [
+            {
+              "en": "Move your bear; the action button charges forward and shoves whoever you hit.",
+              "es": "Mueve tu oso; el botón de acción embiste y empuja a quien golpees.",
+              "fr": "Déplace ton ours ; le bouton d’action charge en avant et pousse celui que tu touches.",
+              "de": "Bewege deinen Bären; der Aktionsknopf stürmt nach vorn und stößt, wen du triffst.",
+              "pt": "Move o teu urso; o botão de ação investe em frente e empurra quem acertares.",
+              "it": "Muovi il tuo orso; il pulsante azione carica in avanti e spinge chi colpisci."
+            },
+            {
+              "en": "Charging uses stamina, which refills over time.",
+              "es": "Cargar gasta energía, que se recupera con el tiempo.",
+              "fr": "Charger consomme de l’endurance, qui se recharge avec le temps.",
+              "de": "Das Stürmen verbraucht Ausdauer, die sich mit der Zeit auffüllt.",
+              "pt": "Investir gasta resistência, que recarrega com o tempo.",
+              "it": "La carica consuma resistenza, che si ricarica col tempo."
+            },
+            {
+              "en": "The ice shrinks during the second half of the round.",
+              "es": "El hielo se encoge durante la segunda mitad de la ronda.",
+              "fr": "La glace rétrécit durant la seconde moitié de la manche.",
+              "de": "Das Eis schrumpft in der zweiten Hälfte der Runde.",
+              "pt": "O gelo encolhe durante a segunda metade da ronda.",
+              "it": "Il ghiaccio si restringe nella seconda metà del round."
+            },
+            {
+              "en": "Slip off the edge gently and you can mash the button to climb back onto the ice; a hard push sends you in for good.",
+              "es": "Si te deslizas suavemente por el borde, machaca el botón para volver al hielo; un empujón fuerte te manda al agua para siempre.",
+              "fr": "Si tu glisses doucement par-dessus le bord, martèle le bouton pour remonter sur la glace ; une forte poussée t’envoie à l’eau pour de bon.",
+              "de": "Rutschst du sanft über den Rand, hämmere auf den Knopf, um aufs Eis zurückzuklettern; ein harter Stoß schickt dich endgültig ins Wasser.",
+              "pt": "Se escorregares devagar pela borda, carrega repetidamente no botão para voltar ao gelo; um empurrão forte manda-te para a água de vez.",
+              "it": "Se scivoli piano oltre il bordo, martella il pulsante per risalire sul ghiaccio; una spinta forte ti manda in acqua per sempre."
+            },
+            {
+              "en": "Gruff flies to the edge and melts a bite out of it now and then. Watch for the glowing cracks and move away.",
+              "es": "Gruff vuela hasta el borde y derrite un trozo de vez en cuando. Vigila las grietas brillantes y aléjate.",
+              "fr": "Gruff vole jusqu’au bord et en fait fondre un morceau de temps en temps. Surveille les fissures lumineuses et éloigne-toi.",
+              "de": "Gruff fliegt zum Rand und schmilzt ab und zu ein Stück heraus. Achte auf die glühenden Risse und weich aus.",
+              "pt": "O Gruff voa até à borda e derrete de vez em quando um pedaço. Atenção às fendas brilhantes e afasta-te.",
+              "it": "Gruff vola fino al bordo e ogni tanto ne scioglie un pezzo. Fai attenzione alle crepe luminose e allontanati."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Power-up beam",
+                "es": "Rayo de potenciador",
+                "fr": "Rayon bonus",
+                "de": "Power-up-Strahl",
+                "pt": "Feixe de power-up",
+                "it": "Raggio potenziamento"
+              },
+              "description": {
+                "en": "Gruff lights a beam on the ice now and then. Every power-up it gives is a bad one.",
+                "es": "Gruff ilumina un haz en el hielo de vez en cuando. Todos sus potenciadores son malos.",
+                "fr": "Gruff allume parfois un rayon sur la glace. Tous ses bonus sont mauvais.",
+                "de": "Gruff lässt ab und zu einen Strahl aufs Eis fallen. Jedes seiner Power-ups ist schlecht.",
+                "pt": "O Gruff acende de vez em quando um feixe no gelo. Todos os seus power-ups são maus.",
+                "it": "Gruff accende ogni tanto un raggio sul ghiaccio. Ogni potenziamento che dà è negativo."
+              }
+            },
+            {
+              "name": {
+                "en": "Weight",
+                "es": "Peso",
+                "fr": "Poids",
+                "de": "Gewicht",
+                "pt": "Peso",
+                "it": "Peso"
+              },
+              "description": {
+                "en": "Touch a bear to pass it on; after 10 seconds it knocks out the bear holding it.",
+                "es": "Toca a un oso para pasárselo; a los 10 segundos elimina al oso que lo lleva.",
+                "fr": "Touche un ours pour le lui passer ; au bout de 10 secondes, il élimine l’ours qui le porte.",
+                "de": "Berühre einen Bären, um es weiterzugeben; nach 10 Sekunden schaltet es den Bären aus, der es trägt.",
+                "pt": "Toca num urso para lhe passares o item; ao fim de 10 segundos elimina o urso que o leva.",
+                "it": "Tocca un orso per passarlo; dopo 10 secondi elimina l’orso che lo porta."
+              }
+            }
+          ]
+        },
+        "name": "Thaw Frenzy",
+        "description": "Gruff melts bites out of the edge, and his power-ups are always bad.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "The ice shrinks away over the second half of the round.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "staminaRegen",
+            "label": "Stamina regen",
+            "description": "Stamina refilled per second (a charge costs half a bar).",
+            "type": "number",
+            "default": 0.35,
+            "min": 0.1,
+            "max": 1,
+            "step": 0.05,
+            "group": "player"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Power-up interval",
+            "description": "A power-up beam lights up this often.",
+            "type": "number",
+            "default": 15,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Power-up variance",
+            "description": "How much the time between power-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "meltEvery",
+            "label": "Melt interval",
+            "description": "Seconds between the melt events.",
+            "type": "number",
+            "default": 10,
+            "min": 4,
+            "max": 40,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "meltVariance",
+            "label": "Melt variance",
+            "description": "The interval varies by up to this many seconds, either way.",
+            "type": "number",
+            "default": 4,
+            "min": 0,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "meltDepth",
+            "label": "Melt depth",
+            "description": "How far the edge melts back at each event.",
+            "type": "number",
+            "default": 60,
+            "min": 20,
+            "max": 120,
+            "step": 10,
+            "group": "hazards"
+          }
+        ]
+      },
+      {
+        "id": "wild-frenzy",
+        "action": "charge",
+        "guide": {
+          "objective": {
+            "en": "Be the last bear standing on the ice.",
+            "es": "Sé el último oso en pie sobre el hielo.",
+            "fr": "Sois le dernier ours debout sur la glace.",
+            "de": "Sei der letzte Bär, der auf dem Eis steht.",
+            "pt": "Sê o último urso de pé no gelo.",
+            "it": "Sii l’ultimo orso in piedi sul ghiaccio."
+          },
+          "rules": [
+            {
+              "en": "Move your bear; the action button charges forward and shoves whoever you hit.",
+              "es": "Mueve tu oso; el botón de acción embiste y empuja a quien golpees.",
+              "fr": "Déplace ton ours ; le bouton d’action charge en avant et pousse celui que tu touches.",
+              "de": "Bewege deinen Bären; der Aktionsknopf stürmt nach vorn und stößt, wen du triffst.",
+              "pt": "Move o teu urso; o botão de ação investe em frente e empurra quem acertares.",
+              "it": "Muovi il tuo orso; il pulsante azione carica in avanti e spinge chi colpisci."
+            },
+            {
+              "en": "Charging uses stamina, which refills over time.",
+              "es": "Cargar gasta energía, que se recupera con el tiempo.",
+              "fr": "Charger consomme de l’endurance, qui se recharge avec le temps.",
+              "de": "Das Stürmen verbraucht Ausdauer, die sich mit der Zeit auffüllt.",
+              "pt": "Investir gasta resistência, que recarrega com o tempo.",
+              "it": "La carica consuma resistenza, che si ricarica col tempo."
+            },
+            {
+              "en": "The ice shrinks during the second half of the round.",
+              "es": "El hielo se encoge durante la segunda mitad de la ronda.",
+              "fr": "La glace rétrécit durant la seconde moitié de la manche.",
+              "de": "Das Eis schrumpft in der zweiten Hälfte der Runde.",
+              "pt": "O gelo encolhe durante a segunda metade da ronda.",
+              "it": "Il ghiaccio si restringe nella seconda metà del round."
+            },
+            {
+              "en": "Slip off the edge gently and you can mash the button to climb back onto the ice; a hard push sends you in for good.",
+              "es": "Si te deslizas suavemente por el borde, machaca el botón para volver al hielo; un empujón fuerte te manda al agua para siempre.",
+              "fr": "Si tu glisses doucement par-dessus le bord, martèle le bouton pour remonter sur la glace ; une forte poussée t’envoie à l’eau pour de bon.",
+              "de": "Rutschst du sanft über den Rand, hämmere auf den Knopf, um aufs Eis zurückzuklettern; ein harter Stoß schickt dich endgültig ins Wasser.",
+              "pt": "Se escorregares devagar pela borda, carrega repetidamente no botão para voltar ao gelo; um empurrão forte manda-te para a água de vez.",
+              "it": "Se scivoli piano oltre il bordo, martella il pulsante per risalire sul ghiaccio; una spinta forte ti manda in acqua per sempre."
+            }
+          ],
+          "items": [
+            {
+              "name": {
+                "en": "Power-up beam",
+                "es": "Rayo de potenciador",
+                "fr": "Rayon bonus",
+                "de": "Power-up-Strahl",
+                "pt": "Feixe de power-up",
+                "it": "Raggio potenziamento"
+              },
+              "description": {
+                "en": "The robot lights a beam on the ice now and then. Walk into it for a random power-up that helps you or hinders rivals.",
+                "es": "El robot ilumina un haz en el hielo de vez en cuando. Entra en él para conseguir un potenciador aleatorio que te ayuda o estorba a tus rivales.",
+                "fr": "Le robot allume parfois un rayon sur la glace. Entre-y pour obtenir un bonus aléatoire qui t’aide ou gêne tes rivaux.",
+                "de": "Der Roboter lässt ab und zu einen Strahl aufs Eis fallen. Geh hinein, um ein zufälliges Power-up zu erhalten, das dir hilft oder Rivalen behindert.",
+                "pt": "O robô acende de vez em quando um feixe no gelo. Entra nele para obteres um power-up aleatório que te ajuda ou atrapalha os rivais.",
+                "it": "Il robot accende ogni tanto un raggio sul ghiaccio. Entraci per ottenere un potenziamento casuale che aiuta te o ostacola i rivali."
+              }
+            },
+            {
+              "name": {
+                "en": "Lightning and Weight",
+                "es": "Rayo y Peso",
+                "fr": "Éclair et Poids",
+                "de": "Blitz und Gewicht",
+                "pt": "Relâmpago e Peso",
+                "it": "Fulmine e Peso"
+              },
+              "description": {
+                "en": "Touch a bear to pass it on; after 10 seconds Lightning stuns everyone else for 6 seconds, but Weight knocks out the bear holding it.",
+                "es": "Toca a un oso para pasársela; a los 10 segundos el Rayo aturde a todos los demás durante 6 segundos, pero el Peso elimina al oso que lo lleva.",
+                "fr": "Touche un ours pour la lui passer ; au bout de 10 secondes, l’Éclair étourdit tous les autres pendant 6 secondes, mais le Poids élimine l’ours qui le porte.",
+                "de": "Berühre einen Bären, um es weiterzugeben; nach 10 Sekunden betäubt der Blitz alle anderen für 6 Sekunden, das Gewicht aber schaltet den Bären aus, der es trägt.",
+                "pt": "Toca num urso para lhe passares o item; ao fim de 10 segundos o Relâmpago atordoa todos os outros durante 6 segundos, mas o Peso elimina o urso que o leva.",
+                "it": "Tocca un orso per passargliela; dopo 10 secondi il Fulmine stordisce tutti gli altri per 6 secondi, ma il Peso elimina l’orso che lo porta."
+              }
+            },
+            {
+              "name": {
+                "en": "Bomb",
+                "es": "Bomba",
+                "fr": "Bombe",
+                "de": "Bombe",
+                "pt": "Bomba",
+                "it": "Bomba"
+              },
+              "description": {
+                "en": "Grab one and throw it: one hit knocks a rider off, two blow them away.",
+                "es": "Agarra una y lánzala: un golpe tumba a un jinete, dos lo hacen volar.",
+                "fr": "Prends-en une et lance-la : un coup fait tomber un cavalier, deux l’expédient au loin.",
+                "de": "Schnapp dir eine und wirf sie: Ein Treffer wirft einen Reiter ab, zwei schleudern ihn weg.",
+                "pt": "Apanha uma e atira-a: um acerto derruba um cavaleiro, dois mandam-no pelos ares.",
+                "it": "Prendine una e lanciala: un colpo getta giù un cavaliere, due lo scaraventano via."
+              }
+            }
+          ]
+        },
+        "name": "Wild Frenzy",
+        "description": "Bombs! Grab one and throw it: one hit knocks a rider off, two blow them away.",
+        "options": [
+          {
+            "id": "timeLimit",
+            "label": "Time limit",
+            "description": "The ice shrinks away over the second half of the round.",
+            "type": "number",
+            "default": 90,
+            "min": 30,
+            "max": 180,
+            "step": 10,
+            "unit": "s",
+            "group": "match"
+          },
+          {
+            "id": "staminaRegen",
+            "label": "Stamina regen",
+            "description": "Stamina refilled per second (a charge costs half a bar).",
+            "type": "number",
+            "default": 0.35,
+            "min": 0.1,
+            "max": 1,
+            "step": 0.05,
+            "group": "player"
+          },
+          {
+            "id": "itemEvery",
+            "label": "Power-up interval",
+            "description": "A power-up beam lights up this often.",
+            "type": "number",
+            "default": 15,
+            "min": 3,
+            "max": 30,
+            "step": 1,
+            "unit": "s",
+            "group": "spawns"
+          },
+          {
+            "id": "itemVariance",
+            "label": "Power-up variance",
+            "description": "How much the time between power-ups varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "spawns"
+          },
+          {
+            "id": "invulnTime",
+            "label": "Hit protection",
+            "description": "Seconds a player cannot be hurt again after a hit (0 = off).",
+            "type": "number",
+            "default": 0.5,
+            "min": 0,
+            "max": 3,
+            "step": 0.25,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "player"
+          },
+          {
+            "id": "bombEvery",
+            "label": "Bomb interval",
+            "description": "A bomb appears this often.",
+            "type": "number",
+            "default": 6,
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "unit": "s",
+            "group": "hazards"
+          },
+          {
+            "id": "bombVariance",
+            "label": "Bomb variance",
+            "description": "How much the time between bombs varies, plus or minus.",
+            "type": "number",
+            "default": 0,
+            "min": 0,
+            "max": 4,
+            "step": 1,
+            "unit": "s",
+            "zeroLabel": "Off",
+            "group": "hazards"
+          }
+        ]
+      }
+    ]
+  },
+  "locales": {
+    "es": {
+      "Ride a polar bear on an ice floe and charge rivals into the water. Last bear on the ice wins.": "Monta un oso polar sobre un témpano y embiste a tus rivales al agua. Gana el último oso sobre el hielo.",
+      "Classic: charge with a stamina bar, grab power-ups, mash to climb back in.": "Clásico: carga con una barra de energía, recoge potenciadores y machaca el botón para volver a subir.",
+      "The ice shrinks away over the second half of the round.": "El hielo se encoge durante la segunda mitad de la ronda.",
+      "Stamina regen": "Recuperación de energía",
+      "Stamina refilled per second (a charge costs half a bar).": "Energía recuperada por segundo (una carga cuesta media barra).",
+      "A beam generator sweeps energy bolts across the ice. Dodge them.": "Un generador lanza rayos de energía por el hielo. Esquívalos.",
+      "Bolt interval": "Intervalo de rayos",
+      "Seconds between energy bolts.": "Segundos entre rayos de energía.",
+      "The floe tilts toward where the bears are crowded and everyone slides downhill.": "El témpano se inclina hacia donde se amontonan los osos y todos resbalan cuesta abajo.",
+      "Tilt strength": "Fuerza de inclinación",
+      "How hard the floe pulls everyone downhill.": "Con qué fuerza el témpano arrastra a todos cuesta abajo.",
+      "Bombs! Grab one and throw it: one hit knocks a rider off, two blow them away.": "¡Bombas! Agarra una y lánzala: un golpe tumba a un jinete, dos lo hacen volar.",
+      "Bomb interval": "Intervalo de bombas",
+      "A bomb appears this often.": "Aparece una bomba con esta frecuencia.",
+      "You fell! Spectating": "¡Caíste! Mirando",
+      "In the water! MASH the button!": "¡En el agua! ¡MACHACA el botón!",
+      "Walrus interval": "Intervalo de la morsa",
+      "Seconds between the walrus visits.": "Segundos entre las visitas de la morsa.",
+      "Walrus variance": "Variación de la morsa",
+      "The interval varies by up to this many seconds, either way.": "El intervalo varía hasta este número de segundos, en más o en menos.",
+      "A power-up beam lights up this often.": "Un rayo de potenciador se enciende con esta frecuencia.",
+      "Gruff melts bites out of the edge, and his power-ups are always bad.": "Gruff derrite mordiscos del borde, y sus potenciadores son siempre malos.",
+      "Melt interval": "Intervalo de deshielo",
+      "Seconds between the melt events.": "Segundos entre los deshielos.",
+      "Melt variance": "Variación del deshielo",
+      "Melt depth": "Profundidad del deshielo",
+      "How far the edge melts back at each event.": "Cuánto retrocede el borde en cada deshielo.",
+      "Power-up variance": "Variación de potenciadores",
+      "How much the time between power-ups varies, plus or minus.": "Cuánto varía el tiempo entre potenciadores, más o menos.",
+      "Off": "Desactivado",
+      "Bolt variance": "Variación de rayos",
+      "How much the time between bolts varies, plus or minus.": "Cuánto varía el tiempo entre rayos, más o menos.",
+      "Bomb variance": "Variación de bombas",
+      "How much the time between bombs varies, plus or minus.": "Cuánto varía el tiempo entre bombas, más o menos.",
+      "Most bolts at once": "Máximo de rayos a la vez",
+      "Lightning bolts that can be falling at the same time.": "Rayos que pueden estar cayendo a la vez."
+    },
+    "fr": {
+      "Ride a polar bear on an ice floe and charge rivals into the water. Last bear on the ice wins.": "Chevauche un ours polaire sur une banquise et charge tes rivaux pour les jeter à l’eau. Le dernier ours sur la glace gagne.",
+      "Classic: charge with a stamina bar, grab power-ups, mash to climb back in.": "Classique : charge avec une barre d’endurance, ramasse des bonus, martèle pour remonter.",
+      "The ice shrinks away over the second half of the round.": "La glace rétrécit durant la seconde moitié de la manche.",
+      "Stamina regen": "Régénération d’endurance",
+      "Stamina refilled per second (a charge costs half a bar).": "Endurance récupérée par seconde (une charge coûte une demi-barre).",
+      "A beam generator sweeps energy bolts across the ice. Dodge them.": "Un générateur de rayons balaie la glace d’éclairs d’énergie. Esquive-les.",
+      "Bolt interval": "Intervalle des éclairs",
+      "Seconds between energy bolts.": "Secondes entre deux éclairs d’énergie.",
+      "The floe tilts toward where the bears are crowded and everyone slides downhill.": "La banquise penche du côté où les ours sont regroupés et tout le monde glisse vers le bas.",
+      "Tilt strength": "Force de l’inclinaison",
+      "How hard the floe pulls everyone downhill.": "Force avec laquelle la banquise attire tout le monde vers le bas.",
+      "Bombs! Grab one and throw it: one hit knocks a rider off, two blow them away.": "Des bombes ! Prends-en une et lance-la : un coup fait tomber un cavalier, deux l’expédient au loin.",
+      "Bomb interval": "Intervalle des bombes",
+      "A bomb appears this often.": "Une bombe apparaît à cette fréquence.",
+      "You fell! Spectating": "Tu es tombé ! Tu regardes",
+      "In the water! MASH the button!": "Dans l’eau ! MARTÈLE le bouton !",
+      "Walrus interval": "Intervalle du morse",
+      "Seconds between the walrus visits.": "Secondes entre les visites du morse.",
+      "Walrus variance": "Variation du morse",
+      "The interval varies by up to this many seconds, either way.": "L’intervalle varie jusqu’à ce nombre de secondes, en plus ou en moins.",
+      "A power-up beam lights up this often.": "Un rayon bonus s’allume à cette fréquence.",
+      "Gruff melts bites out of the edge, and his power-ups are always bad.": "Gruff fait fondre des morceaux du bord, et ses bonus sont toujours mauvais.",
+      "Melt interval": "Intervalle de fonte",
+      "Seconds between the melt events.": "Secondes entre les fontes.",
+      "Melt variance": "Variation de la fonte",
+      "Melt depth": "Profondeur de la fonte",
+      "How far the edge melts back at each event.": "De combien le bord recule à chaque fonte.",
+      "Power-up variance": "Variation des bonus",
+      "How much the time between power-ups varies, plus or minus.": "De combien varie le temps entre les bonus, en plus ou en moins.",
+      "Off": "Désactivé",
+      "Bolt variance": "Variation des éclairs",
+      "How much the time between bolts varies, plus or minus.": "De combien varie le temps entre les éclairs, en plus ou en moins.",
+      "Bomb variance": "Variation des bombes",
+      "How much the time between bombs varies, plus or minus.": "De combien varie le temps entre les bombes, en plus ou en moins.",
+      "Most bolts at once": "Max d'éclairs simultanés",
+      "Lightning bolts that can be falling at the same time.": "Éclairs qui peuvent tomber en même temps."
+    },
+    "de": {
+      "Ride a polar bear on an ice floe and charge rivals into the water. Last bear on the ice wins.": "Reite einen Eisbären auf einer Eisscholle und stürme Rivalen ins Wasser. Der letzte Bär auf dem Eis gewinnt.",
+      "Classic: charge with a stamina bar, grab power-ups, mash to climb back in.": "Klassisch: Stürme mit einer Ausdauerleiste, sammle Power-ups, hämmere, um zurückzuklettern.",
+      "The ice shrinks away over the second half of the round.": "Das Eis schrumpft in der zweiten Hälfte der Runde.",
+      "Stamina regen": "Ausdauerregeneration",
+      "Stamina refilled per second (a charge costs half a bar).": "Pro Sekunde aufgefüllte Ausdauer (ein Sturmangriff kostet eine halbe Leiste).",
+      "A beam generator sweeps energy bolts across the ice. Dodge them.": "Ein Strahlengenerator fegt Energieblitze über das Eis. Weiche ihnen aus.",
+      "Bolt interval": "Blitzintervall",
+      "Seconds between energy bolts.": "Sekunden zwischen Energieblitzen.",
+      "The floe tilts toward where the bears are crowded and everyone slides downhill.": "Die Scholle neigt sich dorthin, wo sich die Bären drängen, und alle rutschen bergab.",
+      "Tilt strength": "Neigungsstärke",
+      "How hard the floe pulls everyone downhill.": "Wie stark die Scholle alle bergab zieht.",
+      "Bombs! Grab one and throw it: one hit knocks a rider off, two blow them away.": "Bomben! Schnapp dir eine und wirf sie: Ein Treffer wirft einen Reiter ab, zwei schleudern ihn weg.",
+      "Bomb interval": "Bomben-Intervall",
+      "A bomb appears this often.": "So oft erscheint eine Bombe.",
+      "You fell! Spectating": "Du bist gefallen! Du schaust zu",
+      "In the water! MASH the button!": "Im Wasser! HÄMMERE auf den Knopf!",
+      "Walrus interval": "Walross-Intervall",
+      "Seconds between the walrus visits.": "Sekunden zwischen den Walross-Besuchen.",
+      "Walrus variance": "Walross-Abweichung",
+      "The interval varies by up to this many seconds, either way.": "Das Intervall schwankt um bis zu so viele Sekunden, in beide Richtungen.",
+      "A power-up beam lights up this often.": "Ein Power-up-Strahl leuchtet so oft auf.",
+      "Gruff melts bites out of the edge, and his power-ups are always bad.": "Gruff schmilzt Stücke aus dem Rand, und seine Power-ups sind immer schlecht.",
+      "Melt interval": "Schmelz-Intervall",
+      "Seconds between the melt events.": "Sekunden zwischen den Schmelzereignissen.",
+      "Melt variance": "Schmelz-Abweichung",
+      "Melt depth": "Schmelztiefe",
+      "How far the edge melts back at each event.": "Wie weit der Rand bei jedem Ereignis zurückschmilzt.",
+      "Power-up variance": "Power-up-Schwankung",
+      "How much the time between power-ups varies, plus or minus.": "Wie stark die Zeit zwischen den Power-ups schwankt, plus oder minus.",
+      "Off": "Aus",
+      "Bolt variance": "Blitzschwankung",
+      "How much the time between bolts varies, plus or minus.": "Wie stark die Zeit zwischen den Blitzen schwankt, plus oder minus.",
+      "Bomb variance": "Bombenschwankung",
+      "How much the time between bombs varies, plus or minus.": "Wie stark die Zeit zwischen den Bomben schwankt, plus oder minus.",
+      "Most bolts at once": "Max. Blitze gleichzeitig",
+      "Lightning bolts that can be falling at the same time.": "Blitze, die gleichzeitig einschlagen können."
+    },
+    "pt": {
+      "Ride a polar bear on an ice floe and charge rivals into the water. Last bear on the ice wins.": "Monta um urso polar numa placa de gelo e investe contra os rivais para os atirar à água. Ganha o último urso no gelo.",
+      "Classic: charge with a stamina bar, grab power-ups, mash to climb back in.": "Clássico: investe com uma barra de resistência, apanha power-ups, carrega repetidamente para voltar a subir.",
+      "The ice shrinks away over the second half of the round.": "O gelo encolhe durante a segunda metade da ronda.",
+      "Stamina regen": "Regeneração de resistência",
+      "Stamina refilled per second (a charge costs half a bar).": "Resistência recuperada por segundo (uma investida custa meia barra).",
+      "A beam generator sweeps energy bolts across the ice. Dodge them.": "Um gerador de raios varre o gelo com raios de energia. Esquiva-te deles.",
+      "Bolt interval": "Intervalo dos raios",
+      "Seconds between energy bolts.": "Segundos entre raios de energia.",
+      "The floe tilts toward where the bears are crowded and everyone slides downhill.": "A placa inclina para onde os ursos estão aglomerados e todos deslizam para baixo.",
+      "Tilt strength": "Força da inclinação",
+      "How hard the floe pulls everyone downhill.": "A força com que a placa puxa toda a gente para baixo.",
+      "Bombs! Grab one and throw it: one hit knocks a rider off, two blow them away.": "Bombas! Apanha uma e atira-a: um acerto derruba um cavaleiro, dois mandam-no pelos ares.",
+      "Bomb interval": "Intervalo das bombas",
+      "A bomb appears this often.": "Uma bomba aparece com esta frequência.",
+      "You fell! Spectating": "Caíste! A assistir",
+      "In the water! MASH the button!": "Na água! CARREGA REPETIDAMENTE no botão!",
+      "Walrus interval": "Intervalo da morsa",
+      "Seconds between the walrus visits.": "Segundos entre as visitas da morsa.",
+      "Walrus variance": "Variação da morsa",
+      "The interval varies by up to this many seconds, either way.": "O intervalo varia até este número de segundos, para mais ou para menos.",
+      "A power-up beam lights up this often.": "Um feixe de power-up acende-se com esta frequência.",
+      "Gruff melts bites out of the edge, and his power-ups are always bad.": "O Gruff derrete pedaços da borda e os seus power-ups são sempre maus.",
+      "Melt interval": "Intervalo de derretimento",
+      "Seconds between the melt events.": "Segundos entre os derretimentos.",
+      "Melt variance": "Variação do derretimento",
+      "Melt depth": "Profundidade do derretimento",
+      "How far the edge melts back at each event.": "Quanto a borda recua em cada derretimento.",
+      "Power-up variance": "Variação dos potenciadores",
+      "How much the time between power-ups varies, plus or minus.": "Quanto varia o tempo entre os potenciadores, para mais ou para menos.",
+      "Off": "Desativado",
+      "Bolt variance": "Variação dos raios",
+      "How much the time between bolts varies, plus or minus.": "Quanto varia o tempo entre os raios, para mais ou para menos.",
+      "Bomb variance": "Variação das bombas",
+      "How much the time between bombs varies, plus or minus.": "Quanto varia o tempo entre as bombas, para mais ou para menos.",
+      "Most bolts at once": "Máximo de raios ao mesmo tempo",
+      "Lightning bolts that can be falling at the same time.": "Raios que podem estar a cair ao mesmo tempo."
+    },
+    "it": {
+      "Ride a polar bear on an ice floe and charge rivals into the water. Last bear on the ice wins.": "Cavalca un orso polare su un lastrone di ghiaccio e carica i rivali per buttarli in acqua. Vince l’ultimo orso sul ghiaccio.",
+      "Classic: charge with a stamina bar, grab power-ups, mash to climb back in.": "Classico: carica con una barra di resistenza, raccogli potenziamenti, martella per risalire.",
+      "The ice shrinks away over the second half of the round.": "Il ghiaccio si restringe nella seconda metà del round.",
+      "Stamina regen": "Rigenerazione della resistenza",
+      "Stamina refilled per second (a charge costs half a bar).": "Resistenza recuperata al secondo (una carica costa mezza barra).",
+      "A beam generator sweeps energy bolts across the ice. Dodge them.": "Un generatore di raggi spazza il ghiaccio con fulmini di energia. Schivali.",
+      "Bolt interval": "Intervallo dei fulmini",
+      "Seconds between energy bolts.": "Secondi tra un fulmine di energia e l’altro.",
+      "The floe tilts toward where the bears are crowded and everyone slides downhill.": "Il lastrone si inclina dove gli orsi sono ammassati e tutti scivolano in discesa.",
+      "Tilt strength": "Intensità dell’inclinazione",
+      "How hard the floe pulls everyone downhill.": "Con quanta forza il lastrone trascina tutti in discesa.",
+      "Bombs! Grab one and throw it: one hit knocks a rider off, two blow them away.": "Bombe! Prendine una e lanciala: un colpo getta giù un cavaliere, due lo scaraventano via.",
+      "Bomb interval": "Intervallo delle bombe",
+      "A bomb appears this often.": "Una bomba compare con questa frequenza.",
+      "You fell! Spectating": "Sei caduto! Stai guardando",
+      "In the water! MASH the button!": "In acqua! MARTELLA il pulsante!",
+      "Walrus interval": "Intervallo del tricheco",
+      "Seconds between the walrus visits.": "Secondi tra le visite del tricheco.",
+      "Walrus variance": "Variazione del tricheco",
+      "The interval varies by up to this many seconds, either way.": "L’intervallo varia fino a questi secondi, in più o in meno.",
+      "A power-up beam lights up this often.": "Un raggio potenziamento si accende con questa frequenza.",
+      "Gruff melts bites out of the edge, and his power-ups are always bad.": "Gruff scioglie pezzi del bordo e i suoi potenziamenti sono sempre negativi.",
+      "Melt interval": "Intervallo di scioglimento",
+      "Seconds between the melt events.": "Secondi tra gli scioglimenti.",
+      "Melt variance": "Variazione dello scioglimento",
+      "Melt depth": "Profondità dello scioglimento",
+      "How far the edge melts back at each event.": "Di quanto arretra il bordo a ogni scioglimento.",
+      "Power-up variance": "Variazione dei potenziamenti",
+      "How much the time between power-ups varies, plus or minus.": "Quanto varia il tempo tra i potenziamenti, in più o in meno.",
+      "Off": "Disattivato",
+      "Bolt variance": "Variazione dei fulmini",
+      "How much the time between bolts varies, plus or minus.": "Quanto varia il tempo tra i fulmini, in più o in meno.",
+      "Bomb variance": "Variazione delle bombe",
+      "How much the time between bombs varies, plus or minus.": "Quanto varia il tempo tra le bombe, in più o in meno.",
+      "Most bolts at once": "Massimo di fulmini insieme",
+      "Lightning bolts that can be falling at the same time.": "Fulmini che possono cadere nello stesso momento."
+    }
+  }
+}

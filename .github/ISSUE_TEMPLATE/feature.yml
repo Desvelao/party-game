@@ -1,0 +1,8 @@
+name: Feature request
+description: Suggest an idea or a new game
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes: { label: What would you like, description: "The problem it solves and how it should work" }
+    validations: { required: true }

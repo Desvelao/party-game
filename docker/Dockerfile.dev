@@ -1,0 +1,9 @@
+# Dev image. Multi-arch (amd64/arm64/armv7) so the same file works on a Pi.
+# It only provides Node + the entrypoint: the source AND node_modules live on the
+# bind mount (written by the non-root `node` user, so they belong to the host user),
+# which means code and package.json changes never need an image rebuild.
+FROM node:22-alpine
+# openssl creates the self-signed certificate when TLS_SELF_SIGNED=1 (docker/tls-selfsigned.sh); /certs is where it is kept
+RUN apk add --no-cache openssl && mkdir /certs && chown node:node /certs
+WORKDIR /app
+ENV NODE_ENV=development

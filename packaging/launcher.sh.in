@@ -1,0 +1,16 @@
+#!/bin/sh
+# party-game-@TOOL@: runs dist/@FILE@ with the Node.js that ships in this package.
+# Works from the unpacked tarball and from the deb/rpm (where /usr/bin/party-game-@TOOL@ is a symlink to this file).
+# Settings already in the environment win over the defaults below.
+self=$(readlink -f "$0")
+APP=$(dirname "$(dirname "$self")")
+# deb/rpm: launcher.conf points DATA_DIR at /var/lib/party-game (the tarball has none: data lives in <app>/data)
+[ -r "$APP/launcher.conf" ] && . "$APP/launcher.conf"
+DATA_DIR=${DATA_DIR:-$APP/data}
+export DATA_DIR
+export NODE_ENV=${NODE_ENV:-production}
+export STATIC_DIR=${STATIC_DIR:-$APP/dist/client}
+export BUNDLED_GAMES_DIR=${BUNDLED_GAMES_DIR:-$APP/dist/games}
+export BUNDLED_PLUGINS_DIR=${BUNDLED_PLUGINS_DIR:-$APP/dist/plugins}
+export SQLITE_PATH=${SQLITE_PATH:-$DATA_DIR/profiles.db}
+exec "$APP/bin/node" "$APP/dist/@FILE@" "$@"

@@ -1,0 +1,360 @@
+{
+  "kind": "plugin",
+  "id": "characters",
+  "name": "Characters",
+  "version": "0.1.0",
+  "author": "Desvelao",
+  "license": "MIT",
+  "description": "Character models for the games: Blob, a round character with eyes, mouth, hair, glasses and a hat. Games that draw their players with it need this plugin.",
+  "order": 50,
+  "engines": {
+    "core": ">=0.1.0"
+  },
+  "characters": [
+    {
+      "id": "blob",
+      "name": "Blob",
+      "slots": [
+        {
+          "id": "body",
+          "label": "Body",
+          "options": [
+            {
+              "label": "Round"
+            },
+            {
+              "label": "Octagon"
+            },
+            {
+              "label": "Square"
+            }
+          ],
+          "default": 0
+        },
+        {
+          "id": "eyes",
+          "label": "Eyes",
+          "options": [
+            {
+              "label": "Dots"
+            },
+            {
+              "label": "Big"
+            },
+            {
+              "label": "Sleepy"
+            },
+            {
+              "label": "Angry"
+            }
+          ],
+          "default": 0
+        },
+        {
+          "id": "mouth",
+          "label": "Mouth",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Smile"
+            },
+            {
+              "label": "Open"
+            },
+            {
+              "label": "Mustache"
+            }
+          ],
+          "default": 1
+        },
+        {
+          "id": "hair",
+          "label": "Hair",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Short"
+            },
+            {
+              "label": "Mohawk"
+            },
+            {
+              "label": "Spiky"
+            },
+            {
+              "label": "Afro"
+            }
+          ],
+          "default": 0
+        },
+        {
+          "id": "hairColor",
+          "label": "Hair color",
+          "options": [
+            {
+              "label": "Brown",
+              "swatch": 3875604
+            },
+            {
+              "label": "Black",
+              "swatch": 1381653
+            },
+            {
+              "label": "Blond",
+              "swatch": 15253850
+            },
+            {
+              "label": "Ginger",
+              "swatch": 12865563
+            },
+            {
+              "label": "White",
+              "swatch": 15921906
+            },
+            {
+              "label": "Blue",
+              "swatch": 5213183
+            }
+          ],
+          "default": 0
+        },
+        {
+          "id": "glasses",
+          "label": "Glasses",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Round"
+            },
+            {
+              "label": "Shades"
+            }
+          ],
+          "default": 0
+        },
+        {
+          "id": "hat",
+          "label": "Hat",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Cap"
+            },
+            {
+              "label": "Top hat"
+            },
+            {
+              "label": "Crown"
+            }
+          ],
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "locales": {
+    "es": {
+      "Blob": "Bolita",
+      "Body": "Cuerpo",
+      "Body: Round": "Redondo",
+      "Body: Octagon": "Octogonal",
+      "Body: Square": "Cuadrado",
+      "Eyes": "Ojos",
+      "Eyes: Dots": "Puntos",
+      "Eyes: Big": "Grandes",
+      "Eyes: Sleepy": "Dormidos",
+      "Eyes: Angry": "Enfadados",
+      "Mouth": "Boca",
+      "Mouth: None": "Ninguna",
+      "Mouth: Smile": "Sonrisa",
+      "Mouth: Open": "Abierta",
+      "Mouth: Mustache": "Bigote",
+      "Hair": "Pelo",
+      "Hair: None": "Ninguno",
+      "Hair: Short": "Corto",
+      "Hair: Mohawk": "Cresta",
+      "Hair: Spiky": "Pinchos",
+      "Hair: Afro": "Afro",
+      "Hair color": "Color de pelo",
+      "Hair color: Brown": "Castaño",
+      "Hair color: Black": "Negro",
+      "Hair color: Blond": "Rubio",
+      "Hair color: Ginger": "Pelirrojo",
+      "Hair color: White": "Blanco",
+      "Hair color: Blue": "Azul",
+      "Glasses": "Gafas",
+      "Glasses: None": "Ninguna",
+      "Glasses: Round": "Redondas",
+      "Glasses: Shades": "De sol",
+      "Hat": "Sombrero",
+      "Hat: None": "Ninguno",
+      "Hat: Cap": "Gorra",
+      "Hat: Top hat": "Chistera",
+      "Hat: Crown": "Corona"
+    },
+    "fr": {
+      "Blob": "Boule",
+      "Body": "Corps",
+      "Body: Round": "Rond",
+      "Body: Octagon": "Octogone",
+      "Body: Square": "Carré",
+      "Eyes": "Yeux",
+      "Eyes: Dots": "Points",
+      "Eyes: Big": "Grands",
+      "Eyes: Sleepy": "Endormis",
+      "Eyes: Angry": "Fâchés",
+      "Mouth": "Bouche",
+      "Mouth: None": "Aucune",
+      "Mouth: Smile": "Sourire",
+      "Mouth: Open": "Ouverte",
+      "Mouth: Mustache": "Moustache",
+      "Hair": "Cheveux",
+      "Hair: None": "Aucun",
+      "Hair: Short": "Courts",
+      "Hair: Mohawk": "Mohawk",
+      "Hair: Spiky": "Hérissés",
+      "Hair: Afro": "Afro",
+      "Hair color": "Couleur des cheveux",
+      "Hair color: Brown": "Châtain",
+      "Hair color: Black": "Noir",
+      "Hair color: Blond": "Blond",
+      "Hair color: Ginger": "Roux",
+      "Hair color: White": "Blanc",
+      "Hair color: Blue": "Bleu",
+      "Glasses": "Lunettes",
+      "Glasses: None": "Aucunes",
+      "Glasses: Round": "Rondes",
+      "Glasses: Shades": "Solaires",
+      "Hat": "Chapeau",
+      "Hat: None": "Aucun",
+      "Hat: Cap": "Casquette",
+      "Hat: Top hat": "Haut-de-forme",
+      "Hat: Crown": "Couronne"
+    },
+    "de": {
+      "Blob": "Knubbel",
+      "Body": "Körper",
+      "Body: Round": "Rund",
+      "Body: Octagon": "Achteck",
+      "Body: Square": "Quadrat",
+      "Eyes": "Augen",
+      "Eyes: Dots": "Punkte",
+      "Eyes: Big": "Groß",
+      "Eyes: Sleepy": "Schläfrig",
+      "Eyes: Angry": "Wütend",
+      "Mouth": "Mund",
+      "Mouth: None": "Keiner",
+      "Mouth: Smile": "Lächeln",
+      "Mouth: Open": "Offen",
+      "Mouth: Mustache": "Schnurrbart",
+      "Hair": "Haare",
+      "Hair: None": "Keine",
+      "Hair: Short": "Kurz",
+      "Hair: Mohawk": "Irokese",
+      "Hair: Spiky": "Stachelig",
+      "Hair: Afro": "Afro",
+      "Hair color": "Haarfarbe",
+      "Hair color: Brown": "Braun",
+      "Hair color: Black": "Schwarz",
+      "Hair color: Blond": "Blond",
+      "Hair color: Ginger": "Rot",
+      "Hair color: White": "Weiß",
+      "Hair color: Blue": "Blau",
+      "Glasses": "Brille",
+      "Glasses: None": "Keine",
+      "Glasses: Round": "Rund",
+      "Glasses: Shades": "Sonnenbrille",
+      "Hat": "Hut",
+      "Hat: None": "Keiner",
+      "Hat: Cap": "Kappe",
+      "Hat: Top hat": "Zylinder",
+      "Hat: Crown": "Krone"
+    },
+    "pt": {
+      "Blob": "Bolinha",
+      "Body": "Corpo",
+      "Body: Round": "Redondo",
+      "Body: Octagon": "Octógono",
+      "Body: Square": "Quadrado",
+      "Eyes": "Olhos",
+      "Eyes: Dots": "Pontos",
+      "Eyes: Big": "Grandes",
+      "Eyes: Sleepy": "Sonolentos",
+      "Eyes: Angry": "Zangados",
+      "Mouth": "Boca",
+      "Mouth: None": "Nenhuma",
+      "Mouth: Smile": "Sorriso",
+      "Mouth: Open": "Aberta",
+      "Mouth: Mustache": "Bigode",
+      "Hair": "Cabelo",
+      "Hair: None": "Nenhum",
+      "Hair: Short": "Curto",
+      "Hair: Mohawk": "Moicano",
+      "Hair: Spiky": "Espetado",
+      "Hair: Afro": "Afro",
+      "Hair color": "Cor do cabelo",
+      "Hair color: Brown": "Castanho",
+      "Hair color: Black": "Preto",
+      "Hair color: Blond": "Louro",
+      "Hair color: Ginger": "Ruivo",
+      "Hair color: White": "Branco",
+      "Hair color: Blue": "Azul",
+      "Glasses": "Óculos",
+      "Glasses: None": "Nenhuns",
+      "Glasses: Round": "Redondos",
+      "Glasses: Shades": "De sol",
+      "Hat": "Chapéu",
+      "Hat: None": "Nenhum",
+      "Hat: Cap": "Boné",
+      "Hat: Top hat": "Cartola",
+      "Hat: Crown": "Coroa"
+    },
+    "it": {
+      "Blob": "Pallina",
+      "Body": "Corpo",
+      "Body: Round": "Tondo",
+      "Body: Octagon": "Ottagono",
+      "Body: Square": "Quadrato",
+      "Eyes": "Occhi",
+      "Eyes: Dots": "Puntini",
+      "Eyes: Big": "Grandi",
+      "Eyes: Sleepy": "Assonnati",
+      "Eyes: Angry": "Arrabbiati",
+      "Mouth": "Bocca",
+      "Mouth: None": "Nessuna",
+      "Mouth: Smile": "Sorriso",
+      "Mouth: Open": "Aperta",
+      "Mouth: Mustache": "Baffi",
+      "Hair": "Capelli",
+      "Hair: None": "Nessuno",
+      "Hair: Short": "Corti",
+      "Hair: Mohawk": "Cresta",
+      "Hair: Spiky": "A punta",
+      "Hair: Afro": "Afro",
+      "Hair color": "Colore dei capelli",
+      "Hair color: Brown": "Castano",
+      "Hair color: Black": "Nero",
+      "Hair color: Blond": "Biondo",
+      "Hair color: Ginger": "Rosso",
+      "Hair color: White": "Bianco",
+      "Hair color: Blue": "Blu",
+      "Glasses": "Occhiali",
+      "Glasses: None": "Nessuno",
+      "Glasses: Round": "Tondi",
+      "Glasses: Shades": "Da sole",
+      "Hat": "Cappello",
+      "Hat: None": "Nessuno",
+      "Hat: Cap": "Berretto",
+      "Hat: Top hat": "Cilindro",
+      "Hat: Crown": "Corona"
+    }
+  }
+}

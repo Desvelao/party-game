@@ -1,0 +1,671 @@
+# Party game server configuration.
+#
+# Start the server with:   node dist/server.js -c config.yaml
+# The file is also found through $PARTY_GAME_CONFIG, or at /etc/party-game/config.yaml.
+#
+# Everything is optional. A value set here overrides the matching environment variable
+# (shown in the comments), which overrides the hardware profile default. Unknown sections
+# or keys and out-of-range values stop the server at startup with a message.
+# Every duration in this file is in whole seconds (the environment variables
+# JOIN_TIMEOUT_MS and PING_INTERVAL_MS keep their millisecond unit).
+# The values below are the defaults of the NORMAL profile.
+
+server:                       # how the process listens and serves
+  host: 0.0.0.0               # HOST
+  port: 8080                  # PORT
+  staticDir: dist/client      # STATIC_DIR: the built client
+  tlsCert: ""                 # TLS_CERT: PEM certificate file; with tlsKey set, the page and wss are served over HTTPS (both empty: plain HTTP, see docs/manual/https.md)
+  tlsKey: ""                  # TLS_KEY: PEM private key file that goes with tlsCert
+  trustProxy: false           # TRUST_PROXY=1|true|yes: client IP = last X-Forwarded-For entry (only behind one proxy you control that appends the peer)
+  publicUrl: ""               # PUBLIC_URL: address phones should use in the join link and QR (e.g. http://partygame.local); empty: taken from the request
+  captivePortal: false        # CAPTIVE_PORTAL=1|true|yes: party-box mode, phones that join the box's Wi-Fi are sent to the game (docs/party-box.md)
+  consoleMode: false          # off by default. CONSOLE_MODE=1|true|yes: a TV (/tv) owns a room, a phone paired with its PIN (/console) is the host and admin (docs/party-box.md)
+  consoleScreenAny: false     # CONSOLE_SCREEN_ANY=1: any address may open the TV room (development only; default: the machine itself)
+  adminInsights: true         # ADMIN_INSIGHTS=0|1: keep match history, player reports and the metrics chart for the admin page (false: lighter, those endpoints answer 404)
+  adminToken: ""              # ADMIN_TOKEN: bearer token for /api/admin/* and /stats?reset=1 (empty: loopback only)
+
+performance:                  # sizing for the hardware
+  profile: NORMAL             # PROFILE: LOW_POWER | NORMAL | HIGH, the base for the keys below
+  tickRate: 60                # TICK_RATE: simulation steps per second (10-120)
+  networkRate: 20             # NET_RATE: snapshots per second sent to clients (1-60)
+  maxRooms: 4                 # MAX_ROOMS (1-64)
+  maxPlayersPerRoom: 8        # MAX_PLAYERS (1-32)
+  maxSpectatorsPerRoom: 8     # MAX_SPECTATORS (0-64)
+
+game:                         # match rules and room lifecycle
+  idleRoomSeconds: 600        # IDLE_ROOM_SECONDS: close idle lobbies after this long (0 = never)
+  roomRestoreSeconds: 900     # ROOM_RESTORE_SECONDS: keep open lobbies across a restart for this long (0 = off)
+  idleWarnSeconds: 60         # IDLE_WARN_SECONDS: warn players this long before that (0 = no warning)
+  hostIdleSeconds: 90         # HOST_IDLE_SECONDS: an idle host passes the role to an active player after this long (0 = never)
+  reconnectGraceSeconds: 60   # RECONNECT_GRACE_SECONDS: how long a dropped player keeps their seat (0 = off)
+
+limits:                       # connection hygiene
+  joinTimeoutSeconds: 10      # JOIN_TIMEOUT_MS: close sockets that never join a room (0 = off, max 600)
+  pingIntervalSeconds: 30     # PING_INTERVAL_MS: liveness ping interval (0 = off, max 600)
+  maxConnectionsPerIp: 50     # MAX_CONNECTIONS_PER_IP (0 = unlimited)
+
+plugins:                      # optional features installed as plugins (docs/manual/installing-plugins.md)
+  dir: ""                     # PLUGINS_DIR: plugins you installed with `plugins install` (empty = a plugins folder inside the data folder)
+  bundledDir: dist/plugins    # BUNDLED_PLUGINS_DIR: plugins that come with this version
+  enabled: all                # PLUGINS: all | none | a list of plugin ids to load, like [bots]
+  bots:                       # settings of the bots plugin (AI players hosts can add to a room)
+    allowFill: false          # BOTS_ALLOW_FILL: true lets a room's host fill the empty seats with bots and add bots of a chosen level
+    defaultLevel: normal      # BOTS_DEFAULT_LEVEL: level new rooms start with: easy | normal | hard | expert | semigod | random
+    mode: embedded            # BOTS_MODE: embedded = this server plays the bots | external = the separate bot server does (needs token)
+    token: ""                 # BOTS_TOKEN: secret the bot server presents when it seats bots (its GAME_SERVER_BOT_TOKEN); empty = embedded only
+    maxBots: 0                # BOTS_MAX: bots playing at once inside this server; 0 = by PROFILE (LOW_POWER 2, NORMAL 8, HIGH 16)
+    decisionHz: 0             # BOTS_DECISION_HZ: decisions per second of an embedded bot; 0 = by PROFILE (LOW_POWER 10, NORMAL 20, HIGH 30)
+    mixed: never              # BOTS_MIXED: never | always (bots join rooms that rotate through every game and sit out rounds they cannot play)
+    playlistJoin: any         # BOTS_PLAYLIST_JOIN: any | all (custom playlists: join when the bots can play any game of it, or only all of them)
+    idleLeaveSeconds: 120     # BOTS_IDLE_LEAVE_SECONDS: seconds a bot may sit out before it leaves; 0 = never
+    namePrefix: Bot           # BOTS_NAME_PREFIX: start of the bots' names, like "Bot Hard" (up to 8 letters)
+    api: true                 # BOTS_API: serve the management API at /api/bots (admin token); the dashboard needs it
+    dashboard: true           # BOTS_DASHBOARD: serve the dashboard page at /plugins/bots/
+    liveConfig: true          # BOTS_LIVE_CONFIG: let an admin change the settings that apply here from the dashboard
+    audit: true               # BOTS_AUDIT: keep a log of who changed what in the management API
+    metrics: false            # BOTS_METRICS: serve Prometheus metrics at /api/bots/prometheus (admin token)
+    reports: false            # BOTS_REPORTS: write a report of every bot match (files are written on the game loop: leave off on small machines)
+    reportsDir: ""            # BOTS_REPORTS_DIR: where the reports go (empty = the plugin's data folder)
+  leaderboard:                # settings of the leaderboard plugin (the /leaderboard page and GET /api/leaderboard; leave it out of plugins.enabled to turn the leaderboard off)
+    top: 20                   # LEADERBOARD_TOP: players listed (1-100)
+  prometheus:                # settings of the prometheus plugin (GET /metrics for Prometheus, admin token / loopback only)
+    enabled: false            # METRICS_ENABLED: true serves GET /metrics; while false nothing is served
+
+branding:                     # how the game presents itself
+  name: Party Game            # BRAND_NAME: product name in the menu and browser title (max 40; changeable live in the admin panel)
+  welcomeMessage: ""          # WELCOME_MESSAGE: tagline under the name on the main menu (max 140; empty = the built-in translated one; changeable live in the admin panel)
+
+storage:                      # player profiles and stats
+  store: json                 # PROFILE_STORE: json | sqlite | memory (memory is lost on restart)
+  maxProfiles: 10000          # MAX_PROFILES (any driver)
+  recentMatches: 10           # RECENT_MATCHES: past matches each profile keeps for its Recent matches list (0 = keep none, max 50)
+
+  # Settings of each driver sit in a subgroup named after it (ignored unless that store is selected).
+  json:
+    dataDir: data             # DATA_DIR: directory that holds profiles.json (written atomically)
+  sqlite:                     # recommended for real use; needs the optional better-sqlite3 module
+    path: data/profiles.db    # SQLITE_PATH: database file (the directory is created)
+    busyTimeoutSeconds: 5     # SQLITE_BUSY_TIMEOUT_MS (ms in the env var): wait for a locked database
+
+gamePacks:                    # where the games come from (see docs/manual/installing-games.md)
+  dir: ""                     # GAMES_DIR: games you installed with `games install` (empty: "games" inside storage.json.dataDir)
+  bundledDir: dist/games      # BUNDLED_GAMES_DIR: games built into this version (`npm run build`)
+
+games:                        # defaults of the options a host can change per game / variant
+  # A game id applies to all its variants; a variant id overrides its game. Values set in the
+  # admin panel win over this file. Out-of-range values or unknown ids stop the server at startup.
+  defaults:
+
+    # Ballistix (every variant)
+    # ballistix:
+    #   smashEnabled: true         # Boost enabled: true | false
+    #   smashGain: 1.7             # Boost multiplier: 1–2.5, step 0.1, x
+    #   smashRadius: 150           # Boost radius: 60–400, step 10, px
+    #   smashCooldown: 1.4         # Boost cooldown: 0.5–5, step 0.1, s
+    #   ballSpawnEvery: 15         # Ball spawn interval: 3–60, step 1, s
+    #   ballSpawnVariance: 6       # Ball spawn variance: 0–30, step 1, s
+    #   maxBalls: 4                # Maximum balls: 0–16, step 1
+    #   ballCollisions: true       # Ball collisions: true | false
+    #   timeLimit: 150             # Time limit: 30–300, step 10, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Smashball
+    # smashball:
+    #   lives: 5                   # Lives per side: 1–15, step 1
+    #   balls: "auto"              # Balls in play: auto | 1 | 2 | 3 | 4
+    #   ballSpeed: 380             # Serve speed: 200–700, step 10
+    #   ballMaxSpeed: 820          # Max ball speed: 400–900, step 10
+    #   hitGain: 1.05              # Speed-up per hit: 1–1.3, step 0.01
+    #   smashEnabled: true         # Boost enabled: true | false
+    #   smashGain: 1.7             # Boost multiplier: 1–2.5, step 0.1, x
+    #   smashRadius: 150           # Boost radius: 60–400, step 10, px
+    #   smashCooldown: 1.4         # Boost cooldown: 0.5–5, step 0.1, s
+    #   paddleLen: 130             # Paddle length: 60–260, step 5
+    #   spawnDelay: 2.5            # Ball spawn delay: 0.5–8, step 0.1, s
+    #   spawnDelayVariance: 1      # Spawn delay variance: 0–4, step 0.1, s
+    #   ballSpawnEvery: 15         # Ball spawn interval: 3–60, step 1, s
+    #   ballSpawnVariance: 6       # Ball spawn variance: 0–30, step 1, s
+    #   maxBalls: 4                # Maximum balls: 0–16, step 1
+    #   ballCollisions: true       # Ball collisions: true | false
+    #   timeLimit: 150             # Time limit: 30–300, step 10, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Sand Orb
+    # sand-orb:
+    #   lives: 7                   # Lives per side: 1–15, step 1
+    #   balls: "1"                 # Balls in play: auto | 1 | 2 | 3 | 4
+    #   ballSpeed: 250             # Serve speed: 150–700, step 10
+    #   ballMaxSpeed: 440          # Max ball speed: 150–900, step 10
+    #   hitGain: 1.03              # Speed-up per hit: 1–1.3, step 0.01
+    #   smashEnabled: true         # Boost enabled: true | false
+    #   smashGain: 1.7             # Boost multiplier: 1–2.5, step 0.1, x
+    #   smashRadius: 150           # Boost radius: 60–400, step 10, px
+    #   smashCooldown: 1.4         # Boost cooldown: 0.5–5, step 0.1, s
+    #   paddleLen: 180             # Paddle length: 60–260, step 5
+    #   spawnDelay: 3              # Ball spawn delay: 0.5–8, step 0.1, s
+    #   spawnDelayVariance: 1.2    # Spawn delay variance: 0–4, step 0.1, s
+    #   ballSpawnEvery: 15         # Ball spawn interval: 3–60, step 1, s
+    #   ballSpawnVariance: 6       # Ball spawn variance: 0–30, step 1, s
+    #   maxBalls: 4                # Maximum balls: 0–16, step 1
+    #   ballCollisions: true       # Ball collisions: true | false
+    #   timeLimit: 150             # Time limit: 30–300, step 10, s
+    #   magnetCapacity: 2          # Grab capacity: 1–4, step 1
+    #   holdTime: 3                # Hold time: 1–8, step 0.5, s
+    #   magnetCooldown: 0          # Grab cooldown: 0–6, step 0.5, s
+    #   pullRange: 140             # Pull range: 60–400, step 10, px
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Pulse Ball
+    # pulse-ball:
+    #   lives: 5                   # Lives per side: 1–15, step 1
+    #   balls: "auto"              # Balls in play: auto | 1 | 2 | 3 | 4
+    #   ballSpeed: 380             # Serve speed: 200–700, step 10
+    #   ballMaxSpeed: 820          # Max ball speed: 400–900, step 10
+    #   hitGain: 1.05              # Speed-up per hit: 1–1.3, step 0.01
+    #   smashEnabled: true         # Boost enabled: true | false
+    #   smashGain: 1.7             # Boost multiplier: 1–2.5, step 0.1, x
+    #   smashRadius: 150           # Boost radius: 60–400, step 10, px
+    #   smashCooldown: 1.4         # Boost cooldown: 0.5–5, step 0.1, s
+    #   paddleLen: 130             # Paddle length: 60–260, step 5
+    #   spawnDelay: 2.5            # Ball spawn delay: 0.5–8, step 0.1, s
+    #   spawnDelayVariance: 1      # Spawn delay variance: 0–4, step 0.1, s
+    #   ballSpawnEvery: 15         # Ball spawn interval: 3–60, step 1, s
+    #   ballSpawnVariance: 6       # Ball spawn variance: 0–30, step 1, s
+    #   maxBalls: 4                # Maximum balls: 0–16, step 1
+    #   ballCollisions: true       # Ball collisions: true | false
+    #   timeLimit: 150             # Time limit: 30–300, step 10, s
+    #   enemyEnabled: true         # Ball-bot enabled: true | false
+    #   enemyEvery: 20             # Bot appears every: 5–120, step 5, s
+    #   enemyVariance: 10          # Bot appearance variance: 0–60, step 1, s
+    #   enemyDuration: 8           # Bot stays for: 2–30, step 1, s
+    #   enemyDurationVariance: 0   # Bot stay variance: 0–10, step 1, s
+    #   enemyRate: 1.5             # Balls per second: 0.5–8, step 0.5
+    #   enemyBallSpeed: 360        # Launch speed: 150–800, step 10
+    #   enemySpin: 1.6             # Rotation speed: 0.3–5, step 0.1
+    #   repelEnabled: true         # Repulsion power-up: true | false
+    #   repelEvery: 25             # Power-up appears every: 10–120, step 5, s
+    #   repelVariance: 12.5        # Power-up variance: 0–60, step 0.5, s
+    #   repelItemLife: 20          # Power-up stays for: 5–60, step 5, s
+    #   repelItemVariance: 0       # Power-up stay variance: 0–20, step 1, s
+    #   repelDuration: 8           # Repulsion lasts on player: 2–30, step 1, s
+    #   repelDurationVariance: 0   # Repulsion duration variance: 0–10, step 1, s
+    #   repelForce: 2400           # Repulsion force: 800–6000, step 100
+    #   repelRadius: 140           # Repulsion area: 60–400, step 10, px
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Cloud Orbs
+    # cloud-orbs:
+    #   lives: 5                   # Lives per side: 1–15, step 1
+    #   balls: "auto"              # Balls in play: auto | 1 | 2 | 3 | 4
+    #   ballSpeed: 340             # Serve speed: 200–700, step 10
+    #   ballMaxSpeed: 720          # Max ball speed: 400–900, step 10
+    #   hitGain: 1.04              # Speed-up per hit: 1–1.3, step 0.01
+    #   smashEnabled: true         # Boost enabled: true | false
+    #   smashGain: 1.7             # Boost multiplier: 1–2.5, step 0.1, x
+    #   smashRadius: 150           # Boost radius: 60–400, step 10, px
+    #   smashCooldown: 1.4         # Boost cooldown: 0.5–5, step 0.1, s
+    #   paddleLen: 100             # Paddle length: 60–260, step 5
+    #   spawnDelay: 2.5            # Ball spawn delay: 0.5–8, step 0.1, s
+    #   spawnDelayVariance: 1      # Spawn delay variance: 0–4, step 0.1, s
+    #   ballSpawnEvery: 15         # Ball spawn interval: 3–60, step 1, s
+    #   ballSpawnVariance: 6       # Ball spawn variance: 0–30, step 1, s
+    #   maxBalls: 4                # Maximum balls: 0–16, step 1
+    #   ballCollisions: true       # Ball collisions: true | false
+    #   timeLimit: 150             # Time limit: 30–300, step 10, s
+    #   failEnabled: true          # Engine failures: true | false
+    #   failEvery: 15              # A failure every: 5–120, step 5, s
+    #   failVariance: 7.5          # Failure variance: 0–60, step 0.5, s
+    #   failDuration: 6            # Engine stays down: 2–30, step 1, s
+    #   failDurationVariance: 0    # Failure duration variance: 0–10, step 1, s
+    #   failPull: 700              # Pull strength: 100–2000, step 50
+    #   failCount: 1               # Engines failing at once: 1–3, step 1
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Frost Shove (every variant)
+    # frost-shove:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   staminaRegen: 0.35         # Stamina regen: 0.1–1, step 0.05
+    #   itemEvery: 15              # Power-up interval: 3–30, step 1, s
+    #   itemVariance: 0            # Power-up variance: 0–10, step 1, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Frost Classic
+    # frost-classic:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   staminaRegen: 0.35         # Stamina regen: 0.1–1, step 0.05
+    #   itemEvery: 15              # Power-up interval: 3–30, step 1, s
+    #   itemVariance: 0            # Power-up variance: 0–10, step 1, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Frost Frenzy
+    # frost-frenzy:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   staminaRegen: 0.35         # Stamina regen: 0.1–1, step 0.05
+    #   itemEvery: 15              # Power-up interval: 3–30, step 1, s
+    #   itemVariance: 0            # Power-up variance: 0–10, step 1, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   boltEvery: 2.5             # Bolt interval: 1–8, step 0.5, s
+    #   boltVariance: 0.75         # Bolt variance: 0–2, step 0.25, s
+    #   maxBolts: 3                # Most bolts at once: 1–6, step 1
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Tip Tumble
+    # tip-tumble:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   staminaRegen: 0.35         # Stamina regen: 0.1–1, step 0.05
+    #   itemEvery: 15              # Power-up interval: 3–30, step 1, s
+    #   itemVariance: 0            # Power-up variance: 0–10, step 1, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   tiltStrength: 320          # Tilt strength: 100–700, step 20
+    #   walrusEvery: 25            # Walrus interval: 8–90, step 1, s
+    #   walrusVariance: 10         # Walrus variance: 0–30, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Thaw Frenzy
+    # thaw-frenzy:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   staminaRegen: 0.35         # Stamina regen: 0.1–1, step 0.05
+    #   itemEvery: 15              # Power-up interval: 3–30, step 1, s
+    #   itemVariance: 0            # Power-up variance: 0–10, step 1, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   meltEvery: 10              # Melt interval: 4–40, step 1, s
+    #   meltVariance: 4            # Melt variance: 0–20, step 1, s
+    #   meltDepth: 60              # Melt depth: 20–120, step 10
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Wild Frenzy
+    # wild-frenzy:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   staminaRegen: 0.35         # Stamina regen: 0.1–1, step 0.05
+    #   itemEvery: 15              # Power-up interval: 3–30, step 1, s
+    #   itemVariance: 0            # Power-up variance: 0–10, step 1, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   bombEvery: 6               # Bomb interval: 2–20, step 1, s
+    #   bombVariance: 0            # Bomb variance: 0–4, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Spring Showdown (every variant)
+    # spring-showdown:
+    #   collisions: true           # Player collisions: true | false
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   hopTime: 0.32              # Hop time: 0.15–0.6, step 0.01, s
+    #   gridSize: 8                # Grid size: 8–16, step 2
+    #   itemEvery: 5               # Item interval: 2–20, step 1, s
+    #   itemVariance: 0            # Item variance: 0–10, step 1, s
+    #   stunTime: 2.5              # Stun time: 1–5, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Spring Painter
+    # spring-painter:
+    #   collisions: true           # Player collisions: true | false
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   hopTime: 0.32              # Hop time: 0.15–0.6, step 0.01, s
+    #   gridSize: 8                # Grid size: 8–16, step 2
+    #   itemEvery: 5               # Item interval: 2–20, step 1, s
+    #   itemVariance: 0            # Item variance: 0–10, step 1, s
+    #   stunTime: 2.5              # Stun time: 1–5, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   crateEvery: 7              # Crate interval: 3–20, step 1, s
+    #   crateVariance: 0           # Crate variance: 0–10, step 1, s
+    #   crateCount: 2              # Crates per spawn: 1–6, step 1
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Spring Rush
+    # spring-rush:
+    #   collisions: true           # Player collisions: true | false
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   hopTime: 0.32              # Hop time: 0.15–0.6, step 0.01, s
+    #   gridSize: 8                # Grid size: 8–16, step 2
+    #   itemEvery: 5               # Item interval: 2–20, step 1, s
+    #   itemVariance: 0            # Item variance: 0–10, step 1, s
+    #   stunTime: 2.5              # Stun time: 1–5, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Spring Madness
+    # spring-madness:
+    #   collisions: true           # Player collisions: true | false
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   hopTime: 0.32              # Hop time: 0.15–0.6, step 0.01, s
+    #   gridSize: 8                # Grid size: 8–16, step 2
+    #   itemEvery: 5               # Item interval: 2–20, step 1, s
+    #   itemVariance: 0            # Item variance: 0–10, step 1, s
+    #   stunTime: 2.5              # Stun time: 1–5, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   crateEvery: 7              # Crate interval: 3–20, step 1, s
+    #   crateVariance: 0           # Crate variance: 0–10, step 1, s
+    #   crateCount: 2              # Crates per spawn: 1–6, step 1
+    #   tntEvery: 4                # Blast Bot interval: 1.5–12, step 0.5, s
+    #   tntVariance: 0             # Blast Bot variance: 0–3, step 0.5, s
+    #   tntFuse: 3                 # TNT fuse: 1–10, step 0.5, s
+    #   tntRadius: 1               # TNT blast radius: 1–3, step 1
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Spring Lock
+    # spring-lock:
+    #   collisions: true           # Player collisions: true | false
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   hopTime: 0.32              # Hop time: 0.15–0.6, step 0.01, s
+    #   gridSize: 8                # Grid size: 8–16, step 2
+    #   itemEvery: 5               # Item interval: 2–20, step 1, s
+    #   itemVariance: 0            # Item variance: 0–10, step 1, s
+    #   stunTime: 2.5              # Stun time: 1–5, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   crateEvery: 7              # Crate interval: 3–20, step 1, s
+    #   crateVariance: 0           # Crate variance: 0–10, step 1, s
+    #   crateCount: 2              # Crates per spawn: 1–6, step 1
+    #   padlockTime: 8             # Padlock time: 3–20, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Box Bonanza (every variant)
+    # box-bonanza:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 10                  # Health: 4–20, step 1
+    #   crateEvery: 4              # Crate interval: 2–12, step 1, s
+    #   crateVariance: 0           # Crate variance: 0–6, step 1, s
+    #   berryEvery: 7              # Berry interval: 3–30, step 1, s
+    #   berryVariance: 0           # Berry variance: 0–6, step 1, s
+    #   tntFuse: 3                 # TNT countdown: 1–8, step 0.5, s
+    #   tntDamage: 4               # TNT damage: 1–10, step 1
+    #   blastRadius: 130           # TNT blast radius: 80–200, step 10
+    #   pickupRange: 62            # Pick up distance: 30–120, step 2, px
+    #   pickupCooldown: 0          # Pick up cooldown: 0–3, step 0.1, s
+    #   kickRange: 74              # Kick distance: 40–140, step 2, px
+    #   kickCooldown: 0.55         # Kick cooldown: 0–3, step 0.05, s
+    #   solidCrates: true          # Solid crates: true | false
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Jungle Bonanza
+    # jungle-bonanza:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 10                  # Health: 4–20, step 1
+    #   crateEvery: 4              # Crate interval: 2–12, step 1, s
+    #   crateVariance: 0           # Crate variance: 0–6, step 1, s
+    #   berryEvery: 7              # Berry interval: 3–30, step 1, s
+    #   berryVariance: 0           # Berry variance: 0–6, step 1, s
+    #   tntFuse: 3                 # TNT countdown: 1–8, step 0.5, s
+    #   tntDamage: 4               # TNT damage: 1–10, step 1
+    #   blastRadius: 130           # TNT blast radius: 80–200, step 10
+    #   pickupRange: 62            # Pick up distance: 30–120, step 2, px
+    #   pickupCooldown: 0          # Pick up cooldown: 0–3, step 0.1, s
+    #   kickRange: 74              # Kick distance: 40–140, step 2, px
+    #   kickCooldown: 0.55         # Kick cooldown: 0–3, step 0.05, s
+    #   solidCrates: true          # Solid crates: true | false
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Space Bonanza
+    # space-bonanza:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 10                  # Health: 4–20, step 1
+    #   crateEvery: 4              # Crate interval: 2–12, step 1, s
+    #   crateVariance: 0           # Crate variance: 0–6, step 1, s
+    #   berryEvery: 7              # Berry interval: 3–30, step 1, s
+    #   berryVariance: 0           # Berry variance: 0–6, step 1, s
+    #   tntFuse: 3                 # TNT countdown: 1–8, step 0.5, s
+    #   tntDamage: 4               # TNT damage: 1–10, step 1
+    #   blastRadius: 130           # TNT blast radius: 80–200, step 10
+    #   pickupRange: 62            # Pick up distance: 30–120, step 2, px
+    #   pickupCooldown: 0          # Pick up cooldown: 0–3, step 0.1, s
+    #   kickRange: 74              # Kick distance: 40–140, step 2, px
+    #   kickCooldown: 0.55         # Kick cooldown: 0–3, step 0.05, s
+    #   solidCrates: true          # Solid crates: true | false
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   powerupEvery: 9            # Power-up interval: 4–30, step 1, s
+    #   powerupVariance: 0         # Power-up variance: 0–8, step 1, s
+    #   weightTime: 5              # Weight time: 3–15, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Snow Bonanza
+    # snow-bonanza:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 10                  # Health: 4–20, step 1
+    #   crateEvery: 4              # Crate interval: 2–12, step 1, s
+    #   crateVariance: 0           # Crate variance: 0–6, step 1, s
+    #   berryEvery: 7              # Berry interval: 3–30, step 1, s
+    #   berryVariance: 0           # Berry variance: 0–6, step 1, s
+    #   tntFuse: 3                 # TNT countdown: 1–8, step 0.5, s
+    #   tntDamage: 4               # TNT damage: 1–10, step 1
+    #   blastRadius: 130           # TNT blast radius: 80–200, step 10
+    #   pickupRange: 62            # Pick up distance: 30–120, step 2, px
+    #   pickupCooldown: 0          # Pick up cooldown: 0–3, step 0.1, s
+    #   kickRange: 74              # Kick distance: 40–140, step 2, px
+    #   kickCooldown: 0.55         # Kick cooldown: 0–3, step 0.05, s
+    #   solidCrates: true          # Solid crates: true | false
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   powerupEvery: 9            # Power-up interval: 4–30, step 1, s
+    #   powerupVariance: 0         # Power-up variance: 0–8, step 1, s
+    #   weightTime: 5              # Weight time: 3–15, step 1, s
+    #   penguinTime: 8             # Penguin rampage: 4–15, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Drain Bonanza
+    # drain-bonanza:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 10                  # Health: 4–20, step 1
+    #   crateEvery: 4              # Crate interval: 2–12, step 1, s
+    #   crateVariance: 0           # Crate variance: 0–6, step 1, s
+    #   berryEvery: 7              # Berry interval: 3–30, step 1, s
+    #   berryVariance: 0           # Berry variance: 0–6, step 1, s
+    #   tntFuse: 3                 # TNT countdown: 1–8, step 0.5, s
+    #   tntDamage: 4               # TNT damage: 1–10, step 1
+    #   blastRadius: 130           # TNT blast radius: 80–200, step 10
+    #   pickupRange: 62            # Pick up distance: 30–120, step 2, px
+    #   pickupCooldown: 0          # Pick up cooldown: 0–3, step 0.1, s
+    #   kickRange: 74              # Kick distance: 40–140, step 2, px
+    #   kickCooldown: 0.55         # Kick cooldown: 0–3, step 0.05, s
+    #   solidCrates: true          # Solid crates: true | false
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   boxEvery: 12               # ? crate interval: 6–30, step 1, s
+    #   boxVariance: 0             # ? crate variance: 0–10, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Sprint Smash (every variant)
+    # sprint-smash:
+    #   laps: 10                   # Laps: 3–15, step 1
+    #   timeLimit: 120             # Time limit: 60–300, step 10, s
+    #   fruitEvery: 5              # Berry interval: 3–20, step 1, s
+    #   fruitVariance: 0           # Berry variance: 0–6, step 1, s
+    #   fruitMax: 4                # Max berries: 1–8, step 1
+    #   energyDrain: 0.4           # Bar drain: 0.2–1, step 0.1
+    #   fallPenalty: 2             # Fall penalty: 1–5, step 0.5, s
+    #   fallPenaltyVariance: 0     # Fall penalty variance: 0–2, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Dot Sprint
+    # dot-sprint:
+    #   laps: 10                   # Laps: 3–15, step 1
+    #   timeLimit: 120             # Time limit: 60–300, step 10, s
+    #   fruitEvery: 5              # Berry interval: 3–20, step 1, s
+    #   fruitVariance: 0           # Berry variance: 0–6, step 1, s
+    #   fruitMax: 4                # Max berries: 1–8, step 1
+    #   energyDrain: 0.4           # Bar drain: 0.2–1, step 0.1
+    #   fallPenalty: 2             # Fall penalty: 1–5, step 0.5, s
+    #   fallPenaltyVariance: 0     # Fall penalty variance: 0–2, step 0.5, s
+    #   hitSlow: 3                 # Hit slowdown: 0–8, step 0.5, s
+    #   hitSlowVariance: 0         # Hit slowdown variance: 0–3, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   missileEvery: 6            # Missile interval: 4–30, step 1, s
+    #   missileVariance: 0         # Missile variance: 0–10, step 1, s
+    #   missileMax: 3              # Max missiles: 1–6, step 1
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Toxic Sprint
+    # toxic-sprint:
+    #   laps: 10                   # Laps: 3–15, step 1
+    #   timeLimit: 120             # Time limit: 60–300, step 10, s
+    #   fruitEvery: 5              # Berry interval: 3–20, step 1, s
+    #   fruitVariance: 0           # Berry variance: 0–6, step 1, s
+    #   fruitMax: 4                # Max berries: 1–8, step 1
+    #   energyDrain: 0.4           # Bar drain: 0.2–1, step 0.1
+    #   fallPenalty: 2             # Fall penalty: 1–5, step 0.5, s
+    #   fallPenaltyVariance: 0     # Fall penalty variance: 0–2, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   slimeEvery: 14             # Slime monster interval: 8–40, step 1, s
+    #   slimeVariance: 0           # Slime variance: 0–8, step 1, s
+    #   starEvery: 10              # Force field interval: 5–40, step 1, s
+    #   starVariance: 0            # Star variance: 0–8, step 1, s
+    #   starMax: 2                 # Max force fields: 1–4, step 1
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Ember Sprint
+    # ember-sprint:
+    #   laps: 10                   # Laps: 3–15, step 1
+    #   timeLimit: 120             # Time limit: 60–300, step 10, s
+    #   fruitEvery: 5              # Berry interval: 3–20, step 1, s
+    #   fruitVariance: 0           # Berry variance: 0–6, step 1, s
+    #   fruitMax: 4                # Max berries: 1–8, step 1
+    #   energyDrain: 0.4           # Bar drain: 0.2–1, step 0.1
+    #   fallPenalty: 2             # Fall penalty: 1–5, step 0.5, s
+    #   fallPenaltyVariance: 0     # Fall penalty variance: 0–2, step 0.5, s
+    #   hitSlow: 3                 # Hit slowdown: 0–8, step 0.5, s
+    #   hitSlowVariance: 0         # Hit slowdown variance: 0–3, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   missileEvery: 6            # Missile interval: 4–30, step 1, s
+    #   missileVariance: 0         # Missile variance: 0–10, step 1, s
+    #   missileMax: 3              # Max missiles: 1–6, step 1
+    #   eruptEvery: 12             # Eruption interval: 6–30, step 1, s
+    #   eruptVariance: 0           # Eruption variance: 0–6, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Splash Sprint
+    # splash-sprint:
+    #   laps: 10                   # Laps: 3–15, step 1
+    #   timeLimit: 120             # Time limit: 60–300, step 10, s
+    #   fruitEvery: 5              # Berry interval: 3–20, step 1, s
+    #   fruitVariance: 0           # Berry variance: 0–6, step 1, s
+    #   fruitMax: 4                # Max berries: 1–8, step 1
+    #   energyDrain: 0.4           # Bar drain: 0.2–1, step 0.1
+    #   fallPenalty: 2             # Fall penalty: 1–5, step 0.5, s
+    #   fallPenaltyVariance: 0     # Fall penalty variance: 0–2, step 0.5, s
+    #   hitSlow: 3                 # Hit slowdown: 0–8, step 0.5, s
+    #   hitSlowVariance: 0         # Hit slowdown variance: 0–3, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   rodEvery: 12               # Tube interval: 4–30, step 1, s
+    #   rodVariance: 0             # Tube variance: 0–10, step 1, s
+    #   rodBurst: 25               # Tube bursts: 0–100, step 5, %
+    #   rodSpeed: 0.3              # Hub speed: 0.1–1, step 0.1
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Crazy Logs (every variant)
+    # crazy-logs:
+    #   timeLimit: 60              # Time limit: 20–180, step 10, s
+    #   stability: 50              # Log stability: 0–100, step 10, %
+    #   maxSpin: 190               # Max spin speed: 60–190, step 10
+    #   spinFade: 0.7              # Spin fade: 0.2–2, step 0.1
+    #   respawnTime: 1.2           # Fall penalty: 0–5, step 0.2, s
+    #   respawnVariance: 0         # Fall penalty variance: 0–2, step 0.2, s
+    #   logCount: 6                # Number of logs: 4–8, step 1
+    #   logSize: 64                # Log size: 40–90, step 10
+    #   jets: false                # Water jets: true | false
+    #   jetForce: 300              # Jet force: 100–600, step 50
+    #   jetInterval: 8             # Jet interval: 3–20, step 1, s
+    #   jetVariance: 3             # Jet variance: 0–10, step 1, s
+    #   hopDistance: 100           # Hop distance: 70–130, step 10
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Rumble Cards (every variant)
+    # rumble-cards:
+    #   hp: 10                     # Hit points: 5–20, step 1
+    #   hand: 3                    # Starting hand: 2–5, step 1
+    #   maxHand: 3                 # Hand limit: 2–8, step 1
+    #   turnSeconds: 20            # Turn time: 10–60, step 5, s
+    #   turnVariance: 0            # Turn time variance: 0–8, step 1, s
+    #   maxTurns: 25               # Turn limit: 10–40, step 5
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Tank Wars (every variant)
+    # tank-wars:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 100                 # Health: 50–200, step 10
+    #   mines: 3                   # Mines: 0–6, step 1
+    #   cannonTypes: true          # Different cannons: true | false
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Desert Fox
+    # desert-fox:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 100                 # Health: 50–200, step 10
+    #   mines: 3                   # Mines: 0–6, step 1
+    #   mineEvery: 20              # Mine pick-up interval: 8–60, step 1, s
+    #   mineVariance: 0            # Mine pick-up variance: 0–8, step 1, s
+    #   cannonTypes: true          # Different cannons: true | false
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   rails: true                # Move on rails: true | false
+    #   fruitEvery: 12             # Berry interval: 6–40, step 1, s
+    #   fruitVariance: 0           # Berry variance: 0–5, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Metal Fox
+    # metal-fox:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 100                 # Health: 50–200, step 10
+    #   mines: 3                   # Mines: 0–6, step 1
+    #   mineEvery: 20              # Mine pick-up interval: 8–60, step 1, s
+    #   mineVariance: 0            # Mine pick-up variance: 0–8, step 1, s
+    #   cannonTypes: true          # Different cannons: true | false
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   rails: true                # Move on rails: true | false
+    #   fruitEvery: 12             # Berry interval: 6–40, step 1, s
+    #   fruitVariance: 0           # Berry variance: 0–5, step 1, s
+    #   wallEvery: 6               # Metal wall interval: 3–15, step 1, s
+    #   wallVariance: 0            # Wall variance: 0–3, step 0.5, s
+    #   bombEvery: 14              # Bomb interval: 6–40, step 1, s
+    #   bombVariance: 0            # Bomb variance: 0–5, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Jungle Fox
+    # jungle-fox:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 100                 # Health: 50–200, step 10
+    #   mines: 3                   # Mines: 0–6, step 1
+    #   arenaSize: 8               # Arena size: 6–11, step 1, squares
+    #   mineEvery: 20              # Mine pick-up interval: 8–60, step 1, s
+    #   mineVariance: 0            # Mine pick-up variance: 0–8, step 1, s
+    #   cannonTypes: true          # Different cannons: true | false
+    #   shotBounce: true           # Bouncing shots: true | false
+    #   shotLife: 3                # Shot duration: 1–10, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   rails: false               # Move on rails: true | false
+    #   fruitEvery: 12             # Berry interval: 6–40, step 1, s
+    #   fruitVariance: 0           # Berry variance: 0–5, step 1, s
+    #   totemEvery: 15             # Totem interval: 8–40, step 1, s
+    #   totemVariance: 0           # Totem variance: 0–8, step 1, s
+    #   missileEvery: 18           # Missile interval: 8–40, step 1, s
+    #   missileVariance: 0         # Missile variance: 0–8, step 1, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+    # Swamp Fox
+    # swamp-fox:
+    #   timeLimit: 90              # Time limit: 30–180, step 10, s
+    #   maxHp: 100                 # Health: 50–200, step 10
+    #   mines: 3                   # Mines: 0–6, step 1
+    #   arenaSize: 8               # Arena size: 6–11, step 1, squares
+    #   mineSpeed: 35              # Mine speed: 10–100, step 5
+    #   cannonTypes: true          # Different cannons: true | false
+    #   shotBounce: true           # Bouncing shots: true | false
+    #   shotLife: 3                # Shot duration: 1–10, step 0.5, s
+    #   invulnTime: 0.5            # Hit protection: 0–3, step 0.25, s
+    #   rails: false               # Move on rails: true | false
+    #   shieldTime: 2              # Shield time: 0.5–5, step 0.5, s
+    #   roundsToWin: 3             # Rounds to win: 1–10, step 1
+
+  # Ready-made playlists hosts can load in the playlist builder (marked with a star). Playlists
+  # edited or removed in the admin panel replace the ones written here. 1-10 rounds each, at most 20
+  # playlists; name up to 24 characters; id (optional, default: the name as a slug) up to 12 of a-z 0-9 - _
+  # Each round is a concrete game and variant (ids as under defaults above) and optional options.
+  # playlists:
+  #   - id: quick
+  #     name: Quick party
+  #     rounds:
+  #       - game: box-bonanza
+  #         variant: jungle-bonanza
+  #         options: { timeLimit: 60 }
+  #       - game: ballistix
+  #         variant: smashball

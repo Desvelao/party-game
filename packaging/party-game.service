@@ -1,0 +1,26 @@
+[Unit]
+Description=Bonk Arena Party game server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=party-game
+Group=party-game
+WorkingDirectory=/opt/party-game
+# optional settings (PORT, ADMIN_TOKEN, PROFILE...); the YAML file /etc/party-game/config.yaml is read too
+EnvironmentFile=-/etc/default/party-game
+ExecStart=/usr/bin/party-game-server
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+ReadWritePaths=/var/lib/party-game
+
+[Install]
+WantedBy=multi-user.target

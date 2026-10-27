@@ -1,0 +1,47 @@
+# syntax=docker/dockerfile:1
+# Bot server image: the companion server that joins AI players to open lobbies (see bot/README.md).
+# Two esbuild bundles (dist/bot-main.js + dist/bot-worker.js, one worker thread per bot) and the runtime
+# dependencies (ws, yaml). The bundles are architecture-independent JavaScript, so the build stage runs on the
+# build machine's own platform.
+# Install a game pack for its AI: docker exec <bot> node dist/games.js install /app/data/<pack>.pgpack --yes (needed in the bare image,
+# which has no built-in AIs; the full one accepts extra packs too).
+
+FROM --platform=$BUILDPLATFORM node:22-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY tsconfig.json ./
+COPY src ./src
+COPY bot ./bot
+COPY scripts ./scripts
+# BOT_GAMES=all|none: none = bare bundle without the built-in game AIs (they come from game packs installed into the data volume)
+ARG BOT_GAMES=all
+RUN BOT_GAMES=$BOT_GAMES npm run build:bot && npm run build:tools
+
+# ws and yaml are pure JavaScript: skip the optional native module (better-sqlite3), the bot server does not use it
+FROM node:22-alpine AS prod-deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev --omit=optional --no-audit --no-fund
+
+FROM node:22-alpine AS runtime
+ENV NODE_ENV=production \
+    BOT_HOST=0.0.0.0 \
+    BOT_PORT=8090 \
+    BOT_DATA_DIR=/app/data \
+    BOT_REPORTS_DIR=/app/data/reports \
+    DATA_DIR=/app/data \
+    BOT_GAMES_DIR=/app/data/games
+WORKDIR /app
+COPY --from=prod-deps --chown=node:node /app/node_modules ./node_modules
+COPY --from=build --chown=node:node /app/dist ./dist
+COPY --chown=node:node package.json ./
+COPY --chown=node:node docker/healthcheck-bot.js ./docker/
+# audit log and reports live here: mount a volume to keep them across container replacements
+RUN mkdir -p /app/data && chown node:node /app/data
+VOLUME /app/data
+USER node
+EXPOSE 8090
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD ["node", "docker/healthcheck-bot.js"]
+CMD ["node", "dist/bot-main.js"]

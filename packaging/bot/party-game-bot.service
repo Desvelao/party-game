@@ -1,0 +1,26 @@
+[Unit]
+Description=Bonk Arena Party bot server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=party-game-bot
+Group=party-game-bot
+WorkingDirectory=/opt/party-game-bot
+# settings (ADMIN_TOKEN is required, GAME_SERVER_URL...); the YAML file /etc/party-game/bot-server.yaml is read too
+EnvironmentFile=-/etc/default/party-game-bot
+ExecStart=/usr/bin/party-game-bot
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+ReadWritePaths=/var/lib/party-game-bot
+
+[Install]
+WantedBy=multi-user.target

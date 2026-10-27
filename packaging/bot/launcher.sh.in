@@ -1,0 +1,17 @@
+#!/bin/sh
+# party-game-@TOOL@: runs dist/@FILE@ with the Node.js that ships in this package.
+# Works from the unpacked tarball and from the deb/rpm (where /usr/bin/party-game-@TOOL@ is a symlink to this file).
+# Settings already in the environment win over the defaults below.
+self=$(readlink -f "$0")
+APP=$(dirname "$(dirname "$self")")
+# deb/rpm: launcher.conf points DATA_DIR at /var/lib/party-game-bot (the tarball has none: data lives in <app>/data)
+[ -r "$APP/launcher.conf" ] && . "$APP/launcher.conf"
+DATA_DIR=${DATA_DIR:-$APP/data}
+export DATA_DIR
+export NODE_ENV=${NODE_ENV:-production}
+# the bot server keeps its settings, audit log and reports in DATA_DIR; the game packs (their AI) in DATA_DIR/games,
+# which is also where party-game-bot-games installs them
+export BOT_DATA_DIR=${BOT_DATA_DIR:-$DATA_DIR}
+export BOT_REPORTS_DIR=${BOT_REPORTS_DIR:-$DATA_DIR/reports}
+export BOT_GAMES_DIR=${BOT_GAMES_DIR:-$DATA_DIR/games}
+exec "$APP/bin/node" "$APP/dist/@FILE@" "$@"

@@ -1,0 +1,10 @@
+# Party game server configuration (see /usr/share/doc/party-game/config.example.yaml for every key).
+# Everything is optional; this file is empty on purpose. A value set here overrides the matching
+# environment variable (/etc/default/party-game). Example:
+#
+# server:
+#   port: 8080
+# performance:
+#   profile: LOW_POWER
+#
+# After a change: sudo systemctl restart party-game   (check it first with: party-game-config-check)

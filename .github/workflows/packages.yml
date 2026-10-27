@@ -1,0 +1,313 @@
+name: Native packages
+
+# Builds the self-contained Linux packages (tar.gz, deb, rpm; each carries its own Node.js, see packaging/ and
+# docs/development/packaging.md) for amd64, arm64, armv7 and armv6 (Raspberry Pi Zero W), in two flavors:
+# full (every game and plugin) and bare (core only, name ends in -bare). The games and plugins are also attached as
+# .pgpack files, so a bare install can add them. The standalone bot server (party-game-bot...) comes in the same
+# formats, architectures and flavors (its bare flavor has no built-in game AI; the .pgpack files bring it):
+#  - on a version tag (v1.2.3): builds, smoke tests and attaches them to the GitHub release
+#  - on demand (Actions tab -> Run workflow): builds and tests them; they stay as workflow artifacts unless a tag is given
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to attach the packages to (optional, e.g. v1.2.3; it must match package.json)
+        required: false
+
+concurrency:
+  group: packages-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  NFPM_VERSION: 2.41.1
+  RELEASE_TAG: ${{ inputs.tag || (startsWith(github.ref, 'refs/tags/v') && github.ref_name) || '' }}
+
+jobs:
+  build:
+    name: Build the client, server and games
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag matches package.json version
+        if: env.RELEASE_TAG != ''
+        run: |
+          tag="${RELEASE_TAG#v}"
+          pkg=$(node -p "require('./package.json').version")
+          if [ "$tag" != "$pkg" ]; then
+            echo "::error::tag v$tag does not match package.json version $pkg"
+            exit 1
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run build:bot
+      # dist/ is plain JavaScript, the same for every architecture
+      - name: Keep the full build and its packs, then build the bare one
+        run: |
+          mkdir -p packs
+          cp dist/packs/*.pgpack dist/plugin-packs/*.pgpack packs/
+          (cd packs && sha256sum ./*.pgpack | sed 's# \./# #' > SHA256SUMS-packs.txt)
+          mv dist dist-full
+          GAMES=none BUILD_PLUGINS=none npm run build
+          BOT_GAMES=none npm run build:bot
+          mv dist dist-bare
+          ls dist-bare/games dist-bare/plugins 2>/dev/null | head || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-full
+          path: dist-full
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-bare
+          path: dist-bare
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packs
+          path: packs/*
+          retention-days: 7
+
+  package:
+    name: Package (${{ matrix.arch }})
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            platform: linux/amd64
+          - arch: arm64
+            platform: linux/arm64
+          - arch: armv7
+            platform: linux/arm/v7
+          # no Debian image exists for armv6: its package ships without the native better-sqlite3 (json profile store)
+          - arch: armv6
+            platform: ""
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-full
+          path: dist-full
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-bare
+          path: dist-bare
+      - uses: docker/setup-qemu-action@v3
+        if: matrix.platform != ''
+      - name: Install nfpm
+        run: |
+          curl -fsSL "https://github.com/goreleaser/nfpm/releases/download/v${NFPM_VERSION}/nfpm_${NFPM_VERSION}_Linux_x86_64.tar.gz" | sudo tar xz -C /usr/local/bin nfpm
+          nfpm --version
+      # better-sqlite3 is a native module: install the production dependencies on the target architecture
+      - name: Production dependencies for the target
+        if: matrix.platform != ''
+        run: |
+          mkdir -p build
+          docker run --rm --platform "${{ matrix.platform }}" -u "$(id -u):$(id -g)" -e HOME=/tmp \
+            -v "$PWD:/src" node:22-bookworm sh -c '
+              set -e
+              mkdir /tmp/d && cd /tmp/d
+              cp /src/package.json /src/package-lock.json .
+              npm ci --omit=dev --no-audit --no-fund
+              node -e "require(\"better-sqlite3\")" && echo "better-sqlite3 loads"
+              cp -r node_modules /src/build/node_modules-${{ matrix.arch }}'
+      - name: Build tar.gz, deb and rpm (full and bare)
+        env:
+          PACKAGE_HOMEPAGE: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          if [ -d "build/node_modules-${{ matrix.arch }}" ]; then export NODE_MODULES_FROM="build/node_modules-${{ matrix.arch }}"; fi
+          FLAVOR=full DIST_DIR=dist-full packaging/build-package.sh "${{ matrix.arch }}"
+          FLAVOR=bare DIST_DIR=dist-bare packaging/build-package.sh "${{ matrix.arch }}"
+          # the bot server: pure JavaScript dependencies, nothing to build for the target
+          unset NODE_MODULES_FROM
+          PRODUCT=bot FLAVOR=full DIST_DIR=dist-full packaging/build-package.sh "${{ matrix.arch }}"
+          PRODUCT=bot FLAVOR=bare DIST_DIR=dist-bare packaging/build-package.sh "${{ matrix.arch }}"
+          ls -l build/packages
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages-${{ matrix.arch }}
+          path: build/packages/*
+          retention-days: 7
+
+  smoke:
+    name: Install and smoke test (amd64, ${{ matrix.flavor }})
+    needs: [package, build]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        flavor: [full, bare]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: packages-amd64
+          path: pkg
+      - uses: actions/download-artifact@v4
+        with:
+          name: packs
+          path: packs
+      - name: Verify checksums
+        run: cd pkg && sha256sum -c ./*.sha256 && cd ../packs && sha256sum -c SHA256SUMS-packs.txt
+      - name: Pick the flavor
+        run: |
+          if [ "${{ matrix.flavor }}" = bare ]; then echo "SUFFIX=-bare" >> "$GITHUB_ENV"; else echo "SUFFIX=" >> "$GITHUB_ENV"; fi
+      - name: deb on Debian
+        run: |
+          docker run --rm -e FLAVOR=${{ matrix.flavor }} -e SUFFIX="$SUFFIX" -v "$PWD/pkg:/pkg:ro" -v "$PWD/packs:/packs:ro" debian:12 sh -c '
+            set -e
+            apt-get update -qq >/dev/null
+            apt-get install -y -qq /pkg/party-game${SUFFIX}_*_amd64.deb curl >/dev/null
+            id party-game
+            test -L /usr/bin/party-game-server
+            for t in server admin config-check loadtest migrate-profiles games plugins; do test -x /usr/bin/party-game-$t; done
+            party-game-config-check | tail -1
+            if [ "$FLAVOR" = full ]; then
+              party-game-games list | grep -q ballistix
+              party-game-plugins list | grep -q bots
+            else
+              ! party-game-games list | grep -q ballistix
+              ! party-game-plugins list | grep -q bots
+              # the packs of the release add them
+              su -s /bin/sh party-game -c "party-game-plugins install /packs/characters-*.pgpack --yes"
+              su -s /bin/sh party-game -c "party-game-games install /packs/ballistix-*.pgpack --yes"
+              party-game-games list | grep -q ballistix
+              party-game-plugins list | grep -q characters
+            fi
+            # the other flavor replaces this one instead of installing next to it
+            if [ "$FLAVOR" = full ]; then other=$(ls /pkg/party-game-bare_*_amd64.deb); else other=$(ls /pkg/party-game_*_amd64.deb); fi
+            apt-get install -y -qq "$other" >/dev/null
+            ! dpkg -s party-game${SUFFIX} 2>/dev/null | grep -q "Status: install ok installed"
+            apt-get install -y -qq /pkg/party-game${SUFFIX}_*_amd64.deb >/dev/null
+            su -s /bin/sh party-game -c "party-game-server" > /tmp/server.log 2>&1 &
+            for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8080/stats >/dev/null 2>&1 && break; sleep 1; done
+            curl -fsS http://127.0.0.1:8080/stats > /dev/null
+            curl -fsS http://127.0.0.1:8080/ | grep -qi "<html"
+            curl -fsS "http://127.0.0.1:8080/status?format=json" > /dev/null
+            cat /tmp/server.log
+            su -s /bin/sh party-game -c "PORT=8081 PROFILE_STORE=sqlite party-game-server" > /tmp/sqlite.log 2>&1 &
+            for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8081/stats >/dev/null 2>&1 && break; sleep 1; done
+            key=$(printf "ab%.0s" $(seq 1 16))
+            curl -fsS -X PUT http://127.0.0.1:8081/api/profile -H "Authorization: Bearer $key" -d "{\"name\":\"CI\"}" | grep -q "\"name\":\"CI\""
+            grep -q "profile store: sqlite" /tmp/sqlite.log
+            test -f /var/lib/party-game/profiles.db'
+      - name: rpm on Fedora
+        run: |
+          docker run --rm -e FLAVOR=${{ matrix.flavor }} -e SUFFIX="$SUFFIX" -v "$PWD/pkg:/pkg:ro" -v "$PWD/packs:/packs:ro" fedora:latest sh -c '
+            set -e
+            if [ "$FLAVOR" = full ]; then rpm=$(ls /pkg/party-game-[0-9]*.x86_64.rpm); else rpm=$(ls /pkg/party-game-bare-*.x86_64.rpm); fi
+            dnf install -y -q "$rpm"
+            id party-game
+            party-game-config-check | tail -1
+            if [ "$FLAVOR" = full ]; then
+              party-game-games list | grep -q ballistix
+            else
+              ! party-game-games list | grep -q ballistix
+              su -s /bin/sh party-game -c "party-game-plugins install /packs/characters-*.pgpack --yes"
+              su -s /bin/sh party-game -c "party-game-games install /packs/ballistix-*.pgpack --yes"
+              party-game-games list | grep -q ballistix
+            fi'
+      - name: tar.gz runs from any directory
+        run: |
+          mkdir unpacked && tar xzf pkg/party-game-[0-9]*-linux-amd64${SUFFIX}.tar.gz -C unpacked
+          bin=$(echo unpacked/party-game-*/bin)
+          if [ "${{ matrix.flavor }}" = full ]; then
+            "$bin"/party-game-games list | grep -q ballistix
+          else
+            ! "$bin"/party-game-games list | grep -q ballistix
+            "$bin"/party-game-plugins install packs/characters-*.pgpack --yes
+            "$bin"/party-game-games install packs/ballistix-*.pgpack --yes
+            "$bin"/party-game-games list | grep -q ballistix
+          fi
+
+      - name: Bot server, deb on Debian
+        run: |
+          docker run --rm -e FLAVOR=${{ matrix.flavor }} -e SUFFIX="$SUFFIX" -v "$PWD/pkg:/pkg:ro" -v "$PWD/packs:/packs:ro" debian:12 sh -c '
+            set -e
+            apt-get update -qq >/dev/null
+            apt-get install -y -qq /pkg/party-game-bot${SUFFIX}_*_amd64.deb curl >/dev/null
+            id party-game-bot
+            for t in bot bot-games; do test -x /usr/bin/party-game-$t; done
+            test -f /etc/party-game/bot-server.yaml
+            test -f /usr/lib/systemd/system/party-game-bot.service
+            party-game-bot --check | tail -1
+            # it installs next to the game server package (different folders, users and services)
+            apt-get install -y -qq /pkg/party-game${SUFFIX}_*_amd64.deb >/dev/null
+            id party-game
+            if [ "$FLAVOR" = full ]; then other=$(ls /pkg/party-game-bot-bare_*_amd64.deb); else other=$(ls /pkg/party-game-bot_*_amd64.deb); fi
+            apt-get install -y -qq "$other" >/dev/null
+            ! dpkg -s party-game-bot${SUFFIX} 2>/dev/null | grep -q "Status: install ok installed"
+            apt-get install -y -qq /pkg/party-game-bot${SUFFIX}_*_amd64.deb >/dev/null
+            su -s /bin/sh party-game-bot -c "ADMIN_TOKEN=ci BOT_PORT=8090 party-game-bot" > /tmp/bot.log 2>&1 &
+            for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8090/healthz >/dev/null 2>&1 && break; sleep 1; done
+            curl -fsS http://127.0.0.1:8090/healthz | grep -q "\"ok\":true"
+            if [ "$FLAVOR" = full ]; then
+              grep -q "AI available: .*ballistix" /tmp/bot.log
+            else
+              grep -q "AI available: none" /tmp/bot.log
+              # the packs of the release bring the AI
+              su -s /bin/sh party-game-bot -c "party-game-bot-games install /packs/ballistix-*.pgpack --yes"
+              party-game-bot-games list | grep -q ballistix
+              su -s /bin/sh party-game-bot -c "ADMIN_TOKEN=ci BOT_PORT=8091 party-game-bot" > /tmp/bot2.log 2>&1 &
+              for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8091/healthz >/dev/null 2>&1 && break; sleep 1; done
+              grep -q "AI available: ballistix" /tmp/bot2.log
+            fi'
+      - name: Bot server, rpm on Fedora
+        run: |
+          docker run --rm -e FLAVOR=${{ matrix.flavor }} -v "$PWD/pkg:/pkg:ro" -v "$PWD/packs:/packs:ro" fedora:latest sh -c '
+            set -e
+            if [ "$FLAVOR" = full ]; then rpm=$(ls /pkg/party-game-bot-[0-9]*.x86_64.rpm); else rpm=$(ls /pkg/party-game-bot-bare-*.x86_64.rpm); fi
+            dnf install -y -q "$rpm"
+            id party-game-bot
+            test -f /etc/party-game/bot-server.yaml
+            party-game-bot --check | tail -1
+            if [ "$FLAVOR" = bare ]; then
+              su -s /bin/sh party-game-bot -c "party-game-bot-games install /packs/ballistix-*.pgpack --yes"
+              party-game-bot-games list | grep -q ballistix
+            fi'
+      - name: Bot server, tar.gz runs from any directory
+        run: |
+          mkdir unpacked-bot && tar xzf pkg/party-game-bot-[0-9]*-linux-amd64${SUFFIX}.tar.gz -C unpacked-bot
+          bin=$(echo unpacked-bot/party-game-bot-*/bin)
+          ADMIN_TOKEN=ci BOT_PORT=8092 "$bin"/party-game-bot > bot-tar.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8092/healthz >/dev/null 2>&1 && break; sleep 1; done
+          curl -fsS http://127.0.0.1:8092/healthz | grep -q '"ok":true'
+          if [ "${{ matrix.flavor }}" = full ]; then
+            grep -q "AI available: .*ballistix" bot-tar.log
+          else
+            grep -q "AI available: none" bot-tar.log
+            "$bin"/party-game-bot-games install packs/ballistix-*.pgpack --yes
+            "$bin"/party-game-bot-games list | grep -q ballistix
+          fi
+
+  publish:
+    name: Attach the packages to the release
+    needs: smoke
+    if: ${{ inputs.tag != '' || startsWith(github.ref, 'refs/tags/v') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: packages-*
+          path: pkg
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: packs
+          path: packs
+      - name: Create the release if release.yml has not yet, then upload
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || gh release create "$RELEASE_TAG" --generate-notes || gh release view "$RELEASE_TAG" >/dev/null
+          gh release upload "$RELEASE_TAG" pkg/* packs/* --clobber

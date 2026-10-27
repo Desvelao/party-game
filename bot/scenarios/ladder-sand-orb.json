@@ -1,0 +1,26 @@
+{
+ "name": "ladder-sand-orb",
+ "description": "Four levels in one 4-seat room (easy, normal, hard, semigod). Run several matches/rooms, then npm run bot:analyze for the level-vs-level matrix and ladder check.",
+ "game": "ballistix",
+ "variant": "sand-orb",
+ "options": {
+  "lives": 3,
+  "timeLimit": 90
+ },
+ "seats": [
+  {
+   "bot": "easy"
+  },
+  {
+   "bot": "normal"
+  },
+  {
+   "bot": "hard"
+  },
+  {
+   "bot": "semigod"
+  }
+ ],
+ "matches": 3,
+ "rooms": 2
+}

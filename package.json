@@ -1,0 +1,63 @@
+{
+  "name": "party-game",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Desvelao <iamdesvelao@gmail.com>",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "description": "Lightweight multiplayer browser party game (Phaser 3 client, Node/ws authoritative server)",
+  "scripts": {
+    "dev:server": "DEV_SOURCE=1 tsx watch --clear-screen=false --include \"src/games/**/*.json\" --include \"src/plugins/**/*.json\" src/core/server/main.ts",
+    "dev:server:built": "npm run build:games && npm run build:plugins && tsx watch --clear-screen=false src/core/server/main.ts",
+    "dev:client": "vite --config src/core/client/vite.config.ts --host 0.0.0.0",
+    "build:client": "vite build --config src/core/client/vite.config.ts",
+    "build:server": "esbuild src/core/server/main.ts --bundle --platform=node --target=node18 --format=esm --packages=external --outfile=dist/server.js",
+    "build:tools": "esbuild src/core/tools/migrate-profiles.ts src/core/tools/admin.ts src/core/tools/loadtest.ts src/core/tools/config-check.ts src/core/tools/games.ts src/core/tools/plugins.ts --bundle --platform=node --target=node18 --format=esm --packages=external --outdir=dist",
+    "build:core": "npm run build:client && npm run build:server && npm run build:tools",
+    "build:games": "tsx src/core/tools/build-games.ts",
+    "build:plugins": "tsx src/core/tools/build-plugins.ts",
+    "build": "npm run build:core && npm run build:games && npm run build:plugins",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test",
+    "loadtest": "tsx src/core/tools/loadtest.ts",
+    "balance": "tsx src/core/tools/balance.ts",
+    "profiles:migrate": "tsx src/core/tools/migrate-profiles.ts",
+    "admin": "tsx src/core/tools/admin.ts",
+    "config:example": "tsx src/core/tools/gen-config-example.ts",
+    "config:check": "tsx src/core/tools/config-check.ts",
+    "gamepack": "tsx src/core/tools/gamepack.ts",
+    "scaffold": "tsx src/core/tools/scaffold.ts",
+    "playtest": "tsx src/core/tools/playtest.ts",
+    "games": "tsx src/core/tools/games.ts",
+    "plugins": "tsx src/core/tools/plugins.ts",
+    "bot": "tsx bot/index.ts",
+    "bot:analyze": "tsx bot/analyze.ts",
+    "bot:arena": "tsx bot/arena.ts",
+    "bot:server": "tsx bot/server/main.ts",
+    "bot:config:example": "tsx bot/server/gen-config-example.ts",
+    "build:bot": "node scripts/build-bot.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.18.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.12",
+    "esbuild": "^0.23.0",
+    "phaser": "^3.80.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0",
+    "vitest": "^2.0.5"
+  },
+  "optionalDependencies": {
+    "better-sqlite3": "^11.10.0"
+  }
+}

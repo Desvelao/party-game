@@ -1,0 +1,3 @@
+{ "name": "stress", "description": "Four bots, few lives and many balls: produces lots of incidents for defensive analysis.",
+  "game": "ballistix", "variant": "smashball", "options": { "lives": 2, "balls": "4", "timeLimit": 90 },
+  "seats": [ { "bot": "normal" }, { "bot": "normal" }, { "bot": "hard" }, { "bot": "hard" } ], "matches": 3 }

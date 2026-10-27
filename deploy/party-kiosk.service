@@ -1,0 +1,26 @@
+[Unit]
+Description=Bonk Arena Party TV screen (browser in kiosk mode)
+After=party-game.service systemd-user-sessions.service
+Wants=party-game.service
+# take over the first screen, like a login prompt would
+Conflicts=getty@tty1.service
+After=getty@tty1.service
+
+[Service]
+# a user without a shell or a password: it only runs the browser
+User=party-kiosk
+PAMName=login
+TTYPath=/dev/tty1
+StandardInput=tty
+StandardOutput=journal
+UtmpIdentifier=tty1
+UtmpMode=user
+Environment=XDG_RUNTIME_DIR=/run/user/%U
+# wait until the game server answers, then show the TV page
+ExecStartPre=/bin/sh -c 'for i in $(seq 1 60); do curl -fs http://localhost/status?format=json >/dev/null && exit 0; sleep 1; done; exit 1'
+ExecStart=/usr/bin/cage -s -- /usr/bin/chromium --kiosk --no-first-run --noerrdialogs --disable-infobars --disable-session-crashed-bubble --autoplay-policy=no-user-gesture-required --user-data-dir=/var/lib/party-kiosk/chromium http://localhost/tv
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target

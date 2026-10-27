@@ -1,0 +1,148 @@
+# Production deployment.
+#   docker compose -f docker-compose.prod.yml up -d            # pulls the published image
+#   docker compose -f docker-compose.prod.yml up -d --build    # or build it from this checkout
+#
+# Settings (all optional) come from the environment or a .env file next to this file:
+#   IMAGE / TAG          image to run (default ghcr.io/OWNER/party-game:latest; set IMAGE to your repo)
+#   PORT                 host port that serves the game (default 8080)
+#   PROFILE              LOW_POWER | NORMAL | HIGH hardware profile (default NORMAL)
+#   TICK_RATE NET_RATE MAX_PLAYERS MAX_ROOMS MAX_SPECTATORS    per-setting overrides
+#   IDLE_ROOM_SECONDS IDLE_WARN_SECONDS RECONNECT_GRACE_SECONDS MAX_CONNECTIONS_PER_IP MAX_PROFILES RECENT_MATCHES
+#   JOIN_TIMEOUT_MS PING_INTERVAL_MS SQLITE_BUSY_TIMEOUT_MS   (the last three are in milliseconds)
+#   TRUST_PROXY=1        only behind a reverse proxy you control (reads X-Forwarded-For)
+#   ADMIN_TOKEN          token required by /api/admin/* (unset: loopback only)
+#   PROFILE_STORE        json (default, works everywhere) or sqlite (database in the data volume)
+#   TLS_SELF_SIGNED=1    serve HTTPS with a self-signed certificate made on first start (kept in the party-game-certs volume)
+#   TLS_HOSTNAME         name in that certificate (default localhost); TLS_ALT_NAMES adds more names/IPs, comma separated
+#   TLS_CERT / TLS_KEY   or serve HTTPS with your own PEM files (paths inside the container, e.g. /app/certs/cert.pem):
+#                        put them in the party-game-certs volume or swap it for a bind mount (see below)
+#
+# Bot server (optional, `--profile bot`; dashboard at http://localhost:8090):
+#   BOT_ADMIN_TOKEN      required: token for the bot dashboard/API
+#   BOT_IMAGE / BOT_PORT image to run (default ghcr.io/OWNER/party-game-bot; TAG=X.Y.Z-bare is the flavor without built-in game AI, see docs/manual/deployment.md) / host port (default 8090)
+#   BOTS_ALLOW_FILL=1 [BOTS_DEFAULT_LEVEL] [BOTS_MODE] [BOTS_MAX] [BOTS_DECISION_HZ]   on the game: hosts can fill rooms with bots (the bots plugin plays them inside the game by default)
+#   BOTS_MODE=external BOTS_TOKEN=<secret>   or let the bot service play them (it gets the same BOTS_TOKEN)
+#   PLUGINS=none        load no plugin (also: BUILD_PLUGINS=... as a build arg picks which are packed into the image)
+#   GAME_SERVER_URL      where the bot finds the game (default http://game:8080)
+#   BOT_LEVEL BOT_MAX_BOTS BOT_BOTS_PER_ROOM BOT_MIN_HUMANS BOT_MIXED BOT_POLL_SECONDS    see bot/server/config.example.yaml
+#
+# Everything above can instead live in a YAML file (see config.example.yaml): uncomment the
+# config mount below. A value in the file overrides the matching variable. Without -c or
+# PARTY_GAME_CONFIG the server reads /etc/party-game/config.yaml when it exists.
+#
+# Player profiles and stats are kept in the `party-game-data` volume.
+services:
+  game:
+    image: ${IMAGE:-ghcr.io/OWNER/party-game}:${TAG:-latest}
+    build:
+      context: .
+      args:
+        GAMES: ${GAMES:-all}                     # none = bare image (install games into the data volume)
+        BUILD_PLUGINS: ${BUILD_PLUGINS:-all}
+    init: true
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8080}:8080"
+    environment:
+      PROFILE: ${PROFILE:-NORMAL}
+      TICK_RATE: ${TICK_RATE:-}
+      NET_RATE: ${NET_RATE:-}
+      MAX_PLAYERS: ${MAX_PLAYERS:-}
+      MAX_ROOMS: ${MAX_ROOMS:-}
+      MAX_SPECTATORS: ${MAX_SPECTATORS:-}
+      IDLE_ROOM_SECONDS: ${IDLE_ROOM_SECONDS:-}
+      IDLE_WARN_SECONDS: ${IDLE_WARN_SECONDS:-}
+      RECONNECT_GRACE_SECONDS: ${RECONNECT_GRACE_SECONDS:-}
+      JOIN_TIMEOUT_MS: ${JOIN_TIMEOUT_MS:-}
+      PING_INTERVAL_MS: ${PING_INTERVAL_MS:-}
+      MAX_CONNECTIONS_PER_IP: ${MAX_CONNECTIONS_PER_IP:-}
+      MAX_PROFILES: ${MAX_PROFILES:-}
+      RECENT_MATCHES: ${RECENT_MATCHES:-}
+      SQLITE_BUSY_TIMEOUT_MS: ${SQLITE_BUSY_TIMEOUT_MS:-}
+      TRUST_PROXY: ${TRUST_PROXY:-}
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+      TLS_SELF_SIGNED: ${TLS_SELF_SIGNED:-}
+      TLS_HOSTNAME: ${TLS_HOSTNAME:-}
+      TLS_ALT_NAMES: ${TLS_ALT_NAMES:-}
+      TLS_CERT: ${TLS_CERT:-}
+      TLS_KEY: ${TLS_KEY:-}
+      PLUGINS: ${PLUGINS:-}                      # all (default) | none | ids of the bundled plugins to load, e.g. bots
+      BOTS_ALLOW_FILL: ${BOTS_ALLOW_FILL:-}      # 1: hosts may fill their room with bots (the bots plugin)
+      BOTS_MODE: ${BOTS_MODE:-}                  # embedded (default): this server plays the bots | external: the bot service does (needs BOTS_TOKEN)
+      BOTS_MAX: ${BOTS_MAX:-}                    # most embedded bots at once (default by PROFILE)
+      BOTS_MIXED: ${BOTS_MIXED:-}                # always: bots also join rooms that rotate through every game (default never)
+      BOTS_API: ${BOTS_API:-}                    # 0: no management API at /api/bots
+      BOTS_DASHBOARD: ${BOTS_DASHBOARD:-}        # 0: no dashboard at /plugins/bots/
+      BOTS_METRICS: ${BOTS_METRICS:-}            # 1: Prometheus metrics at /api/bots/prometheus
+      BOTS_DECISION_HZ: ${BOTS_DECISION_HZ:-}    # embedded bot decisions per second (default by PROFILE)
+      BOTS_DEFAULT_LEVEL: ${BOTS_DEFAULT_LEVEL:-}   # easy | normal | hard | expert | semigod | random (default normal)
+      BOTS_TOKEN: ${BOTS_TOKEN:-}               # secret shared with the bot service (its GAME_SERVER_BOT_TOKEN)
+      PROFILE_STORE: ${PROFILE_STORE:-json}      # json | sqlite (recommended where available) | memory
+      SQLITE_PATH: ${SQLITE_PATH:-}
+      PARTY_GAME_CONFIG: ${PARTY_GAME_CONFIG:-}   # path inside the container, if not the default above
+    volumes:
+      - party-game-data:/app/data
+      - party-game-certs:/app/certs        # HTTPS certificate and key (cert.pem, key.pem); see docs/manual/https.md
+      # - ./certs:/app/certs:ro            # or your own files from a host folder (replaces the line above)
+      # - ./config.yaml:/etc/party-game/config.yaml:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "node", "docker/healthcheck.js"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+  # Bot server: joins AI players to open lobbies and serves a dashboard (see bot/README.md).
+  # Optional: start it with `docker compose -f docker-compose.prod.yml --profile bot up -d`.
+  bot:
+    profiles: ["bot"]
+    image: ${BOT_IMAGE:-ghcr.io/OWNER/party-game-bot}:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.bot
+    init: true
+    restart: unless-stopped
+    depends_on:
+      - game
+    ports:
+      - "${BOT_PORT:-8090}:8090"
+    environment:
+      GAME_SERVER_URL: ${GAME_SERVER_URL:-http://game:8080}   # https://game:8080 when the game serves HTTPS
+      NODE_TLS_REJECT_UNAUTHORIZED: ${BOT_TLS_INSECURE:-}    # 0: accept a self-signed certificate on the game server
+      ADMIN_TOKEN: ${BOT_ADMIN_TOKEN:-}   # required: without it the bot server refuses to start
+      GAME_SERVER_ADMIN_TOKEN: ${ADMIN_TOKEN:-}   # the game's own token; lets the dashboard read its /stats
+      GAME_SERVER_BOT_TOKEN: ${BOTS_TOKEN:-}      # the game's BOTS_TOKEN: lets the bots join rooms whose host asked for bots
+      BOT_LEVEL: ${BOT_LEVEL:-}
+      BOT_MAX_BOTS: ${BOT_MAX_BOTS:-}
+      BOT_BOTS_PER_ROOM: ${BOT_BOTS_PER_ROOM:-}
+      BOT_MIN_HUMANS: ${BOT_MIN_HUMANS:-}
+      BOT_MIXED: ${BOT_MIXED:-}
+      BOT_POLL_SECONDS: ${BOT_POLL_SECONDS:-}
+    volumes:
+      - party-game-bot-data:/app/data
+      # - ./bot-server.yaml:/etc/party-game/bot-server.yaml:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "node", "docker/healthcheck-bot.js"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+volumes:
+  party-game-data:
+  party-game-certs:
+  party-game-bot-data:

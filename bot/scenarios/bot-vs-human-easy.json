@@ -1,0 +1,3 @@
+{ "name": "bot-vs-human-easy", "description": "One easy bot against you. Join the printed room code in the browser.",
+  "game": "ballistix", "variant": "smashball", "options": { "lives": 3 },
+  "seats": [ { "bot": "easy" }, { "human": true } ], "matches": 1 }
