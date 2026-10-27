@@ -145,7 +145,7 @@ jobs:
         run: echo "name=${REGISTRY}/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
       - name: Tags and labels
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ steps.image.outputs.name }}
           flavor: |
@@ -171,7 +171,7 @@ jobs:
           cache-to: type=gha,scope=multiarch-${{ matrix.flavor }},mode=max
       - name: Bot server tags and labels
         id: meta-bot
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ steps.image.outputs.name }}-bot
           flavor: |
