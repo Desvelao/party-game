@@ -53,7 +53,7 @@
     "esbuild": "^0.23.0",
     "phaser": "^3.80.1",
     "tsx": "^4.19.0",
-    "typescript": "^5.5.4",
+    "typescript": "^7.0.2",
     "vite": "^5.4.0",
     "vitest": "^2.0.5"
   },
