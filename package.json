@@ -43,14 +43,14 @@
     "build:bot": "node scripts/build-bot.mjs"
   },
   "dependencies": {
-    "ws": "^8.18.0",
+    "ws": "^8.22.1",
     "yaml": "^2.9.1"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^22.0.0",
     "@types/ws": "^8.5.12",
-    "esbuild": "^0.23.0",
+    "esbuild": "^0.28.2",
     "phaser": "^3.80.1",
     "tsx": "^4.19.0",
     "typescript": "^5.5.4",
